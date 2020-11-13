@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>模板</h3>
+        <h3>这是一个模板</h3>
     </div>
 </template>
 
