@@ -5,8 +5,8 @@
       <el-header>
         <div class="line"></div>
         <div>
-                    <!--小屏幕导航按钮和logo-->
-                    <!-- <div class="navbar-header">
+          <!--小屏幕导航按钮和logo-->
+          <!-- <div class="navbar-header">
                         <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -15,61 +15,62 @@
                         <a href="" class="navbar-brand"><img src="../assets/img/hmb3.png" alt="" /></a>
                         <a href="" class="navbar-brand">HelloMybody</a>
                     </div> -->
-                    <div class="navbar-collapse collapse">
-          <el-menu
-            :default-active="activePath"
-            class="el-menu-demo"
-            mode="horizontal"
-            background-color="Transparent"
-            text-color="#fff"
-            active-text-color="#ffd04b"
-            :router="true"
-          >
-            <!-- default-active="/hello"   设定打开界面为hello -->
-            <!-- el-menu-vertical-demo控制下拉 -->
-            <!-- :router="true" 设定路由，让其能够根据页面进行跳转 -->
-            <!-- > unique-opened   该属性方法控制侧边栏 展开时不自动关闭-->
-            
-            <el-menu-item :to="{ path: '/hellou' }">首页</el-menu-item>
-            <!-- 一级菜单 -->
-            <el-submenu
-              :index="item.id + ''"
-              v-for="item in menuList"
-              :key="item.id">
-              <!--  v-for 编写循环 -->
-              <!-- 从menuList中取出数据放入item中，，绑定唯一标识的key -->
-              <template slot="title">
-                <span>{{ item.title }}</span>
-              </template>
-              <!-- 二级菜单 -->
-              <el-menu-item
-                :index="it.path"
-                v-for="it in item.sList"
-                :key="it.id"
-                @click="saveNavState(it.path)"
+          <div class="navbar-collapse collapse">
+            <el-menu
+              :default-active="activePath"
+              class="el-menu-demo"
+              mode="horizontal"
+              background-color="Transparent"
+              text-color="#fff"
+              active-text-color="#ffd04b"
+              :router="true"
+            >
+              <!-- default-active="/hello"   设定打开界面为hello -->
+              <!-- el-menu-vertical-demo控制下拉 -->
+              <!-- :router="true" 设定路由，让其能够根据页面进行跳转 -->
+              <!-- > unique-opened   该属性方法控制侧边栏 展开时不自动关闭-->
+
+              <el-menu-item :to="{ path: '/hellou' }">首页</el-menu-item>
+              <!-- 一级菜单 -->
+              <el-submenu
+                :index="item.id + ''"
+                v-for="item in menuList"
+                :key="item.id"
               >
-                <!-- it.path 即字符串路径，读取数据库路径 -->
+                <!--  v-for 编写循环 -->
+                <!-- 从menuList中取出数据放入item中，，绑定唯一标识的key -->
                 <template slot="title">
-                  <i class="el-icon-location"></i>
-                  <span>{{ it.title }}</span>
+                  <span>{{ item.title }}</span>
                 </template>
-              </el-menu-item>
-            </el-submenu>
-            <!-- <el-menu-item :router="true" :to="{ path: '/jkkp' }">健康科普</el-menu-item> -->
-            <!-- <el-menu-item :to="{ path: '/jkgj' }">健康工具</el-menu-item> -->
-            <!-- <el-menu-item index="3" disabled>消息中心</el-menu-item> -->
-            <!-- <el-menu-item index="4"><a href="https://www.ele.me" target="_blank"
+                <!-- 二级菜单 -->
+                <el-menu-item
+                  :index="it.path"
+                  v-for="it in item.sList"
+                  :key="it.id"
+                  @click="saveNavState(it.path)"
+                >
+                  <!-- it.path 即字符串路径，读取数据库路径 -->
+                  <template slot="title">
+                    <i class="el-icon-location"></i>
+                    <span>{{ it.title }}</span>
+                  </template>
+                </el-menu-item>
+              </el-submenu>
+              <!-- <el-menu-item :router="true" :to="{ path: '/jkkp' }">健康科普</el-menu-item> -->
+              <!-- <el-menu-item :to="{ path: '/jkgj' }">健康工具</el-menu-item> -->
+              <!-- <el-menu-item index="3" disabled>消息中心</el-menu-item> -->
+              <!-- <el-menu-item index="4"><a href="https://www.ele.me" target="_blank"
               >订单管理</a>
             </el-menu-item> -->
-        <el-button type="info" @click="logout">退出登录</el-button>
-          </el-menu>
+              <el-button type="info" @click="logout">退出登录</el-button>
+            </el-menu>
           </div>
         </div>
         <!-- 按钮退出 click方法 -->
         <div></div>
       </el-header>
       <!-- 主体区域 -->
-      <el-main style="width:80%; margin:0 auto;">
+      <el-main style="width: 80%; margin: 0 auto">
         <!-- 用路由开始重定向导航栏 -->
         <router-view></router-view>
       </el-main>
@@ -236,7 +237,7 @@ export default {
 /* 头部尾部 */
 .el-header,
 .el-footer {
-  background-color:#409EFF;
+  background-color: #409eff;
   color: #333;
   text-align: center;
   line-height: 60px;
@@ -244,7 +245,7 @@ export default {
 /*导航栏开始*/
 .navbar-default {
   background-color: #f7f8f8;
-  border: none; 
+  border: none;
   line-height: 180px;
   /* box-shadow: 0px 2px 8px 0px rgba(50,50,50,0.25);*/
 }

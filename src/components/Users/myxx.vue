@@ -49,6 +49,7 @@
                   type="date"
                   placeholder="选择日期"
                   v-model="ruleForm.date1"
+                  v-on:keydown.enter="getAge"
                   style="width: 83%"
                 ></el-date-picker>
               </el-form-item>
@@ -64,8 +65,8 @@
               </el-form-item>
             </el-col>
           </el-form-item>
-          <el-button @click="GetAge()">计算年龄</el-button>
-
+          <!-- <el-button @click="getAge()">计算年龄</el-button> -->
+          <!-- 年龄结果 -->
           <el-form-item style="width: 61.8%" label="年龄:" prop="ages">
             <el-input
               placeholder="例如：18"
@@ -76,8 +77,9 @@
           </el-form-item>
           <!-- 显示年龄获取的数据 -->
           <el-form-item>
-            <p>{{ages}}</p>
+            <p>{{ ages }}</p>
           </el-form-item>
+
           <el-form-item
             style="width: 61.8%"
             label="身高:"
@@ -272,62 +274,63 @@ export default {
   },
 
   methods: {
-  //js方法实现通过出生日期获取周岁年龄
+    //js方法实现通过出生日期获取周岁年龄
 
- //@param date1：指的是出生日期，格式为"1990-01-01"
+    //@param date1：指的是出生日期，格式为"1990-01-01"
 
-  GetAge() {
-    var ages,
-      date1Arr = ruleForm.date1.split("-"),
-      birthYear = date1Arr[0],
-      birthMonth = date1Arr[1],
-      birthDay = date1Arr[2],
-      d = new Date(),
-      nowYear = d.getFullYear(),
-      nowMonth = d.getMonth() + 1,
-      nowDay = d.getDate();
-    if (nowYear == birthYear) {
-      ages = 0; //同年 则为0周岁
-    } else {
-      var ageDiff = nowYear - birthYear; //年之差
-      if (ageDiff > 0) {
-        if (nowMonth == birthMonth) {
-          var dayDiff = nowDay - birthDay; //日之差
-          if (dayDiff < 0) {
-            ages = ageDiff - 1;
+    getAge() {
+      var ages,
+        date1Arr = ruleForm.date1.split("-"),
+        birthYear = date1Arr[0],
+        birthMonth = date1Arr[1],
+        birthDay = date1Arr[2],
+        d = new Date(),
+        nowYear = d.getFullYear(),
+        nowMonth = d.getMonth() + 1,
+        nowDay = d.getDate();
+      if (nowYear == birthYear) {
+        ages = 0; //同年 则为0周岁
+      } else {
+        var ageDiff = nowYear - birthYear; //年之差
+        if (ageDiff > 0) {
+          if (nowMonth == birthMonth) {
+            var dayDiff = nowDay - birthDay; //日之差
+            if (dayDiff < 0) {
+              ages = ageDiff - 1;
+            } else {
+              ages = ageDiff;
+            }
           } else {
-            ages = ageDiff;
+            var monthDiff = nowMonth - birthMonth; //月之差
+            if (monthDiff < 0) {
+              ages = ageDiff - 1;
+            } else {
+              ages = ageDiff;
+              //console.log(ages);
+            }
           }
         } else {
-          var monthDiff = nowMonth - birthMonth; //月之差
-          if (monthDiff < 0) {
-            ages = ageDiff - 1;
-          } else {
-            ages = ageDiff;
-      //console.log(ages);
-          }
+          ages = -1; //返回-1 表示出生日期输入错误 晚于今天
         }
-      } else {
-        ages = -1; //返回-1 表示出生日期输入错误 晚于今天
       }
-    }
-    return ages; //返回周岁年龄
-   // console.log(ages);
-  },
+      return ages; //返回周岁年龄
+      this.ages.push(this.ages);
+      // console.log(ages);
+    },
     //      判断用户的年龄
-      // getAge() {
-      //   let birthdays = new Date(this.ruleForm.date1.replace(/-/g, "-"));
-      //   let d = new Date();
-      //   let age =
-      //     d.getFullYear() -
-      //     birthdays.getFullYear() -
-      //     (d.getMonth() < birthdays.getMonth() ||
-      //     (d.getMonth() == birthdays.getMonth() &&
-      //       d.getDate() < birthdays.getDate())
-      //       ? 1
-      //       : 0);
-      //   this.ages = age;
-      // },
+    // getAge() {
+    //   let birthdays = new Date(this.ruleForm.date1.replace(/-/g, "-"));
+    //   let d = new Date();
+    //   let age =
+    //     d.getFullYear() -
+    //     birthdays.getFullYear() -
+    //     (d.getMonth() < birthdays.getMonth() ||
+    //     (d.getMonth() == birthdays.getMonth() &&
+    //       d.getDate() < birthdays.getDate())
+    //       ? 1
+    //       : 0);
+    //   this.ages = age;
+    // },
   },
 
   // 步骤数量实现的方法
