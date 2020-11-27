@@ -172,7 +172,7 @@ export default {
       // 清除session,回到首页
       window.sessionStorage.clear();
       // 导航到首页
-      this.$router.push("/login");
+      this.$router.push("/home");
     },
     // 获取导航菜单方法
     async getMenuList() {
