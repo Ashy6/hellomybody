@@ -30,7 +30,7 @@
               <!-- :router="true" 设定路由，让其能够根据页面进行跳转 -->
               <!-- > unique-opened   该属性方法控制侧边栏 展开时不自动关闭-->
 
-              <el-menu-item :to="{ path: '/hellou' }">首页</el-menu-item>
+              <el-menu-item :router="true" :to="{ path: '/hellou' }">首页</el-menu-item>
               <!-- 一级菜单 -->
               <el-submenu
                 :index="item.id + ''"
@@ -56,7 +56,7 @@
                   </template>
                 </el-menu-item>
               </el-submenu>
-              <!-- <el-menu-item :router="true" :to="{ path: '/jkkp' }">健康科普</el-menu-item> -->
+              <el-menu-item :router="true" :to="{ path: '/jkkp' }">健康科普</el-menu-item>
               <!-- <el-menu-item :to="{ path: '/jkgj' }">健康工具</el-menu-item> -->
               <!-- <el-menu-item index="3" disabled>消息中心</el-menu-item> -->
               <!-- <el-menu-item index="4"><a href="https://www.ele.me" target="_blank"
@@ -83,73 +83,37 @@
                 <ul class="media-list">
                   <li class="media">
                     <a href="#">
-                      <div class="media-up">
-                        <img
-                          src="../assets/image/Cgbj0VthLJiAMbGmAAAOTQY17So137.png"
-                          class="img-responsive"
-                          alt="Responsive image"
-                        />
-                      </div>
-                      <div class="media-body">全场顺丰包邮</div>
+                      <div class="media-up"></div>
+                      <div class="media-body">全场包邮</div>
                     </a>
                   </li>
                   <li class="media">
                     <a href="#">
-                      <div class="media-up">
-                        <img
-                          src="../assets/image/Cgbj0VthLD6AHWNVAAAHnU-N-dQ054.png"
-                          class="img-responsive"
-                          alt="Responsive image"
-                        />
-                      </div>
+                      <div class="media-up"></div>
                       <div class="media-body">100+城市次日送达</div>
                     </a>
                   </li>
                   <li class="media">
                     <a href="#">
-                      <div class="media-up">
-                        <img
-                          src="../assets/image/Cgbj0VthLGiAPvqxAAAIxQPg9a0798.png"
-                          class="img-responsive"
-                          alt="Responsive image"
-                        />
-                      </div>
+                      <div class="media-up"></div>
                       <div class="media-body">7天无理由退货</div>
                     </a>
                   </li>
                   <li class="media">
                     <a href="#">
-                      <div class="media-up">
-                        <img
-                          src="../assets/image/Cgbj0VthLFuAUtd0AAALmPd8Wgw009.png"
-                          class="img-responsive"
-                          alt="Responsive image"
-                        />
-                      </div>
+                      <div class="media-up"></div>
                       <div class="media-body">15天换货保障</div>
                     </a>
                   </li>
                   <li class="media">
                     <a href="#">
-                      <div class="media-up">
-                        <img
-                          src="../assets/image/Cgbj0FthLHaATnUUAAAJC3dC3Bk024.png"
-                          class="img-responsive"
-                          alt="Responsive image"
-                        />
-                      </div>
+                      <div class="media-up"></div>
                       <div class="media-body">15天换货保障</div>
                     </a>
                   </li>
                   <li class="media">
                     <a href="#">
-                      <div class="media-up">
-                        <img
-                          src="../assets/image/Cgbj0FthLGGAB79EAAAFUWqaNBI042.png"
-                          class="img-responsive"
-                          alt="Responsive image"
-                        />
-                      </div>
+                      <div class="media-up"></div>
                       <div class="media-body">上门快修</div>
                     </a>
                   </li>
@@ -163,24 +127,21 @@
             </div>
             <div class="copyright">
               <ul>
-                <li><a href="">了解成大</a></li>
+                <li><a href="">返回首页</a></li>
                 <li><a href="">加入我们</a></li>
                 <li><a href="">联系我们</a></li>
-                <li><a href="">成大首页</a></li>
-                <li><a href="">天猫旗舰店</a></li>
-                <li><a href="">线上授权名单公示</a></li>
-                <li><a href="">出版物经营许可证</a></li>
+                <li><a href="">了解更多</a></li>
                 <li>
                   <a href=""><i class="iconfont">&#xe60a;</i>简体中文</a>
                 </li>
               </ul>
-              <p>
+              <!-- <p>
                 C2018 ChenDa Telecom Equipment Co，Ltd.All rights
                 rese粤CP备13003602号合字B220170010营业执照法律声明<img
                   src="../assets/image/ghs.png"
                   alt=""
                 />粤公网安备44049102496009号
-              </p>
+              </p> -->
             </div>
           </div>
         </footer>
@@ -195,7 +156,7 @@ export default {
     return {
       // 菜单列表
       menuList: [],
-      activePath: "/hello", //配置默认路径
+      activePath: "/hellou", //配置默认路径
     };
   },
   // 页面加载之后开始查询
@@ -300,22 +261,24 @@ export default {
 
 /*尾部开始*/
 footer {
-  margin-top: 50px;
-  background: #fff;
+  margin-top: 60px;
+  margin-left: -20px;
+  background: rgb(162, 202, 135);
+  width: 110%;
   color: black;
   clear: both;
 }
 footer .container ul li {
   display: inline-block;
   font-size: 12px;
-  width: 110px;
+  width: 150px;
 }
 footer .container .Tel ul li {
-  width: 150px;
-  height: 68px;
+  width: 120px;
+  height: 38px;
 }
 footer .container .Tel ul li:last-child {
-  width: 170px;
+  width: 180px;
 }
 footer .container .Tel ul li:last-child p:first-child {
   color: #8c8c8c;
@@ -330,7 +293,7 @@ footer .container .Tel ul li:last-child p:last-child {
   height: 30px;
   background-color: #0daaea;
   line-height: 30px;
-  padding-left: 14px;
+  padding-left: 6px;
   font-size: 16px;
   color: #fff;
   border-radius: 20px;
@@ -341,15 +304,15 @@ footer .container .Tel ul li img {
   margin-left: 50px;
 }
 footer .container .Tel .media-body {
-  padding-left: 50px;
+  padding-left: 10px;
 }
 footer .container ul li a {
   color: black;
   text-decoration: none;
 }
 footer .container .copyright {
-  margin-top: 50px;
-  margin-left: 40px;
+  margin-top: 20px;
+  margin-left: 20px;
 }
 
 /*尾部结束*/
