@@ -1,6 +1,6 @@
 <template>
     <div class="body">
-        <h3>欢迎 进入前台界面</h3>
+        <h3>我的测试页面</h3>
     </div>
 </template>
 
