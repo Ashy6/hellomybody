@@ -2,6 +2,12 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+
+// 添加全局样式 css 到js中
+import './assets/css/global.css'
+//引入阿里矢量图标库iconfont
+import './assets/font/iconfont.css'
+
 // 完整引入element ui
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -10,14 +16,18 @@ Vue.use(ElementUI);
 //import $ form 'jquery'
 //import'bootstrap/js/bootstrap.min.js'
 //import'bootstrap/css/bootstrap.min.css'
-
-
 // 引入element ui
 import './plugins/element.js'
-// 添加全局样式 css 到js中
-import './assets/css/global.css'
-//引入阿里矢量图标库iconfont
-import './assets/font/iconfont.css'
+
+// 引入bootstrap4
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+// 安装BootstrapVue
+Vue.use(BootstrapVue)
+// 可选地安装BootstrapVue图标插件组件
+Vue.use(IconsPlugin)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+// import './custom.scss'
 //导入axios 实现跨域请求
 import axios from 'axios'
 // 挂载全局使用axios
