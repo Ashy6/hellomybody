@@ -6,12 +6,12 @@
   <div class="card">
     <div class="card-header" id="heading01">
       <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse01" aria-expanded="true" aria-controls="collapse01">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse01" aria-expanded="true" aria-controls="collapse01">
           问题#1.我更接近于一下哪种情况？
         </button>
       </h2>
     </div>
-    <div id="collapse01" class="collapse show" aria-labelledby="heading01" data-parent="#accordionExample">
+    <div id="collapse01" class="collapse" aria-labelledby="heading01" data-parent="#accordionExample">
       <div class="card-body">
         <p>晚上睡觉，白天起床</p>
         <p>经常夜班、倒班</p>
