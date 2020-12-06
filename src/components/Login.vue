@@ -38,10 +38,14 @@
           <el-button type="primary" round plain @click="login()"
             >登录</el-button
           >
-          <el-button type="primary" round plain @click="register()"
+          <!-- 注册界面 -->
+            <!-- <el-button type="primary" @click="register()">
+              添加用户
+            </el-button> -->
+          <el-button type="primary" round plain @click="addDialogVisible = true"
             >注册
-            <!-- <router-link :to="{ path: 'src/components/Users/register.vue'}" >注册</router-link> -->
-            <!-- <router-link tag='span' to="#" @click.native="handleEditPassword">
+          <!-- <router-link :to="{ path: 'src/components/Users/register.vue'}" >注册</router-link> -->
+          <!-- <router-link tag='span' to="#" @click.native="handleEditPassword">
                             <span class="a-inner"> 注册</span>
                         </router-link> -->
           </el-button>
@@ -52,6 +56,38 @@
         </el-form-item>
       </el-form>
     </div>
+
+    <!-- 新增用户区域 -->
+    <el-dialog
+      title="用户注册"
+      :visible.sync="addDialogVisible"
+      width="50%"
+      @close="addDialogClosed"
+    >
+      <el-form
+        :model="addForm"
+        :rules="addFormRules"
+        ref="addFormRef"
+        label-width="70px"
+      >
+        <!-- 用户名 -->
+        <el-form-item label="用户名" prop="username">
+          <el-input v-model="addForm.username"></el-input>
+        </el-form-item>
+        <!-- 密码 -->
+        <el-form-item label="密码" prop="password">
+          <el-input v-model="addForm.password"></el-input>
+        </el-form-item>
+        <!-- 邮箱 -->
+        <el-form-item label="邮箱" prop="email">
+          <el-input v-model="addForm.email"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dislog-footer">
+        <el-button @click="addDialogVisible = false">取消</el-button>
+        <el-button @click="addUser" type="primary">确定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -64,6 +100,39 @@ export default {
         username: "admin",
         password: "115115115",
       },
+      //添加   属性
+      addDialogVisible: false, //  对话框状态
+      addForm: {
+        username: "",
+        password: "",
+        email: "",
+      },
+      // 表单验证     添加或者注册
+      addFormRules: {
+        username: [
+          { required: true, message: "请输入用户名", trigger: "blur" },
+          {
+            min: 2,
+            max: 12,
+            message: "长度在 6 到 16 个字符",
+            trigger: "blur",
+          },
+        ],
+        password: [
+          { required: true, message: "请输入密码", trigger: "blur" },
+          {
+            min: 6,
+            max: 16,
+            message: "长度在 6 到 16 个字符",
+            trigger: "blur",
+          },
+        ],
+        email: [
+          { required: true, message: "请输入邮箱", trigger: "blur" },
+          { min: 4, max: 20, message: "请正确输入邮箱地址", trigger: "blur" },
+        ],
+      },
+
       // 校验规则，验证对象
       loginRules: {
         // 校验用户名
@@ -116,11 +185,31 @@ export default {
         }
       });
     },
-    //路由转发 注册界面
-    register() {
-      // 导航到注册
-      this.$router.push("/register");
+
+    addDialogClosed() {
+      this.$refs.addFormRef.resetFields();
     },
+    addUser() {
+      this.$refs.addFormRef.validate(async (valid) => {
+        console.log(valid);
+        // 验证
+        if (!valid) return;
+        // 提交结果
+        const { data: res } = await this.$http.post("addUser", this.addForm);
+        if (res != "success") {
+          return this.$message.error("添加失败！！");
+        }
+        this.$message.success("添加成功！！");
+        this.addDialogVisible = false;
+        this.getUserList();
+      });
+    },
+
+    //路由转发 注册界面
+    // register() {
+    //   // 导航到注册
+    //   this.$router.push("/register");
+    // },
   },
 };
 </script>
