@@ -39,13 +39,13 @@
             >登录</el-button
           >
           <!-- 注册界面 -->
-            <!-- <el-button type="primary" @click="register()">
+          <!-- <el-button type="primary" @click="register()">
               添加用户
             </el-button> -->
           <el-button type="primary" round plain @click="addDialogVisible = true"
             >注册
-          <!-- <router-link :to="{ path: 'src/components/Users/register.vue'}" >注册</router-link> -->
-          <!-- <router-link tag='span' to="#" @click.native="handleEditPassword">
+            <!-- <router-link :to="{ path: 'src/components/Users/register.vue'}" >注册</router-link> -->
+            <!-- <router-link tag='span' to="#" @click.native="handleEditPassword">
                             <span class="a-inner"> 注册</span>
                         </router-link> -->
           </el-button>
@@ -100,6 +100,7 @@ export default {
         username: "admin",
         password: "115115115",
       },
+      userList: [],
       //添加   属性
       addDialogVisible: false, //  对话框状态
       addForm: {
@@ -161,10 +162,6 @@ export default {
   },
   //实现方法
   methods: {
-    //将表单中的内容重置
-    resetLoginForm() {
-      this.$refs.loginFormRef.resetFields();
-    },
     //验证登录
     login() {
       this.$refs.loginFormRef.validate(async (valid) => {
@@ -185,7 +182,7 @@ export default {
         }
       });
     },
-
+    // 用户注册
     addDialogClosed() {
       this.$refs.addFormRef.resetFields();
     },
@@ -204,12 +201,16 @@ export default {
         this.getUserList();
       });
     },
-
     //路由转发 注册界面
     // register() {
     //   // 导航到注册
     //   this.$router.push("/register");
     // },
+
+    //将表单中的内容重置
+    resetLoginForm() {
+      this.$refs.loginFormRef.resetFields();
+    },
   },
 };
 </script>
