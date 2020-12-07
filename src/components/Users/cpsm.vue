@@ -3,6 +3,7 @@
     <h3>ce ping shuimian模板</h3>
     <!-- 折叠列表 -->
     <div class="accordion" id="accordionExample">
+<el-form ref="form" :model="form" label-width="10px">
   <div class="card">
     <div class="card-header" id="heading01">
       <h2 class="mb-0">
@@ -13,9 +14,13 @@
     </div>
     <div id="collapse01" class="collapse" aria-labelledby="heading01" data-parent="#accordionExample">
       <div class="card-body">
-        <p>晚上睡觉，白天起床</p>
-        <p>经常夜班、倒班</p>
-        <p>经常国际航班，倒时差</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource1">
+            <p><el-radio label="晚上睡觉，白天起床"></el-radio></p>
+            <p><el-radio label="经常夜班、倒班"></el-radio></p>
+            <p><el-radio label="经常国际航班，倒时差"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -29,7 +34,9 @@
     </div>
     <div id="collapse02" class="collapse" aria-labelledby="heading02" data-parent="#accordionExample">
       <div class="card-body">
-        时间选择器      
+        <el-form-item label="">
+          <p class="times"><el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker></p>
+        </el-form-item>     
       </div>
     </div>
   </div>
@@ -43,7 +50,9 @@
     </div>
     <div id="collapse03" class="collapse" aria-labelledby="heading03" data-parent="#accordionExample">
       <div class="card-body">
-        时间选择
+        <el-form-item label="">
+          <p class="times"><el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker></p>
+        </el-form-item> 
       </div>
     </div>
   </div>
@@ -57,10 +66,14 @@
     </div>
     <div id="collapse04" class="collapse" aria-labelledby="heading04" data-parent="#accordionExample">
       <div class="card-body">
-        <p>0~15分钟</p>
-        <p>15~30分钟</p>
-        <p>30~45分钟</p>
-        <p>45分钟以上</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource4">
+            <p><el-radio label="0~15分钟"></el-radio></p>
+            <p><el-radio label="15~30分钟"></el-radio></p>
+            <p><el-radio label="30~45分钟"></el-radio></p>
+            <p><el-radio label="45分钟以上"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -74,10 +87,14 @@
     </div>
     <div id="collapse05" class="collapse" aria-labelledby="heading05" data-parent="#accordionExample">
       <div class="card-body">
-        <p>完全不符合</p>
-        <p>不太符合</p>
-        <p>基本符合</p>
-        <p>完全符合</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource5">
+            <p><el-radio label="完全不符合"></el-radio></p>
+            <p><el-radio label="不太符合"></el-radio></p>
+            <p><el-radio label="基本符合"></el-radio></p>
+            <p><el-radio label="完全符合"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -91,10 +108,14 @@
     </div>
     <div id="collapse06" class="collapse" aria-labelledby="heading06" data-parent="#accordionExample">
       <div class="card-body">
-        <p>完全不符合</p>
-        <p>不太符合</p>
-        <p>基本符合</p>
-        <p>完全符合</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource6">
+            <p><el-radio label="完全不符合"></el-radio></p>
+            <p><el-radio label="不太符合"></el-radio></p>
+            <p><el-radio label="基本符合"></el-radio></p>
+            <p><el-radio label="完全符合"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -108,10 +129,14 @@
     </div>
     <div id="collapse07" class="collapse" aria-labelledby="heading07" data-parent="#accordionExample">
       <div class="card-body">
-        <p>完全不符合</p>
-        <p>不太符合</p>
-        <p>基本符合</p>
-        <p>完全符合</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource7">
+            <p><el-radio label="完全不符合"></el-radio></p>
+            <p><el-radio label="不太符合"></el-radio></p>
+            <p><el-radio label="基本符合"></el-radio></p>
+            <p><el-radio label="完全符合"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -125,10 +150,14 @@
     </div>
     <div id="collapse08" class="collapse" aria-labelledby="heading08" data-parent="#accordionExample">
       <div class="card-body">
-        <p>完全不符合</p>
-        <p>不太符合</p>
-        <p>基本符合</p>
-        <p>完全符合</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource8">
+            <p><el-radio label="完全不符合"></el-radio></p>
+            <p><el-radio label="不太符合"></el-radio></p>
+            <p><el-radio label="基本符合"></el-radio></p>
+            <p><el-radio label="完全符合"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -142,10 +171,14 @@
     </div>
     <div id="collapse09" class="collapse" aria-labelledby="heading09" data-parent="#accordionExample">
       <div class="card-body">
-        <p>完全不符合</p>
-        <p>不太符合</p>
-        <p>基本符合</p>
-        <p>完全符合</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource9">
+            <p><el-radio label="完全不符合"></el-radio></p>
+            <p><el-radio label="不太符合"></el-radio></p>
+            <p><el-radio label="基本符合"></el-radio></p>
+            <p><el-radio label="完全符合"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -159,10 +192,14 @@
     </div>
     <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordionExample">
       <div class="card-body">
-        <p>满意</p>
-        <p>基本满意</p>
-        <p>不太满意</p>
-        <p>非常不满意</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource10">
+            <p><el-radio label="满意"></el-radio></p>
+            <p><el-radio label="基本满意"></el-radio></p>
+            <p><el-radio label="不太满意"></el-radio></p>
+            <p><el-radio label="非常不满意"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -176,10 +213,14 @@
     </div>
     <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordionExample">
       <div class="card-body">
-        <p>完全不符合</p>
-        <p>不太符合</p>
-        <p>基本符合</p>
-        <p>完全符合</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource11">
+            <p><el-radio label="完全不符合"></el-radio></p>
+            <p><el-radio label="不太符合"></el-radio></p>
+            <p><el-radio label="基本符合"></el-radio></p>
+            <p><el-radio label="完全符合"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -193,12 +234,16 @@
     </div>
     <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordionExample">
       <div class="card-body">
-        <p>听音乐或者阅读诗歌散文</p>
-        <p>刷手机，浏览感兴趣的内容</p>
-        <p>工作或者学习</p>
-        <p>思考生活</p>
-        <p>怀疑人生</p>
-        <p>其他</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource12">
+            <p><el-radio label="听音乐或者阅读诗歌散文"></el-radio></p>
+            <p><el-radio label="工作或者学习"></el-radio></p>
+            <p><el-radio label="思考生活"></el-radio></p>
+            <p><el-radio label="怀疑人生"></el-radio></p>
+            <p><el-radio label="辗转反侧"></el-radio></p>
+            <p><el-radio label="其他"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -212,10 +257,14 @@
     </div>
     <div id="collapse13" class="collapse" aria-labelledby="heading13" data-parent="#accordionExample">
       <div class="card-body">
-        <p>完全不符合</p>
-        <p>不太符合</p>
-        <p>基本符合</p>
-        <p>完全符合</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource13">
+            <p><el-radio label="完全不符合"></el-radio></p>
+            <p><el-radio label="不太符合"></el-radio></p>
+            <p><el-radio label="基本符合"></el-radio></p>
+            <p><el-radio label="完全符合"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -229,10 +278,14 @@
     </div>
     <div id="collapse14" class="collapse" aria-labelledby="heading14" data-parent="#accordionExample">
       <div class="card-body">
-        <p>完全不符合</p>
-        <p>不太符合</p>
-        <p>基本符合</p>
-        <p>完全符合</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource14">
+            <p><el-radio label="完全不符合"></el-radio></p>
+            <p><el-radio label="不太符合"></el-radio></p>
+            <p><el-radio label="基本符合"></el-radio></p>
+            <p><el-radio label="完全符合"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -246,10 +299,14 @@
     </div>
     <div id="collapse15" class="collapse" aria-labelledby="heading15" data-parent="#accordionExample">
       <div class="card-body">
-        <p>完全不符合</p>
-        <p>不太符合</p>
-        <p>基本符合</p>
-        <p>完全符合</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource15">
+            <p><el-radio label="完全不符合"></el-radio></p>
+            <p><el-radio label="不太符合"></el-radio></p>
+            <p><el-radio label="基本符合"></el-radio></p>
+            <p><el-radio label="完全符合"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -263,10 +320,14 @@
     </div>
     <div id="collapse16" class="collapse" aria-labelledby="heading16" data-parent="#accordionExample">
       <div class="card-body">
-        <p>完全不符合</p>
-        <p>不太符合</p>
-        <p>基本符合</p>
-        <p>完全符合</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource16">
+            <p><el-radio label="完全不符合"></el-radio></p>
+            <p><el-radio label="不太符合"></el-radio></p>
+            <p><el-radio label="基本符合"></el-radio></p>
+            <p><el-radio label="完全符合"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -280,10 +341,18 @@
     </div>
     <div id="collapse17" class="collapse" aria-labelledby="heading17" data-parent="#accordionExample">
       <div class="card-body">
-        <p>不运动</p>
-        <p>小于2次</p>
-        <p>2~4次</p>
-        <p>大于4次</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource17">
+            <p><el-radio label="不运动"></el-radio></p>
+            <p><el-radio label="小于2次"></el-radio></p>
+            <p><el-radio label="2~4次"></el-radio></p>
+            <p><el-radio label="大于4次"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
       </div>
     </div>
   </div>
@@ -297,10 +366,14 @@
     </div>
     <div id="collapse18" class="collapse" aria-labelledby="heading18" data-parent="#accordionExample">
       <div class="card-body">
-        <p>完全不符合</p>
-        <p>不太符合</p>
-        <p>基本符合</p>
-        <p>完全符合</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource18">
+            <p><el-radio label="完全不符合"></el-radio></p>
+            <p><el-radio label="不太符合"></el-radio></p>
+            <p><el-radio label="基本符合"></el-radio></p>
+            <p><el-radio label="完全符合"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -314,10 +387,14 @@
     </div>
     <div id="collapse19" class="collapse" aria-labelledby="heading19" data-parent="#accordionExample">
       <div class="card-body">
-        <p>完全不符合</p>
-        <p>不太符合</p>
-        <p>基本符合</p>
-        <p>完全符合</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource19">
+            <p><el-radio label="完全不符合"></el-radio></p>
+            <p><el-radio label="不太符合"></el-radio></p>
+            <p><el-radio label="基本符合"></el-radio></p>
+            <p><el-radio label="完全符合"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -331,10 +408,14 @@
     </div>
     <div id="collapse20" class="collapse" aria-labelledby="heading20" data-parent="#accordionExample">
       <div class="card-body">
-        <p>几乎不</p>
-        <p>偶尔</p>
-        <p>经常</p>
-        <p>每天</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource20">
+            <p><el-radio label="几乎不"></el-radio></p>
+            <p><el-radio label="偶尔"></el-radio></p>
+            <p><el-radio label="经常"></el-radio></p>
+            <p><el-radio label="每天"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -348,10 +429,14 @@
     </div>
     <div id="collapse21" class="collapse" aria-labelledby="heading21" data-parent="#accordionExample">
       <div class="card-body">
-        <p>小于20分钟</p>
-        <p>20~60分钟</p>
-        <p>60~90分钟</p>
-        <p>90分钟以上</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource21">
+            <p><el-radio label="小于20分钟"></el-radio></p>
+            <p><el-radio label="20~60分钟"></el-radio></p>
+            <p><el-radio label="60~90分钟"></el-radio></p>
+            <p><el-radio label="90分钟以上"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -365,7 +450,9 @@
     </div>
     <div id="collapse22" class="collapse" aria-labelledby="heading22" data-parent="#accordionExample">
       <div class="card-body">
-        时间选择
+        <el-form-item label="">
+          <p class="times"><el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker></p>
+        </el-form-item> 
       </div>
     </div>
   </div>
@@ -379,10 +466,14 @@
     </div>
     <div id="collapse23" class="collapse" aria-labelledby="heading23" data-parent="#accordionExample">
       <div class="card-body">
-        <p>完全不符合</p>
-        <p>不太符合</p>
-        <p>基本符合</p>
-        <p>完全符合</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource23">
+            <p><el-radio label="完全不符合"></el-radio></p>
+            <p><el-radio label="不太符合"></el-radio></p>
+            <p><el-radio label="基本符合"></el-radio></p>
+            <p><el-radio label="完全符合"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -396,10 +487,14 @@
     </div>
     <div id="collapse24" class="collapse" aria-labelledby="heading24" data-parent="#accordionExample">
       <div class="card-body">
-        <p>完全不符合</p>
-        <p>不太符合</p>
-        <p>基本符合</p>
-        <p>完全符合</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource24">
+            <p><el-radio label="完全不符合"></el-radio></p>
+            <p><el-radio label="不太符合"></el-radio></p>
+            <p><el-radio label="基本符合"></el-radio></p>
+            <p><el-radio label="完全符合"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -413,10 +508,14 @@
     </div>
     <div id="collapse25" class="collapse" aria-labelledby="heading25" data-parent="#accordionExample">
       <div class="card-body">
-        <p>完全不符合</p>
-        <p>不太符合</p>
-        <p>基本符合</p>
-        <p>完全符合</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource25">
+            <p><el-radio label="完全不符合"></el-radio></p>
+            <p><el-radio label="不太符合"></el-radio></p>
+            <p><el-radio label="基本符合"></el-radio></p>
+            <p><el-radio label="完全符合"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -430,10 +529,14 @@
     </div>
     <div id="collapse26" class="collapse" aria-labelledby="heading26" data-parent="#accordionExample">
       <div class="card-body">
-        <p>完全不符合</p>
-        <p>不太符合</p>
-        <p>基本符合</p>
-        <p>完全符合</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource26">
+            <p><el-radio label="完全不符合"></el-radio></p>
+            <p><el-radio label="不太符合"></el-radio></p>
+            <p><el-radio label="基本符合"></el-radio></p>
+            <p><el-radio label="完全符合"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -447,10 +550,14 @@
     </div>
     <div id="collapse27" class="collapse" aria-labelledby="heading27" data-parent="#accordionExample">
       <div class="card-body">
-        <p>完全不符合</p>
-        <p>不太符合</p>
-        <p>基本符合</p>
-        <p>完全符合</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource27">
+            <p><el-radio label="完全不符合"></el-radio></p>
+            <p><el-radio label="不太符合"></el-radio></p>
+            <p><el-radio label="基本符合"></el-radio></p>
+            <p><el-radio label="完全符合"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -464,10 +571,14 @@
     </div>
     <div id="collapse28" class="collapse" aria-labelledby="heading28" data-parent="#accordionExample">
       <div class="card-body">
-        <p>完全不符合</p>
-        <p>不太符合</p>
-        <p>基本符合</p>
-        <p>完全符合</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource28">
+            <p><el-radio label="完全不符合"></el-radio></p>
+            <p><el-radio label="不太符合"></el-radio></p>
+            <p><el-radio label="基本符合"></el-radio></p>
+            <p><el-radio label="完全符合"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -481,13 +592,23 @@
     </div>
     <div id="collapse29" class="collapse" aria-labelledby="heading29" data-parent="#accordionExample">
       <div class="card-body">
-        <p>完全不符合</p>
-        <p>不太符合</p>
-        <p>基本符合</p>
-        <p>完全符合</p>
+        <el-form-item label="">
+          <el-radio-group v-model="form.resource29">
+            <p><el-radio label="完全不符合"></el-radio></p>
+            <p><el-radio label="不太符合"></el-radio></p>
+            <p><el-radio label="基本符合"></el-radio></p>
+            <p><el-radio label="完全符合"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
+
+  <el-form-item>
+    <el-button type="primary" @click="onSubmit">立即提交</el-button>
+    <el-button>取消</el-button>
+  </el-form-item>
+</el-form>
 </div>
 
 
@@ -509,14 +630,56 @@
 export default {
   data() {
     return {
-      // 菜单列表
-      menuList: [],
-      activePath: "/hellou", //配置默认路径
+        form: {
+          date2: '',
+          date3: '',
+          date22: '',
+          type: [],
+          resource1: '',
+          resource4: '',
+          resource5: '',
+          resource6: '',
+          resource7: '',
+          resource8: '',
+          resource9: '',
+          resource10: '',
+          resource11: '',
+          resource12: '',
+          resource13: '',
+          resource14: '',
+          resource15: '',
+          resource16: '',
+          resource17: '',
+          resource18: '',
+          resource19: '',
+          resource20: '',
+          resource21: '',
+          resource23: '',
+          resource24: '',
+          resource25: '',
+          resource26: '',
+          resource27: '',
+          resource28: '',
+          resource29: '',
+        },
     };
   },
+  methods: {
+     onSubmit() {
+      console.log('submit!');
+    }
+  }
 
 };
 </script>
 
 <style lang="less" scoped>
+// 选择框
+// .card .collapse .card-body .el-form-item {
+//   margin-bottom: -20px;
+// }
+// // 选择框->时间框
+// .card .collapse .card-body .el-form-item .times {
+//   padding-bottom: 10px;
+// }
 </style>
