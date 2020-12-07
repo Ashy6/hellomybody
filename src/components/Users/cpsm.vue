@@ -51,7 +51,7 @@
     <div id="collapse03" class="collapse" aria-labelledby="heading03" data-parent="#accordionExample">
       <div class="card-body">
         <el-form-item label="">
-          <p class="times"><el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker></p>
+          <p class="times"><el-time-picker placeholder="选择时间" v-model="form.date3" style="width: 100%;"></el-time-picker></p>
         </el-form-item> 
       </div>
     </div>
@@ -451,7 +451,7 @@
     <div id="collapse22" class="collapse" aria-labelledby="heading22" data-parent="#accordionExample">
       <div class="card-body">
         <el-form-item label="">
-          <p class="times"><el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker></p>
+          <p class="times"><el-time-picker placeholder="选择时间" v-model="form.date22" style="width: 100%;"></el-time-picker></p>
         </el-form-item> 
       </div>
     </div>
