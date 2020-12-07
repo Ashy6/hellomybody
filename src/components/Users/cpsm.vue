@@ -605,8 +605,7 @@
   </div>
 
   <el-form-item>
-    <el-button type="primary" @click="onSubmit">立即提交</el-button>
-    <el-button>取消</el-button>
+    <el-button type="primary" @click="addSl">立即提交</el-button>
   </el-form-item>
 </el-form>
 </div>
@@ -634,7 +633,6 @@ export default {
           date2: '',
           date3: '',
           date22: '',
-          type: [],
           resource1: '',
           resource4: '',
           resource5: '',
@@ -665,9 +663,23 @@ export default {
     };
   },
   methods: {
-     onSubmit() {
-      console.log('submit!');
-    }
+    // 添加睡眠评测
+    addSl() {
+      this.$refs.form.validate(async (valid) => {
+        // debugger
+        console.log(valid);
+        // 验证
+        if (!valid) return;
+        // 提交结果
+        const { data: res } = await this.$http.post("addSl", this.form);
+        if (res != "success") {
+          console.log(this.form);
+          return this.$message.error("添加失败！！");
+        }
+        this.$message.success("添加成功！！");
+        console.log("添加成功！！");
+      });
+    },
   }
 
 };

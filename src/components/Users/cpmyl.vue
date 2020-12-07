@@ -28,10 +28,12 @@
             <div class="card-body">
               <el-form-item label="">
                 <el-checkbox-group v-model="form.type1">
-                  <el-checkbox label="经常熬夜" name="type1"></el-checkbox>
-                  <el-checkbox label="经常跨时区差旅" name="type1"></el-checkbox>
-                  <el-checkbox label="经常倒时差" name="type1"></el-checkbox>
-                  <el-checkbox label="以上均不符合" name="type1"></el-checkbox>
+                  <el-checkbox label="经常熬夜" name="type1">1</el-checkbox>
+                  <el-checkbox label="经常跨时区差旅" name="type1"
+                    >2</el-checkbox
+                  >
+                  <el-checkbox label="经常倒时差" name="type1">3</el-checkbox>
+                  <el-checkbox label="以上均不符合" name="type1">4</el-checkbox>
                 </el-checkbox-group>
               </el-form-item>
               <p>以上均不符合（不选）</p>
@@ -63,9 +65,18 @@
               <el-form-item label="">
                 <el-checkbox-group v-model="form.type2">
                   <el-checkbox label="经常饮酒" name="type1"></el-checkbox>
-                  <el-checkbox label="吸烟或者受二手烟困扰" name="type1"></el-checkbox>
-                  <el-checkbox label="近半年进行极端减肥，如三餐苹果、过午不食" name="type1"></el-checkbox>
-                  <el-checkbox label="饮食不规律，一顿很少，一顿吃撑" name="type1"></el-checkbox>
+                  <el-checkbox
+                    label="吸烟或者受二手烟困扰"
+                    name="type1"
+                  ></el-checkbox>
+                  <el-checkbox
+                    label="近半年进行极端减肥，如三餐苹果、过午不食"
+                    name="type1"
+                  ></el-checkbox>
+                  <el-checkbox
+                    label="饮食不规律，一顿很少，一顿吃撑"
+                    name="type1"
+                  ></el-checkbox>
                 </el-checkbox-group>
               </el-form-item>
               <p>以上均不符合（不选）</p>
@@ -96,10 +107,22 @@
             <div class="card-body">
               <el-form-item label="">
                 <el-checkbox-group v-model="form.type3">
-                  <el-checkbox label="常吃薯条、炸鸡、烤鱼、香锅等高油食物" name="type1"></el-checkbox>
-                  <el-checkbox label="常吃蛋糕、奶茶、果汁饮料等甜食" name="type1"></el-checkbox>
-                  <el-checkbox label="常吃腊肉、培根等肉类加工食品" name="type1"></el-checkbox>
-                  <el-checkbox label="常吃泡面、汉堡等快餐" name="type1"></el-checkbox>
+                  <el-checkbox
+                    label="常吃薯条、炸鸡、烤鱼、香锅等高油食物"
+                    name="type1"
+                  ></el-checkbox>
+                  <el-checkbox
+                    label="常吃蛋糕、奶茶、果汁饮料等甜食"
+                    name="type1"
+                  ></el-checkbox>
+                  <el-checkbox
+                    label="常吃腊肉、培根等肉类加工食品"
+                    name="type1"
+                  ></el-checkbox>
+                  <el-checkbox
+                    label="常吃泡面、汉堡等快餐"
+                    name="type1"
+                  ></el-checkbox>
                 </el-checkbox-group>
               </el-form-item>
               <p>以上均不符合（不选）</p>
@@ -130,11 +153,26 @@
             <div class="card-body">
               <el-form-item label="">
                 <el-checkbox-group v-model="form.type4">
-                  <el-checkbox label="几乎不吃坚果、橄榄油或者深海鱼" name="type1"></el-checkbox>
-                  <el-checkbox label="不爱喝水、如矿泉水或者凉白开" name="type1"></el-checkbox>
-                  <el-checkbox label="很少喝酸奶或者主动补充益生菌" name="type1"></el-checkbox>
-                  <el-checkbox label="很少吃肉蛋类、豆制品或奶类" name="type1"></el-checkbox>
-                  <el-checkbox label="很少吃新鲜水果蔬菜" name="type1"></el-checkbox>
+                  <el-checkbox
+                    label="几乎不吃坚果、橄榄油或者深海鱼"
+                    name="type1"
+                  ></el-checkbox>
+                  <el-checkbox
+                    label="不爱喝水、如矿泉水或者凉白开"
+                    name="type1"
+                  ></el-checkbox>
+                  <el-checkbox
+                    label="很少喝酸奶或者主动补充益生菌"
+                    name="type1"
+                  ></el-checkbox>
+                  <el-checkbox
+                    label="很少吃肉蛋类、豆制品或奶类"
+                    name="type1"
+                  ></el-checkbox>
+                  <el-checkbox
+                    label="很少吃新鲜水果蔬菜"
+                    name="type1"
+                  ></el-checkbox>
                 </el-checkbox-group>
               </el-form-item>
               <p>以上均不符合（不选）</p>
@@ -163,14 +201,18 @@
             data-parent="#accordionExample"
           >
             <div class="card-body">
-        <el-form-item label="">
-          <el-radio-group v-model="form.resource5">
-            <p><el-radio label="几乎不运动"></el-radio></p>
-            <p><el-radio label="有中强度的运动习惯，如跑步、快走等"></el-radio></p>
-            <p><el-radio label="偶尔运动，且运动强度大"></el-radio></p>
-            <p><el-radio label="运动规律，且运动强度大"></el-radio></p>
-          </el-radio-group>
-        </el-form-item>
+              <el-form-item label="">
+                <el-radio-group v-model="form.resource5">
+                  <p><el-radio label="几乎不运动"></el-radio></p>
+                  <p>
+                    <el-radio
+                      label="有中强度的运动习惯，如跑步、快走等"
+                    ></el-radio>
+                  </p>
+                  <p><el-radio label="偶尔运动，且运动强度大"></el-radio></p>
+                  <p><el-radio label="运动规律，且运动强度大"></el-radio></p>
+                </el-radio-group>
+              </el-form-item>
               <p></p>
               <p></p>
               <p></p>
@@ -202,10 +244,22 @@
             <div class="card-body">
               <el-form-item label="">
                 <el-checkbox-group v-model="form.type6">
-                  <el-checkbox label="打喷嚏时习惯用手捂且不及时清洗" name="type1"></el-checkbox>
-                  <el-checkbox label="饭钱、便后不是每次都洗手" name="type1"></el-checkbox>
-                  <el-checkbox label="经常用手接触眼睛、鼻子或者嘴巴" name="type1"></el-checkbox>
-                  <el-checkbox label="洗手后经常直接用衣服擦干" name="type1"></el-checkbox>
+                  <el-checkbox
+                    label="打喷嚏时习惯用手捂且不及时清洗"
+                    name="type1"
+                  ></el-checkbox>
+                  <el-checkbox
+                    label="饭钱、便后不是每次都洗手"
+                    name="type1"
+                  ></el-checkbox>
+                  <el-checkbox
+                    label="经常用手接触眼睛、鼻子或者嘴巴"
+                    name="type1"
+                  ></el-checkbox>
+                  <el-checkbox
+                    label="洗手后经常直接用衣服擦干"
+                    name="type1"
+                  ></el-checkbox>
                 </el-checkbox-group>
               </el-form-item>
               <p>以上均不符合（不选）</p>
@@ -234,14 +288,14 @@
             data-parent="#accordionExample"
           >
             <div class="card-body">
-        <el-form-item label="">
-          <el-radio-group v-model="form.resource7">
-            <p><el-radio label="完全不符合"></el-radio></p>
-            <p><el-radio label="不太符合"></el-radio></p>
-            <p><el-radio label="基本符合"></el-radio></p>
-            <p><el-radio label="完全符合"></el-radio></p>
-          </el-radio-group>
-        </el-form-item>
+              <el-form-item label="">
+                <el-radio-group v-model="form.resource7">
+                  <p><el-radio label="完全不符合"></el-radio></p>
+                  <p><el-radio label="不太符合"></el-radio></p>
+                  <p><el-radio label="基本符合"></el-radio></p>
+                  <p><el-radio label="完全符合"></el-radio></p>
+                </el-radio-group>
+              </el-form-item>
             </div>
           </div>
         </div>
@@ -267,14 +321,14 @@
             data-parent="#accordionExample"
           >
             <div class="card-body">
-        <el-form-item label="">
-          <el-radio-group v-model="form.resource8">
-            <p><el-radio label="完全不符合"></el-radio></p>
-            <p><el-radio label="不太符合"></el-radio></p>
-            <p><el-radio label="基本符合"></el-radio></p>
-            <p><el-radio label="完全符合"></el-radio></p>
-          </el-radio-group>
-        </el-form-item>
+              <el-form-item label="">
+                <el-radio-group v-model="form.resource8">
+                  <p><el-radio label="完全不符合"></el-radio></p>
+                  <p><el-radio label="不太符合"></el-radio></p>
+                  <p><el-radio label="基本符合"></el-radio></p>
+                  <p><el-radio label="完全符合"></el-radio></p>
+                </el-radio-group>
+              </el-form-item>
             </div>
           </div>
         </div>
@@ -300,14 +354,14 @@
             data-parent="#accordionExample"
           >
             <div class="card-body">
-        <el-form-item label="">
-          <el-radio-group v-model="form.resource9">
-            <p><el-radio label="完全不符合"></el-radio></p>
-            <p><el-radio label="不太符合"></el-radio></p>
-            <p><el-radio label="基本符合"></el-radio></p>
-            <p><el-radio label="完全符合"></el-radio></p>
-          </el-radio-group>
-        </el-form-item>
+              <el-form-item label="">
+                <el-radio-group v-model="form.resource9">
+                  <p><el-radio label="完全不符合"></el-radio></p>
+                  <p><el-radio label="不太符合"></el-radio></p>
+                  <p><el-radio label="基本符合"></el-radio></p>
+                  <p><el-radio label="完全符合"></el-radio></p>
+                </el-radio-group>
+              </el-form-item>
             </div>
           </div>
         </div>
@@ -333,14 +387,14 @@
             data-parent="#accordionExample"
           >
             <div class="card-body">
-        <el-form-item label="">
-          <el-radio-group v-model="form.resource10">
-            <p><el-radio label="完全不符合"></el-radio></p>
-            <p><el-radio label="不太符合"></el-radio></p>
-            <p><el-radio label="基本符合"></el-radio></p>
-            <p><el-radio label="完全符合"></el-radio></p>
-          </el-radio-group>
-        </el-form-item>
+              <el-form-item label="">
+                <el-radio-group v-model="form.resource10">
+                  <p><el-radio label="完全不符合"></el-radio></p>
+                  <p><el-radio label="不太符合"></el-radio></p>
+                  <p><el-radio label="基本符合"></el-radio></p>
+                  <p><el-radio label="完全符合"></el-radio></p>
+                </el-radio-group>
+              </el-form-item>
             </div>
           </div>
         </div>
@@ -366,14 +420,14 @@
             data-parent="#accordionExample"
           >
             <div class="card-body">
-        <el-form-item label="">
-          <el-radio-group v-model="form.resource11">
-            <p><el-radio label="完全不符合"></el-radio></p>
-            <p><el-radio label="不太符合"></el-radio></p>
-            <p><el-radio label="基本符合"></el-radio></p>
-            <p><el-radio label="完全符合"></el-radio></p>
-          </el-radio-group>
-        </el-form-item>
+              <el-form-item label="">
+                <el-radio-group v-model="form.resource11">
+                  <p><el-radio label="完全不符合"></el-radio></p>
+                  <p><el-radio label="不太符合"></el-radio></p>
+                  <p><el-radio label="基本符合"></el-radio></p>
+                  <p><el-radio label="完全符合"></el-radio></p>
+                </el-radio-group>
+              </el-form-item>
             </div>
           </div>
         </div>
@@ -399,14 +453,14 @@
             data-parent="#accordionExample"
           >
             <div class="card-body">
-        <el-form-item label="">
-          <el-radio-group v-model="form.resource12">
-            <p><el-radio label="完全不符合"></el-radio></p>
-            <p><el-radio label="不太符合"></el-radio></p>
-            <p><el-radio label="基本符合"></el-radio></p>
-            <p><el-radio label="完全符合"></el-radio></p>
-          </el-radio-group>
-        </el-form-item>
+              <el-form-item label="">
+                <el-radio-group v-model="form.resource12">
+                  <p><el-radio label="完全不符合"></el-radio></p>
+                  <p><el-radio label="不太符合"></el-radio></p>
+                  <p><el-radio label="基本符合"></el-radio></p>
+                  <p><el-radio label="完全符合"></el-radio></p>
+                </el-radio-group>
+              </el-form-item>
             </div>
           </div>
         </div>
@@ -434,9 +488,18 @@
             <div class="card-body">
               <el-form-item label="">
                 <el-checkbox-group v-model="form.type13">
-                  <el-checkbox label="已确诊营养不良" name="type1"></el-checkbox>
-                  <el-checkbox label="处于重大慢性消耗性疾病，如肿瘤或者其术后" name="type1"></el-checkbox>
-                  <el-checkbox label="肠癌、胃癌、乳腺癌等家族病史" name="type1"></el-checkbox>
+                  <el-checkbox
+                    label="已确诊营养不良"
+                    name="type1"
+                  ></el-checkbox>
+                  <el-checkbox
+                    label="处于重大慢性消耗性疾病，如肿瘤或者其术后"
+                    name="type1"
+                  ></el-checkbox>
+                  <el-checkbox
+                    label="肠癌、胃癌、乳腺癌等家族病史"
+                    name="type1"
+                  ></el-checkbox>
                 </el-checkbox-group>
               </el-form-item>
               <p></p>
@@ -448,8 +511,7 @@
         </div>
 
         <el-form-item>
-          <el-button type="primary" @click="onSubmit">立即提交</el-button>
-          <el-button>取消</el-button>
+          <el-button type="primary" @click="addIm()">立即提交</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -478,9 +540,22 @@ export default {
     };
   },
   methods: {
-    // 提交
-    onSubmit() {
-      console.log("submit!");
+    // 添加免疫力评测
+    addIm() {
+      this.$refs.form.validate(async (valid) => {
+        // debugger
+        console.log(valid);
+        // 验证
+        if (!valid) return;
+        // 提交结果
+        const { data: res } = await this.$http.post("addIm", this.form);
+        if (res != "success") {
+          console.log(this.form);
+          return this.$message.error("添加失败！！");
+        }
+        this.$message.success("添加成功！！");
+        console.log("添加成功！！");
+      });
     },
   },
 };
