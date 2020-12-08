@@ -6,15 +6,19 @@
         <div class="line"></div>
         <div>
           <!--小屏幕导航按钮和logo-->
-          <!-- <div class="navbar-header">
-                        <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        </button>
-                        <a href="" class="navbar-brand"><img src="../assets/img/hmb3.png" alt="" /></a>
-                        <a href="" class="navbar-brand">HelloMybody</a>
-                    </div> -->
+          <div class="navbar-header">
+            <button
+              class="navbar-toggle"
+              data-toggle="collapse"
+              data-target=".navbar-collapse"
+            >
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <img src="../assets/img/hmb3.png" alt="" style="height: 60px" />
+            <!-- <a href="" class="navbar-brand">HelloMybody</a> -->
+          </div>
           <div class="navbar-collapse collapse">
             <el-menu
               :default-active="activePath"
@@ -30,7 +34,10 @@
               <!-- :router="true" 设定路由，让其能够根据页面进行跳转 -->
               <!-- > unique-opened   该属性方法控制侧边栏 展开时不自动关闭-->
 
-              <el-menu-item :router="true" :to="{ path: '/hellou' }">首页</el-menu-item>
+              <el-menu-item>
+                <router-link :router="true" to="/hellou">首页</router-link>
+                <!-- <template :to="{ path: '/hellou' }">首页</template> -->
+              </el-menu-item>
               <!-- 一级菜单 -->
               <el-submenu
                 :index="item.id + ''"
@@ -56,7 +63,9 @@
                   </template>
                 </el-menu-item>
               </el-submenu>
-              <el-menu-item :router="true" :to="{ path: '/jkkp' }">健康科普</el-menu-item>
+              <!-- <el-menu-item :router="true" :to="{ path: '/kpwz' }"
+                >健康科普</el-menu-item
+              > -->
               <!-- <el-menu-item :to="{ path: '/jkgj' }">健康工具</el-menu-item> -->
               <!-- <el-menu-item index="3" disabled>消息中心</el-menu-item> -->
               <!-- <el-menu-item index="4"><a href="https://www.ele.me" target="_blank"
@@ -70,7 +79,7 @@
         <div></div>
       </el-header>
       <!-- 主体区域 -->
-      <el-main style="width: 80%; margin: 0 auto">
+      <el-main style="width: 100%; margin: 0 auto">
         <!-- 用路由开始重定向导航栏 -->
         <router-view></router-view>
       </el-main>
@@ -169,7 +178,7 @@ export default {
   methods: {
     // 安全退出
     logout() {
-      // 清除session,回到首页
+      // 清除session,回到首页   清除token
       window.sessionStorage.clear();
       // 导航到首页
       this.$router.push("/home");
@@ -262,9 +271,9 @@ export default {
 /*尾部开始*/
 footer {
   margin-top: 60px;
-  margin-left: -20px;
+  /* margin-left: -20px; */
   background: rgb(162, 202, 135);
-  width: 110%;
+  width: 100%;
   color: black;
   clear: both;
 }
