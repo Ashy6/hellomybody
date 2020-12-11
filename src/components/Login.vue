@@ -72,15 +72,33 @@
       >
         <!-- 用户名 -->
         <el-form-item label="用户名" prop="username">
-          <el-input v-model="addForm.username"></el-input>
+          <el-input clearable v-model="addForm.username"></el-input>
         </el-form-item>
         <!-- 密码 -->
         <el-form-item label="密码" prop="password">
-          <el-input v-model="addForm.password"></el-input>
+          <el-input
+            clearable
+            type="password"
+            show-password
+            v-model="addForm.password"
+            autocomplete="off"
+          >
+          </el-input>
+          <!-- autocomplete="off" off浏览器将不提示记住密码-->
+        </el-form-item>
+        <!-- 确认 密码 -->
+        <el-form-item label="确认密码" prop="checkPass">
+          <el-input
+            type="password"
+            v-model="addForm.checkPass"
+            autocomplete="off"
+            show-password
+            clearable
+          ></el-input>
         </el-form-item>
         <!-- 邮箱 -->
         <el-form-item label="邮箱" prop="email">
-          <el-input v-model="addForm.email"></el-input>
+          <el-input clearable v-model="addForm.email"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dislog-footer">
@@ -94,6 +112,15 @@
 // 绑定数据
 export default {
   data() {
+    var validatePass = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请再次输入密码"));
+      } else if (value !== this.addForm.password) {
+        callback(new Error("两次输入密码不一致!"));
+      } else {
+        callback();
+      }
+    };
     return {
       // 属性 表单数据
       loginForm: {
@@ -106,9 +133,10 @@ export default {
       addForm: {
         username: "",
         password: "",
+        checkPass: "",
         email: "",
       },
-      // 表单验证     添加或者注册
+      // 表单验证 --注册
       addFormRules: {
         username: [
           { required: true, message: "请输入用户名", trigger: "blur" },
@@ -128,13 +156,16 @@ export default {
             trigger: "blur",
           },
         ],
+        checkPass: [
+          { validator: validatePass, trigger: "blur" },
+        ],
         email: [
           { required: true, message: "请输入邮箱", trigger: "blur" },
           { min: 4, max: 20, message: "请正确输入邮箱地址", trigger: "blur" },
         ],
       },
 
-      // 校验规则，验证对象
+      // 校验规则，验证对象 --登录
       loginRules: {
         // 校验用户名
         username: [
@@ -176,7 +207,9 @@ export default {
           this.$router.push({ path: "/first" }); //页面路由跳转
           //console.log(res.user);
           // 存储user对象  用户登录存储
-          window.sessionStorage.setItem("user", res.user); //set方法，在index.js  中 get 出系统数据库的user
+          // sessionStorage.setItem("user", res.user.username); //set方法，在index.js  中 get 出系统数据库的user
+          // this.res.user = JSON.stringify(res.user);
+          window.sessionStorage.setItem("user", res.user.username);
         } else {
           this.$message.error("手机号（用户名）或者密码错误，请重新输入！");
         }
@@ -188,17 +221,21 @@ export default {
     },
     addUser() {
       this.$refs.addFormRef.validate(async (valid) => {
-        console.log(valid);
+        // console.log(valid);
         // 验证
         if (!valid) return;
         // 提交结果
         const { data: res } = await this.$http.post("addUser", this.addForm);
-        if (res != "success") {
-          return this.$message.error("添加失败！！");
+        if (res.flag == "no") {
+          this.$message.error("该用户名已经被注册！");
+        } else {
+          if (res != "success") {
+            return this.$message.error("注册失败！！");
+          }
+          this.$message.success("注册成功！！");
+          this.addDialogVisible = false;
         }
-        this.$message.success("添加成功！！");
-        this.addDialogVisible = false;
-        this.getUserList();
+        // this.getUserList();
       });
     },
     //路由转发 注册界面
