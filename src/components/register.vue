@@ -1,38 +1,21 @@
 <template>
-  <el-form
-    :model="ruleForm"
-    status-icon
-    :rules="rules"
-    ref="ruleForm"
-    label-width="100px"
-    class="demo-ruleForm"
-  >
+  <el-form :model="ruleForm" status-icon
+    :rules="rules" ref="ruleForm"
+    label-width="100px" class="demo-ruleForm" >
     <!-- 用户名 -->
     <el-form-item prop="username">
-      <el-input
-        v-model="ruleForm.username"
-        prefix-icon="iconfont icon-denglu1"
-        clearable
-      ></el-input>
+      <el-input v-model="ruleForm.username" prefix-icon="iconfont icon-denglu1"
+        clearable ></el-input>
     </el-form-item>
     <!-- 密码 -->
     <el-form-item label="密码" prop="pass">
-      <el-input
-        type="password"
-        v-model="ruleForm.pass"
-        autocomplete="off"
-        clearable
-      ></el-input>
+      <el-input type="password" v-model="ruleForm.pass" autocomplete="off"
+        clearable ></el-input>
     </el-form-item>
     <!-- 确认 密码 -->
     <el-form-item label="确认密码" prop="checkPass">
-      <el-input
-        type="password"
-        v-model="ruleForm.checkPass"
-        autocomplete="off"
-        show-password
-        clearable
-      ></el-input>
+      <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"
+        show-password clearable ></el-input>
     </el-form-item>
     <el-form-item label="年龄" prop="age">
       <el-input v-model.number="ruleForm.age"></el-input>
@@ -106,6 +89,7 @@ export default {
         }
       });
     },
+    // 重置表单
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
