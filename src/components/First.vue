@@ -28,6 +28,7 @@
               text-color="#fff"
               active-text-color="#ffd04b"
               :router="true"
+              :span="10"
             >
               <!-- default-active="/hello"   设定打开界面为hello -->
               <!-- el-menu-vertical-demo控制下拉 -->
@@ -35,8 +36,8 @@
               <!-- > unique-opened   该属性方法控制侧边栏 展开时不自动关闭-->
 
               <el-menu-item>
-                <router-link :router="true" to="/hellou">首页</router-link>
                 <!-- <template :to="{ path: '/hellou' }">首页</template> -->
+                <router-link style="text-decoration: none" :router="true" to="/hellou">首页</router-link>
               </el-menu-item>
               <!-- 一级菜单 -->
               <el-submenu
@@ -71,12 +72,33 @@
               <!-- <el-menu-item index="4"><a href="https://www.ele.me" target="_blank"
               >订单管理</a>
             </el-menu-item> -->
-              <el-button type="info" @click="logout">退出登录</el-button>
+              <!-- <el-menu-item>
+                <template class="user-info-userName"></template>
+                <el-menu-item>
+                  <template slot="title">
+                    <span></span>
+                  </template>
+                </el-menu-item>
+              </el-menu-item> -->
+              <el-col :span="3" class="pull-right">
+                <el-dropdown trigger="click">
+                  <span class="el-dropdown-link">
+                    欢迎你，{{ form.userName }}<i class="el-icon-arrow-down el-icon--right"></i>
+                  </span>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item icon="el-icon-circle-plus-outline"
+                    
+                      ><router-link style="text-decoration: none" :router="true" to="/myxx">我的信息</router-link></el-dropdown-item
+                    >
+                    <el-dropdown-item icon="el-icon-circle-check"
+                      ><span @click="logout">退出登录</span></el-dropdown-item
+                    >
+                  </el-dropdown-menu>
+                </el-dropdown>
+              </el-col>
             </el-menu>
           </div>
         </div>
-        <!-- 按钮退出 click方法 -->
-        <div></div>
       </el-header>
       <!-- 主体区域 -->
       <el-main style="width: 100%; margin: 0 auto">
@@ -93,41 +115,41 @@
                   <li class="media">
                     <a href="#">
                       <div class="media-up"></div>
-                      <div class="media-body">全场包邮</div>
+                      <div class="media-body">尾部</div>
                     </a>
                   </li>
                   <li class="media">
                     <a href="#">
                       <div class="media-up"></div>
-                      <div class="media-body">100+城市次日送达</div>
+                      <div class="media-body">尾部</div>
                     </a>
                   </li>
                   <li class="media">
                     <a href="#">
                       <div class="media-up"></div>
-                      <div class="media-body">7天无理由退货</div>
+                      <div class="media-body">尾部</div>
                     </a>
                   </li>
                   <li class="media">
                     <a href="#">
                       <div class="media-up"></div>
-                      <div class="media-body">15天换货保障</div>
+                      <div class="media-body">尾部</div>
                     </a>
                   </li>
                   <li class="media">
                     <a href="#">
                       <div class="media-up"></div>
-                      <div class="media-body">15天换货保障</div>
+                      <div class="media-body">尾部</div>
                     </a>
                   </li>
                   <li class="media">
                     <a href="#">
                       <div class="media-up"></div>
-                      <div class="media-body">上门快修</div>
+                      <div class="media-body">尾部</div>
                     </a>
                   </li>
                   <li class="pull-right">
-                    <p>周一至周日7：30-24：00</p>
+                    <p>尾部</p>
                     <p>400-123-4567</p>
                     <p>在线客服</p>
                   </li>
@@ -136,10 +158,10 @@
             </div>
             <div class="copyright">
               <ul>
-                <li><a href="">返回首页</a></li>
-                <li><a href="">加入我们</a></li>
-                <li><a href="">联系我们</a></li>
-                <li><a href="">了解更多</a></li>
+                <li><a href="">尾部</a></li>
+                <li><a href="">尾部</a></li>
+                <li><a href="">尾部</a></li>
+                <li><a href="">尾部</a></li>
                 <li>
                   <a href=""><i class="iconfont">&#xe60a;</i>简体中文</a>
                 </li>
@@ -166,20 +188,30 @@ export default {
       // 菜单列表
       menuList: [],
       activePath: "/hellou", //配置默认路径
+      form: {
+        userName: "",
+      },
     };
   },
   // 页面加载之后开始查询
   created() {
+    // console.log(window);
     // 查询 MenuList
     this.getMenuList();
     // 存放到session中的当前路径，再从session中取出来path，然后动态修改activePath
     this.activePath = window.sessionStorage.getItem("activePath");
+    this.form.userName = window.sessionStorage.getItem("user");
+    // this.form.userName = JSON.parse(userName);
+    // let userName = window.sessionStorage.getItem(JSON.parse("user"));
+    // this.form.userName = window.sessionStorage.getItem(JSON.parse("user"));
+    // console.log(this.form.userName)
   },
   methods: {
     // 安全退出
     logout() {
       // 清除session,回到首页   清除token
       window.sessionStorage.clear();
+      window.localStorage.clear();
       // 导航到首页
       this.$router.push("/home");
     },
@@ -257,9 +289,24 @@ export default {
   background-color: rgb(189, 215, 233);
 }
 .navbar-default .navbar-toggle .icon-bar {
-  background-color: #00b3ff;
+  background-color: #f7f30b;
 }
 /*导航栏结束*/
+/* 下拉菜单 -- 用户功能 */
+.el-dropdown-link {
+  cursor: pointer;
+  color: #ffffff;
+}
+.el-icon-arrow-down {
+  font-size: 12px;
+}
+.demonstration {
+  display: block;
+  color: #8492a6;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+/* 下拉结束 */
 /* 中间 */
 .body1 {
   background-color: #e9eef3;
