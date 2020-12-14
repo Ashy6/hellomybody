@@ -1,6 +1,6 @@
 <template>
   <div class="img1 note" :style ="note">
-    <h1>=͟͟͞͞(꒪ᗜ꒪ ‧̣̥̇)卧━=͟͟͞͞(Ŏ◊Ŏ ‧̣̥̇)━擦!!!! --- 这个页面还在开发中 -- 敬请期待 -- (*≧▽≦)ﾉｼ))</h1>
+    <h1>=͟͟͞͞(꒪ᗜ꒪ ‧̣̥̇)卧━=͟͟͞͞(Ŏ◊Ŏ ‧̣̥̇)━擦!!!! --- <span>这个页面还在开发中</span> -- 敬请期待 -- (*≧▽≦)ﾉｼ))</h1>
     <div class="note1" :style="note">{{ data1 }}</div>
   </div>
 </template>
@@ -27,6 +27,9 @@ export default {
 .note {
     width: 100%;
     height: 100%;
+}
+.note span{
+  color:yellow;
 }
 .note h1 {
     color: #fff;
