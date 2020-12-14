@@ -202,14 +202,21 @@ export default {
         if (!valid) return;
         // 解析信息，定义 res返回数据
         const { data: res } = await this.$http.post("login", this.loginForm); //await 解析信息
+            console.log(res.user);
         if (res.flag == "ok") {
-          this.$message.success("登录成功！"); //信息提示
-          this.$router.push({ path: "/first" }); //页面路由跳转
-          //console.log(res.user);
-          // 存储user对象  用户登录存储
-          // sessionStorage.setItem("user", res.user.username); //set方法，在index.js  中 get 出系统数据库的user
-          // this.res.user = JSON.stringify(res.user);
-          window.sessionStorage.setItem("user", res.user.username);
+          if (res.user.username == "曾俊潇" ) {
+            this.$message.success("登录成功！"); //信息提示
+            this.$router.push({ path: "/home" }); //页面路由跳转后台
+            window.sessionStorage.setItem("user", res.user.username);
+          } else {
+            this.$message.success("登录成功！"); //信息提示
+            this.$router.push({ path: "/first" }); //页面路由跳转
+            //console.log(res.user);
+            // 存储user对象  用户登录存储
+            // sessionStorage.setItem("user", res.user.username); //set方法，在index.js  中 get 出系统数据库的user
+            // this.res.user = JSON.stringify(res.user);
+            window.sessionStorage.setItem("user", res.user.username);
+          }
         } else {
           this.$message.error("手机号（用户名）或者密码错误，请重新输入！");
         }
