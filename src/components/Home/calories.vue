@@ -86,7 +86,6 @@ export default {
       number: 0, //  初始的最大值为 0
     };
   },
-
   methods: {
     async getFoodList() {
       const { data: res } = await this.$http.get("allFood", {
