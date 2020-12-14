@@ -35,8 +35,13 @@
     <div id="collapse02" class="collapse" aria-labelledby="heading02" data-parent="#accordionExample">
       <div class="card-body">
         <el-form-item label="">
-          <p class="times"><el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker></p>
-        </el-form-item>     
+          <el-radio-group v-model="form.resource2">
+            <p><el-radio label="21~22点"></el-radio></p>
+            <p><el-radio label="22~23点"></el-radio></p>
+            <p><el-radio label="23~24点"></el-radio></p>
+            <p><el-radio label="24点以后"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>  
       </div>
     </div>
   </div>
@@ -51,7 +56,12 @@
     <div id="collapse03" class="collapse" aria-labelledby="heading03" data-parent="#accordionExample">
       <div class="card-body">
         <el-form-item label="">
-          <p class="times"><el-time-picker placeholder="选择时间" v-model="form.date3" style="width: 100%;"></el-time-picker></p>
+          <el-radio-group v-model="form.resource3">
+            <p><el-radio label="4~5点"></el-radio></p>
+            <p><el-radio label="5~6点"></el-radio></p>
+            <p><el-radio label="6~7点"></el-radio></p>
+            <p><el-radio label="7点以后"></el-radio></p>
+          </el-radio-group>
         </el-form-item> 
       </div>
     </div>
@@ -451,8 +461,13 @@
     <div id="collapse22" class="collapse" aria-labelledby="heading22" data-parent="#accordionExample">
       <div class="card-body">
         <el-form-item label="">
-          <p class="times"><el-time-picker placeholder="选择时间" v-model="form.date22" style="width: 100%;"></el-time-picker></p>
-        </el-form-item> 
+          <el-radio-group v-model="form.resource22">
+            <p><el-radio label="12-13点"></el-radio></p>
+            <p><el-radio label="13~14点"></el-radio></p>
+            <p><el-radio label="16-17点"></el-radio></p>
+            <p><el-radio label="17-18点"></el-radio></p>
+          </el-radio-group>
+        </el-form-item>
       </div>
     </div>
   </div>
@@ -605,12 +620,12 @@
   </div>
 
   <el-form-item>
-    <el-button type="primary" @click="addSl">立即提交</el-button>
+    <el-button type="primary" @click="addSleep">立即提交</el-button>
   </el-form-item>
 </el-form>
 </div>
 
-
+{{form}}
     
     <div>
       <div>
@@ -630,10 +645,10 @@ export default {
   data() {
     return {
         form: {
-          date2: '',
-          date3: '',
-          date22: '',
+          name: '',
           resource1: '',
+          resource2: '',
+          resource3: '',
           resource4: '',
           resource5: '',
           resource6: '',
@@ -652,6 +667,7 @@ export default {
           resource19: '',
           resource20: '',
           resource21: '',
+          resource22: '',
           resource23: '',
           resource24: '',
           resource25: '',
@@ -664,16 +680,17 @@ export default {
   },
   methods: {
     // 添加睡眠评测
-    addSl() {
+    addSleep() {
       this.$refs.form.validate(async (valid) => {
         // debugger
         console.log(valid);
         // 验证
         if (!valid) return;
         // 提交结果
-        const { data: res } = await this.$http.post("addSl", this.form);
+        this.form.name = window.sessionStorage.getItem("user");
+        const { data: res } = await this.$http.post("addSleep", this.form);
+        console.log(this.form);
         if (res != "success") {
-          console.log(this.form);
           return this.$message.error("添加失败！！");
         }
         this.$message.success("添加成功！！");
