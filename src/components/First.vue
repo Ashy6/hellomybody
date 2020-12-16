@@ -83,15 +83,30 @@
               <el-col :span="3" class="pull-right">
                 <el-dropdown trigger="click">
                   <span class="el-dropdown-link">
-                    欢迎你，{{ form.userName }}<i class="el-icon-arrow-down el-icon--right"></i>
+                    欢迎你，{{ form.userName
+                    }}<i class="el-icon-arrow-down el-icon--right"></i>
                   </span>
                   <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item icon="el-icon-circle-plus-outline"
-                    
-                      ><router-link style="text-decoration: none" :router="true" to="/myxx">我的信息</router-link></el-dropdown-item
-                    >
+                    <el-dropdown-item icon="el-icon-circle-plus-outline">
+                      <router-link style="text-decoration: none" :router="true"
+                        to="/myxx">
+                        我的信息
+                      </router-link>
+                    </el-dropdown-item>
+                    <el-dropdown-item icon="el-icon-circle-plus-outline">
+                      <router-link style="text-decoration: none" :router="true"
+                        to="/myxg">
+                        修改信息
+                      </router-link>
+                    </el-dropdown-item>
+                    <el-dropdown-item icon="el-icon-circle-plus-outline">
+                      <router-link style="text-decoration: none" :router="true"
+                        to="/myjl">
+                        我的足迹
+                      </router-link>
+                    </el-dropdown-item>
                     <el-dropdown-item icon="el-icon-circle-check"
-                      ><span @click="logout">退出登录</span></el-dropdown-item
+                      ><span @click="logout"> 退出登录</span></el-dropdown-item
                     >
                   </el-dropdown-menu>
                 </el-dropdown>
@@ -213,7 +228,7 @@ export default {
       window.sessionStorage.clear();
       window.localStorage.clear();
       // 导航到首页
-      this.$router.push("/home");
+      this.$router.push("/login");
     },
     // 获取导航菜单方法
     async getMenuList() {
