@@ -37,7 +37,12 @@
 
               <el-menu-item>
                 <!-- <template :to="{ path: '/hellou' }">首页</template> -->
-                <router-link style="text-decoration: none" :router="true" to="/hellou">首页</router-link>
+                <router-link
+                  style="text-decoration: none"
+                  :router="true"
+                  to="/hellou"
+                  >首页</router-link
+                >
               </el-menu-item>
               <!-- 一级菜单 -->
               <el-submenu
@@ -72,51 +77,64 @@
               <!-- <el-menu-item index="4"><a href="https://www.ele.me" target="_blank"
               >订单管理</a>
             </el-menu-item> -->
-              <!-- <el-menu-item>
-                <template class="user-info-userName"></template>
-                <el-menu-item>
-                  <template slot="title">
-                    <span></span>
-                  </template>
-                </el-menu-item>
-              </el-menu-item> -->
-              <el-col :span="3" class="pull-right">
-                <el-dropdown trigger="click">
-                  <span class="el-dropdown-link">
-                    欢迎你，{{ form.userName
-                    }}<i class="el-icon-arrow-down el-icon--right"></i>
-                  </span>
-                  <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item icon="el-icon-circle-plus-outline">
-                      <router-link style="text-decoration: none" :router="true"
-                        to="/myxx">
-                        我的信息
-                      </router-link>
-                    </el-dropdown-item>
-                    <el-dropdown-item icon="el-icon-circle-plus-outline">
-                      <router-link style="text-decoration: none" :router="true"
-                        to="/myxg">
-                        修改信息
-                      </router-link>
-                    </el-dropdown-item>
-                    <el-dropdown-item icon="el-icon-circle-plus-outline">
-                      <router-link style="text-decoration: none" :router="true"
-                        to="/myjl">
-                        我的足迹
-                      </router-link>
-                    </el-dropdown-item>
-                    <el-dropdown-item icon="el-icon-circle-check"
-                      ><span @click="logout"> 退出登录</span></el-dropdown-item
+              <el-menu-item :span="5" class="pull-right" style="margin-right:60px;">
+                <template>
+                  {{ currentTime }}
+                </template>
+                <template slot="title">
+                <el-col :span="3" class="pull-right">
+                  <el-dropdown trigger="click">
+                    <span class="el-dropdown-link">
+                      欢迎您{{ "，"+form.userName
+                      }}<i class="el-icon-arrow-down el-icon--right"></i>
+                    </span>
+                    <el-dropdown-menu
+                      slot="dropdown"
+                      background-color="Transparent"
                     >
-                  </el-dropdown-menu>
-                </el-dropdown>
-              </el-col>
+                      <el-dropdown-item icon="el-icon-circle-plus-outline">
+                        <router-link
+                          style="text-decoration: none"
+                          :router="true"
+                          to="/myxx"
+                        >
+                          我的信息
+                        </router-link>
+                      </el-dropdown-item>
+                      <el-dropdown-item icon="el-icon-circle-plus-outline">
+                        <router-link
+                          style="text-decoration: none"
+                          :router="true"
+                          to="/myxg"
+                        >
+                          修改信息
+                        </router-link>
+                      </el-dropdown-item>
+                      <el-dropdown-item icon="el-icon-circle-plus-outline">
+                        <router-link
+                          style="text-decoration: none"
+                          :router="true"
+                          to="/myjl"
+                        >
+                          我的足迹
+                        </router-link>
+                      </el-dropdown-item>
+                      <el-dropdown-item icon="el-icon-circle-check"
+                        ><span @click="logout">
+                          退出登录</span
+                        ></el-dropdown-item
+                      >
+                    </el-dropdown-menu>
+                  </el-dropdown>
+                </el-col>
+                </template>
+              </el-menu-item>
             </el-menu>
           </div>
         </div>
       </el-header>
       <!-- 主体区域 -->
-      <el-main style="width: 100%; margin: 0 auto">
+      <el-main style="width: 100%; margin: 0 auto;">
         <!-- 用路由开始重定向导航栏 -->
         <router-view></router-view>
       </el-main>
@@ -190,6 +208,7 @@
               </p> -->
             </div>
           </div>
+          <!-- <el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop> -->
         </footer>
       </el-footer>
     </el-container>
@@ -200,6 +219,8 @@
 export default {
   data() {
     return {
+      timer: Date.parse(new Date()), //定义一个定时器的变量
+      currentTime: new Date(), // 获取当前时间
       // 菜单列表
       menuList: [],
       activePath: "/hellou", //配置默认路径
@@ -220,6 +241,23 @@ export default {
     // let userName = window.sessionStorage.getItem(JSON.parse("user"));
     // this.form.userName = window.sessionStorage.getItem(JSON.parse("user"));
     // console.log(this.form.userName)
+    var _this = this; //声明一个变量指向Vue实例this，保证作用域一致
+    this.timer = setInterval(function () {
+      _this.currentTime = //修改数据date
+        new Date().getFullYear() +
+        "-" +
+        (new Date().getMonth() + 1) +
+        "-" +
+        new Date().getDate() +
+        " " +
+        new Date().getHours() +
+        ":" +
+        new Date().getMinutes() +
+        ": " +
+        new Date().getSeconds();
+    }, 1000);
+    this.form.time = _this.currentTime;
+    // console.log(_this.currentTime);
   },
   methods: {
     // 安全退出
@@ -251,19 +289,40 @@ export default {
 </script>
 
 <style>
+.home-container {
+  height: 100%;
+}
 /* 头部尾部 */
-.el-header,
+.el-header {
+  /* background-color: "Transparent"; */
+  color: rgb(156, 13, 13);
+  text-align: center;
+  background-color: #409eff;
+  line-height: 60px;
+  /* display: flex; */
+  justify-content: space-between;
+}
+/* .el-main { */
+/* justify-content: space-between; 
+  margin-left: -2%; */
+/* } */
 .el-footer {
   background-color: #409eff;
+  /* background-color:"Transparent"; */
   color: #333;
   text-align: center;
   line-height: 60px;
 }
 /*导航栏开始*/
+.navbar-header {
+  /* background-color: "Transparent"; */
+  background-color: #409eff;
+}
 .navbar-default {
-  background-color: #f7f8f8;
+  /* background-color: #f7f8f8; */
+  /* background-color: "Transparent"; */
   border: none;
-  line-height: 180px;
+  line-height: 60px;
   /* box-shadow: 0px 2px 8px 0px rgba(50,50,50,0.25);*/
 }
 .navbar-default .navbar-brand {
@@ -301,7 +360,8 @@ export default {
 }
 .navbar-default .navbar-toggle:hover {
   border-color: #808080;
-  background-color: rgb(189, 215, 233);
+  /* border-color: yellow; */
+  /* background-color: rgb(189, 215, 233); */
 }
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #f7f30b;
