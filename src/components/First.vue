@@ -77,56 +77,60 @@
               <!-- <el-menu-item index="4"><a href="https://www.ele.me" target="_blank"
               >订单管理</a>
             </el-menu-item> -->
-              <el-menu-item :span="5" class="pull-right" style="margin-right:60px;">
+              <el-menu-item
+                :span="5"
+                class="pull-right"
+                style="margin-right: 60px"
+              >
                 <template>
                   {{ currentTime }}
                 </template>
                 <template slot="title">
-                <el-col :span="3" class="pull-right">
-                  <el-dropdown trigger="click">
-                    <span class="el-dropdown-link">
-                      欢迎您{{ "，"+form.userName
-                      }}<i class="el-icon-arrow-down el-icon--right"></i>
-                    </span>
-                    <el-dropdown-menu
-                      slot="dropdown"
-                      background-color="Transparent"
-                    >
-                      <el-dropdown-item icon="el-icon-circle-plus-outline">
-                        <router-link
-                          style="text-decoration: none"
-                          :router="true"
-                          to="/myxx"
-                        >
-                          我的信息
-                        </router-link>
-                      </el-dropdown-item>
-                      <el-dropdown-item icon="el-icon-circle-plus-outline">
-                        <router-link
-                          style="text-decoration: none"
-                          :router="true"
-                          to="/myxg"
-                        >
-                          修改信息
-                        </router-link>
-                      </el-dropdown-item>
-                      <el-dropdown-item icon="el-icon-circle-plus-outline">
-                        <router-link
-                          style="text-decoration: none"
-                          :router="true"
-                          to="/myjl"
-                        >
-                          我的足迹
-                        </router-link>
-                      </el-dropdown-item>
-                      <el-dropdown-item icon="el-icon-circle-check"
-                        ><span @click="logout">
-                          退出登录</span
-                        ></el-dropdown-item
+                  <el-col :span="3" class="pull-right">
+                    <el-dropdown trigger="click">
+                      <span class="el-dropdown-link">
+                        欢迎您{{ "，" + form.userName
+                        }}<i class="el-icon-arrow-down el-icon--right"></i>
+                      </span>
+                      <el-dropdown-menu
+                        slot="dropdown"
+                        background-color="Transparent"
                       >
-                    </el-dropdown-menu>
-                  </el-dropdown>
-                </el-col>
+                        <el-dropdown-item icon="el-icon-circle-plus-outline">
+                          <router-link
+                            style="text-decoration: none"
+                            :router="true"
+                            to="/myxx"
+                          >
+                            我的信息
+                          </router-link>
+                        </el-dropdown-item>
+                        <el-dropdown-item icon="el-icon-circle-plus-outline">
+                          <router-link
+                            style="text-decoration: none"
+                            :router="true"
+                            to="/myxg"
+                          >
+                            修改信息
+                          </router-link>
+                        </el-dropdown-item>
+                        <el-dropdown-item icon="el-icon-circle-plus-outline">
+                          <router-link
+                            style="text-decoration: none"
+                            :router="true"
+                            to="/myjl"
+                          >
+                            我的足迹
+                          </router-link>
+                        </el-dropdown-item>
+                        <el-dropdown-item icon="el-icon-circle-check"
+                          ><span @click="logout">
+                            退出登录</span
+                          ></el-dropdown-item
+                        >
+                      </el-dropdown-menu>
+                    </el-dropdown>
+                  </el-col>
                 </template>
               </el-menu-item>
             </el-menu>
@@ -134,7 +138,7 @@
         </div>
       </el-header>
       <!-- 主体区域 -->
-      <el-main style="width: 100%; margin: 0 auto;">
+      <el-main style="width: 100%; margin: 0 auto">
         <!-- 用路由开始重定向导航栏 -->
         <router-view></router-view>
       </el-main>
@@ -243,21 +247,45 @@ export default {
     // console.log(this.form.userName)
     var _this = this; //声明一个变量指向Vue实例this，保证作用域一致
     this.timer = setInterval(function () {
+      var y = new Date().getFullYear(),
+        m = new Date().getMonth() + 1,
+        d = new Date().getDate(),
+        h = new Date().getHours(),
+        mi = new Date().getMinutes(),
+        s = new Date().getSeconds();
       _this.currentTime = //修改数据date
-        new Date().getFullYear() +
+        y +
         "-" +
-        (new Date().getMonth() + 1) +
+        (m > 9 ? m : "0" + m) +
         "-" +
-        new Date().getDate() +
-        " " +
-        new Date().getHours() +
-        ":" +
-        new Date().getMinutes() +
-        ": " +
-        new Date().getSeconds();
+        (d > 9 ? d : "0" + d) +
+        "  " +
+        (h > 9 ? h : "0" + h) +
+        " : " +
+        (mi > 9 ? mi : "0" + mi) +
+        " : " +
+        (s > 9 ? s : "0" + s);
     }, 1000);
-    this.form.time = _this.currentTime;
+    // this.form.time = _this.currentTime;
     // console.log(_this.currentTime);
+    //页面加载调用
+    // window.onload = function () {
+    //   //每1秒刷新时间
+    //   setInterval("NowTime()", 1000);
+    // };
+    //过滤加0
+    // appendZero(obj) {
+    // if (obj < 10) {
+    // return "0" + obj;
+    // } else {
+    // return obj;
+    // }
+    // },
+  },
+  beforeDestroy() {
+    if (this.timer) {
+      clearInterval(this.timer); // 在Vue实例销毁前，清除我们的定时器
+    }
   },
   methods: {
     // 安全退出
