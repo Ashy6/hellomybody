@@ -21,8 +21,9 @@ import bbgx from '../components/Home/bbgx.vue'
 // 用户页面
 import meals from '../components/Users/meals.vue'
 import hellou from '../components/Users/hellou.vue'
-import myxx from '../components/Users/myxx.vue'
-import myxg from '../components/Users/myxg.vue'
+import jkgj from '../components/Users/jkgj.vue'
+import g01 from '../components/Users/util/g01.vue'
+import g02 from '../components/Users/util/g02.vue'
 import mygj from '../components/Users/mygj.vue'
 import myjl from '../components/Users/myjl.vue'
 import cpsm from '../components/Users/cpsm.vue'
@@ -32,12 +33,14 @@ import cpmyl from '../components/Users/cpmyl.vue'
 import fxjk from '../components/Users/fxjk.vue'
 import kpwz from '../components/Users/kpwz.vue'
 import a123 from '../components/Users/a123.vue'
+import myxx from '../components/Users/myxx.vue'
+import myxg from '../components/Users/myxg.vue'
 
 //工具包组件
-import cp20103 from '../components/Users/util/cp20103.vue';
-import cp20104 from '../components/Users/util/cp20104.vue';
-import cp20105 from '../components/Users/util/cp20105.vue';
-import cp20106 from '../components/Users/util/cp20106.vue';
+// import cp20103 from '../components/Users/util/cp20103.vue';
+// import cp20104 from '../components/Users/util/cp20104.vue';
+// import cp20105 from '../components/Users/util/cp20105.vue';
+// import cp20106 from '../components/Users/util/cp20106.vue';
 
 // 配置路由
 Vue.use(VueRouter)
@@ -51,6 +54,7 @@ const routes = [
     path: "/login",  //转发
     component: Login  //引入系统登录组件
   },
+  // 后台页面
   {
     path: "/home",  //转发
     // 用户懒加载
@@ -78,19 +82,27 @@ const routes = [
     children: [
       { path: "/hellou", component: hellou, },
       { path: "/meals", component: meals, },
-      { path: "/myxx", component: myxx, },
-      { path: "/myxg", component: myxg, },
+      { path: "/jkgj", component: jkgj, },
+      { path: "/g01", component: g01, },
+      { path: "/g02", component: g02, },
+      // { path: '/course/:name', component: () => import('../components/Users/jkgj.vue') },
+      // { path: '/course/:name', component: () => import('../components/Users/util/g01.vue') },
       {
         path: "/mygj", component: mygj,
         children: [     // 三级路由 睡眠测评页面
-          { path: '/course/:name', component: () => import('../components/Users/util/cp20101.vue') },
-          { path: '/course/:name', component: () => import('../components/Users/util/cp20102.vue') },
+          // { path: '/course/:name', component: () => import('../components/Users/util/g01.vue') },
+          { path: '/course/:name', component: () => import('../components/Users/util/g02.vue') },
+          { path: '/course/:name', component: () => import('../components/Users/util/g03.vue') },
+          { path: '/course/:name', component: () => import('../components/Users/util/g04.vue') },
+          { path: '/course/:name', component: () => import('../components/Users/util/g05.vue') },
+          { path: '/course/:name', component: () => import('../components/Users/util/g06.vue') },
+          { path: '/course/:name', component: () => import('../components/Users/util/g07.vue') },
           // { path: "/cp20101", component: cp20101, },
           // { path: "/cp20102", component: cp20102, },
-          { path: "/cp20103", component: cp20103, },
-          { path: "/cp20104", component: cp20104, },
-          { path: "/cp20105", component: cp20105, },
-          { path: "/cp20106", component: cp20106, },
+          // { path: "/cp20103", component: cp20103, },
+          // { path: "/cp20104", component: cp20104, },
+          // { path: "/cp20105", component: cp20105, },
+          // { path: "/cp20106", component: cp20106, },
         ]
       },
       { path: "/myjl", component: myjl, },
@@ -104,6 +116,9 @@ const routes = [
       { path: "/fxjk", component: fxjk, },
       { path: "/kpwz", component: kpwz, },
       { path: "/a123", component: a123, },
+      // 个人
+      { path: "/myxx", component: myxx, },
+      { path: "/myxg", component: myxg, },
     ]
   },
   {
