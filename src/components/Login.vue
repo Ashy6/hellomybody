@@ -39,9 +39,6 @@
             >登录</el-button
           >
           <!-- 注册界面 -->
-          <!-- <el-button type="primary" @click="register()">
-              添加用户
-            </el-button> -->
           <el-button type="primary" round plain @click="addDialogVisible = true"
             >注册
             <!-- <router-link :to="{ path: 'src/components/Users/register.vue'}" >注册</router-link> -->
@@ -112,6 +109,7 @@
 // 绑定数据
 export default {
   data() {
+    // 注册规则
     var validatePass = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请再次输入密码"));
@@ -124,10 +122,10 @@ export default {
     return {
       // 属性 表单数据
       loginForm: {
-        username: "admin",
-        password: "115115115",
+        username: "zjs",
+        password: "123456",
       },
-      userList: [],
+      // userList: [],
       //添加   属性
       addDialogVisible: false, //  对话框状态
       addForm: {
@@ -156,9 +154,7 @@ export default {
             trigger: "blur",
           },
         ],
-        checkPass: [
-          { validator: validatePass, trigger: "blur" },
-        ],
+        checkPass: [{ validator: validatePass, trigger: "blur" }],
         email: [
           { required: true, message: "请输入邮箱", trigger: "blur" },
           { min: 4, max: 20, message: "请正确输入邮箱地址", trigger: "blur" },
@@ -188,7 +184,6 @@ export default {
           },
         ],
       },
-      input: "",
     };
   },
   //实现方法
@@ -202,9 +197,9 @@ export default {
         if (!valid) return;
         // 解析信息，定义 res返回数据
         const { data: res } = await this.$http.post("login", this.loginForm); //await 解析信息
-            console.log(res.user);
+        // console.log(res.user);
         if (res.flag == "ok") {
-          if (res.user.username == "曾俊潇" ) {
+          if (res.user.username == "曾俊潇") {
             this.$message.success("登录成功！"); //信息提示
             this.$router.push({ path: "/home" }); //页面路由跳转后台
             window.sessionStorage.setItem("user", res.user.username);
@@ -223,6 +218,7 @@ export default {
       });
     },
     // 用户注册
+    // 清空表单，关闭窗口
     addDialogClosed() {
       this.$refs.addFormRef.resetFields();
     },
