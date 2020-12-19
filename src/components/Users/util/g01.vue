@@ -52,7 +52,7 @@
       <p>性别： {{ body.personsex }}</p>
       <p>BMI： {{ body.bmi }}</p>
       <p>体脂率： {{ body.bfat }}</p>
-      <!-- <p>根据您的体脂率，您的身材{{ body.news }}</p> -->
+      <p>根据您的体脂率，您的身材{{ body.news }}</p>
       <!-- 按钮 -->
     </el-form>
   </div>
@@ -91,23 +91,23 @@ export default {
       bfat = bfat.toFixed(2);
       var minNum = 0.15 + 0.1 * (1 - personSex);
       var maxNum = 0.18 + 0.1 * (1 - personSex);
-      // if (bfat > maxNum * 100) {
-      //   news = "偏胖，建议您平时多注意运动，并减少脂肪的摄入";
-      // } else if (bfat < minNum * 100) {
-      //   news = "偏瘦，建议您适当增加脂肪与蛋白质的摄入，并积极进行体育锻炼";
-      // } else {
-      //   news = "合适,继续保持！";
-      // }
       if (bfat > maxNum * 100) {
-        alert( "根据您的体脂率为"+bfat+"，您的身材偏胖，建议您平时多注意运动，并减少脂肪的摄入");
+        news = "偏胖，建议您平时多注意运动，并减少脂肪的摄入";
       } else if (bfat < minNum * 100) {
-        // alert(bfat+"根据您的体脂率为");
-        alert( "根据您的体脂率为"+bfat+"，您的身材偏瘦，建议您适当增加脂肪与蛋白质的摄入，并积极进行体育锻炼");
+        news = "偏瘦，建议您适当增加脂肪与蛋白质的摄入，并积极进行体育锻炼";
       } else {
-        alert( "根据您的体脂率为"+bfat+"，您的身材合适,继续保持！");
+        news = "合适,继续保持！";
       }
-      this.body.bfat = bfat;
-      this.body.bmi = BMI;
+      // if (bfat > maxNum * 100) {
+      //   alert( "根据您的体脂率为"+bfat+"，您的身材偏胖，建议您平时多注意运动，并减少脂肪的摄入");
+      // } else if (bfat < minNum * 100) {
+      //   // alert(bfat+"根据您的体脂率为");
+      //   alert( "根据您的体脂率为"+bfat+"，您的身材偏瘦，建议您适当增加脂肪与蛋白质的摄入，并积极进行体育锻炼");
+      // } else {
+      //   alert( "根据您的体脂率为"+bfat+"，您的身材合适,继续保持！");
+      // }
+      this.body.bfat = bfat.toFixed(3);
+      this.body.bmi = BMI.toFixed(3);
       this.body.news = news;
     },
   },

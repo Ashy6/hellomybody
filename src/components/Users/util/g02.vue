@@ -73,19 +73,59 @@ export default {
         width = this.body.weight, //体重的值
         personsex = this.body.personsex,
         sex = 70 + personsex * 10,
-        sex2 = 0.6 + personsex *0.1,
+        sex2 = 0.6 + personsex * 0.1,
         sum = parseFloat((height - sex) * sex2); //定义标准体重公式
       if (height > 120 && height < 300) {
         if (width <= sum + sum * 0.1 && width >= sum - sum * 0.1) {
-          alert("您的标准体重为"+sum+"(kg),在"+sum * 0.9+"(kg)~"+sum * 1.1+"(kg)之间，"+"属于正常体重。请继续保持ヽ( ⌒ω⌒)人(=^‥^= )ﾉ！！！");
+          alert(
+            "您的标准体重为" +
+              sum.toFixed(3) +
+              "(kg),在" +
+              (sum * 0.9).toFixed(3) +
+              "(kg)~" +
+              (sum * 1.1).toFixed(3) +
+              "(kg)之间，" +
+              "属于正常体重。请继续保持ヽ( ⌒ω⌒)人(=^‥^= )ﾉ！！！"
+          );
         } else if (width <= sum + sum * 0.2 && width >= sum + sum * 0.1) {
-          alert("您的标准体重为"+sum+"(kg),在"+sum * 1.1+"(kg)~"+sum * 1.2+"(kg)之间，"+"属于偏胖(过重)。建议减少脂肪和油脂的摄入，并加强体育锻炼！！");
+          alert(
+            "您的标准体重为" +
+              sum.toFixed(3) +
+              "(kg),在" +
+              (sum * 1.1).toFixed(3) +
+              "(kg)~" +
+              (sum * 1.2).toFixed(3) +
+              "(kg)之间，" +
+              "属于偏胖(过重)。建议减少脂肪和油脂的摄入，并加强体育锻炼！！"
+          );
         } else if (width >= sum - sum * 0.2 && width <= sum - sum * 0.1) {
-          alert("您的标准体重为"+sum+"(kg),在"+sum * 0.8+"(kg)~"+sum * 0.9+"(kg)之间，"+"属于偏瘦(过轻)。建议您注重饮食健康，太瘦并不是一种美 (  •̆ ᵕ •̆ )◞♡ ！");
+          alert(
+            "您的标准体重为" +
+              sum.toFixed(3) +
+              "(kg),在" +
+              (sum * 0.8).toFixed(3) +
+              "(kg)~" +
+              (sum * 0.9).toFixed(3) +
+              "(kg)之间，" +
+              "属于偏瘦(过轻)。建议您注重饮食健康，太瘦并不是一种美 (  •̆ ᵕ •̆ )◞♡ ！"
+          );
         } else if (width > sum + sum * 0.2) {
-          alert("您的标准体重为"+sum+"(kg),超过"+sum * 1.2+"(kg)，属于肥胖(超重)。亲，这边建议您注意安全 (*≧▽≦)ﾉｼ)) ！");
+          alert(
+            "您的标准体重为" +
+              sum.toFixed(3) +
+              "(kg),超过" +
+              (sum * 1.2).toFixed(3) +
+              "(kg)，属于肥胖(超重)。亲，这边建议您注意减脂 (*≧▽≦)ﾉｼ)) ！"
+          );
         } else if (width < sum - sum * 0.2) {
-          alert("您的标准体重为"+sum+"(kg),远小于"+sum * 0.8+"(kg)，体重严重不足。"+"应当注意加强营养，如有不适，建议尽早就医。");
+          alert(
+            "您的标准体重为" +
+              sum.toFixed(3) +
+              "(kg),远小于" +
+              (sum * 0.8).toFixed(3) +
+              "(kg)，体重严重不足。" +
+              "应当注意加强营养，如有不适，建议尽早就医。"
+          );
         } else {
           alert("您的输入有误");
         }
@@ -93,7 +133,7 @@ export default {
         alert("您的输入有误，请重新输入");
       }
       this.body.news2 = news2;
-      this.body.bweight = sum;
+      this.body.bweight = sum.toFixed(3);
     },
   },
 };
