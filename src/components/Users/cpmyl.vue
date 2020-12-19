@@ -25,12 +25,12 @@
             aria-labelledby="heading01"
             data-parent="#accordionExample"
           >
-          <!-- 每一项占分3.57分 -->
+            <!-- 每一项占分3.57分 -->
             <div class="card-body">
               <el-form-item label="">
                 <el-checkbox-group v-model="form.type1">
-                  <el-checkbox label="1.1" name="type1">经常熬夜</el-checkbox>
-                  <el-checkbox label="2.5" name="type1"
+                  <el-checkbox label="1.3" name="type1">经常熬夜</el-checkbox>
+                  <el-checkbox label="2.1" name="type1"
                     >经常跨时区差旅</el-checkbox
                   >
                   <el-checkbox label="2.2" name="type1">经常倒时差</el-checkbox>
@@ -64,19 +64,16 @@
             <div class="card-body">
               <el-form-item label="">
                 <el-checkbox-group v-model="form.type2">
-                  <el-checkbox label="经常饮酒" name="type2"></el-checkbox>
-                  <el-checkbox
-                    label="3"
-                    name="type2"
-                  >吸烟或者受二手烟困扰</el-checkbox>
-                  <el-checkbox
-                    label="2"
-                    name="type2"
-                  >近半年进行极端减肥，如三餐苹果、过午不食</el-checkbox>
-                  <el-checkbox
-                    label="1"
-                    name="type2"
-                  >饮食不规律，一顿很少，一顿吃撑</el-checkbox>
+                  <el-checkbox label="1.8" name="type2">经常饮酒</el-checkbox>
+                  <el-checkbox label="2.6" name="type2"
+                    >吸烟或者受二手烟困扰</el-checkbox
+                  >
+                  <el-checkbox label="2.2" name="type2"
+                    >近半年进行极端减肥，如三餐苹果、过午不食</el-checkbox
+                  >
+                  <el-checkbox label="1.2" name="type2"
+                    >饮食不规律，一顿很少，一顿吃撑</el-checkbox
+                  >
                 </el-checkbox-group>
               </el-form-item>
               <p>以上均不符合（不选）</p>
@@ -107,22 +104,18 @@
             <div class="card-body">
               <el-form-item label="">
                 <el-checkbox-group v-model="form.type3">
-                  <el-checkbox
-                    label="常吃薯条、炸鸡、烤鱼、香锅等高油食物"
-                    name="type3"
-                  ></el-checkbox>
-                  <el-checkbox
-                    label="常吃蛋糕、奶茶、果汁饮料等甜食"
-                    name="type3"
-                  ></el-checkbox>
-                  <el-checkbox
-                    label="常吃腊肉、培根等肉类加工食品"
-                    name="type3"
-                  ></el-checkbox>
-                  <el-checkbox
-                    label="常吃泡面、汉堡等快餐"
-                    name="type3"
-                  ></el-checkbox>
+                  <el-checkbox label="1.1" name="type3"
+                    >常吃薯条、炸鸡、烤鱼、香锅等高油食物</el-checkbox
+                  >
+                  <el-checkbox label="0.5" name="type3"
+                    >常吃蛋糕、奶茶、果汁饮料等甜食</el-checkbox
+                  >
+                  <el-checkbox label="0.6" name="type3"
+                    >常吃腊肉、培根等肉类加工食品</el-checkbox
+                  >
+                  <el-checkbox label="0.9" name="type3"
+                    >常吃泡面、汉堡等快餐</el-checkbox
+                  >
                 </el-checkbox-group>
               </el-form-item>
               <p>以上均不符合（不选）</p>
@@ -153,26 +146,21 @@
             <div class="card-body">
               <el-form-item label="">
                 <el-checkbox-group v-model="form.type4">
-                  <el-checkbox
-                    label="几乎不吃坚果、橄榄油或者深海鱼"
-                    name="type4"
-                  ></el-checkbox>
-                  <el-checkbox
-                    label="不爱喝水、如矿泉水或者凉白开"
-                    name="type4"
-                  ></el-checkbox>
-                  <el-checkbox
-                    label="很少喝酸奶或者主动补充益生菌"
-                    name="type4"
-                  ></el-checkbox>
-                  <el-checkbox
-                    label="很少吃肉蛋类、豆制品或奶类"
-                    name="type4"
-                  ></el-checkbox>
-                  <el-checkbox
-                    label="很少吃新鲜水果蔬菜"
-                    name="type4"
-                  ></el-checkbox>
+                  <el-checkbox label="0.6" name="type4"
+                    >几乎不吃坚果、橄榄油或者深海鱼</el-checkbox
+                  >
+                  <el-checkbox label="1.5" name="type4"
+                    >不爱喝水、如矿泉水或者凉白开</el-checkbox
+                  >
+                  <el-checkbox label="0.5" name="type4"
+                    >很少喝酸奶或者主动补充益生菌</el-checkbox
+                  >
+                  <el-checkbox label="2.5" name="type4"
+                    >很少吃肉蛋类、豆制品或奶类</el-checkbox
+                  >
+                  <el-checkbox label="2.6" name="type4"
+                    >很少吃新鲜水果蔬菜</el-checkbox
+                  >
                 </el-checkbox-group>
               </el-form-item>
               <p>以上均不符合（不选）</p>
@@ -203,14 +191,16 @@
             <div class="card-body">
               <el-form-item label="">
                 <el-radio-group v-model="form.resource5">
-                  <p><el-radio label="几乎不运动"></el-radio></p>
+                  <p><el-radio label="1.6">几乎不运动</el-radio></p>
                   <p>
-                    <el-radio
-                      label="有中强度的运动习惯，如跑步、快走等"
-                    ></el-radio>
+                    <el-radio label="0"
+                      >有中强度的运动习惯，如跑步、快走等</el-radio
+                    >
                   </p>
-                  <p><el-radio label="偶尔运动，且运动强度大"></el-radio></p>
-                  <p><el-radio label="运动规律，且运动强度大"></el-radio></p>
+                  <p><el-radio label="-1">偶尔运动，且运动强度大</el-radio></p>
+                  <p>
+                    <el-radio label="-1.5">运动规律，且运动强度大</el-radio>
+                  </p>
                 </el-radio-group>
               </el-form-item>
               <p></p>
@@ -244,22 +234,18 @@
             <div class="card-body">
               <el-form-item label="">
                 <el-checkbox-group v-model="form.type6">
-                  <el-checkbox
-                    label="打喷嚏时习惯用手捂且不及时清洗"
-                    name="type6"
-                  ></el-checkbox>
-                  <el-checkbox
-                    label="饭钱、便后不是每次都洗手"
-                    name="type6"
-                  ></el-checkbox>
-                  <el-checkbox
-                    label="经常用手接触眼睛、鼻子或者嘴巴"
-                    name="type6"
-                  ></el-checkbox>
-                  <el-checkbox
-                    label="洗手后经常直接用衣服擦干"
-                    name="type6"
-                  ></el-checkbox>
+                  <el-checkbox label="2" name="type6"
+                    >打喷嚏时习惯用手捂且不及时清洗</el-checkbox
+                  >
+                  <el-checkbox label="1" name="type6"
+                    >饭钱、便后不是每次都洗手</el-checkbox
+                  >
+                  <el-checkbox label="1.5" name="type6"
+                    >经常用手接触眼睛、鼻子或者嘴巴</el-checkbox
+                  >
+                  <el-checkbox label="0.6" name="type6"
+                    >洗手后经常直接用衣服擦干</el-checkbox
+                  >
                 </el-checkbox-group>
               </el-form-item>
               <p>以上均不符合（不选）</p>
@@ -290,10 +276,10 @@
             <div class="card-body">
               <el-form-item label="">
                 <el-radio-group v-model="form.resource7">
-                  <p><el-radio label="完全不符合"></el-radio></p>
-                  <p><el-radio label="不太符合"></el-radio></p>
-                  <p><el-radio label="基本符合"></el-radio></p>
-                  <p><el-radio label="完全符合"></el-radio></p>
+                  <p><el-radio label="0.1">完全不符合</el-radio></p>
+                  <p><el-radio label="1">不太符合</el-radio></p>
+                  <p><el-radio label="2">基本符合</el-radio></p>
+                  <p><el-radio label="3">完全符合</el-radio></p>
                 </el-radio-group>
               </el-form-item>
             </div>
@@ -323,10 +309,10 @@
             <div class="card-body">
               <el-form-item label="">
                 <el-radio-group v-model="form.resource8">
-                  <p><el-radio label="完全不符合"></el-radio></p>
-                  <p><el-radio label="不太符合"></el-radio></p>
-                  <p><el-radio label="基本符合"></el-radio></p>
-                  <p><el-radio label="完全符合"></el-radio></p>
+                  <p><el-radio label="0.2">完全不符合</el-radio></p>
+                  <p><el-radio label="1.1">不太符合</el-radio></p>
+                  <p><el-radio label="1.2">基本符合</el-radio></p>
+                  <p><el-radio label="1.5">完全符合</el-radio></p>
                 </el-radio-group>
               </el-form-item>
             </div>
@@ -356,10 +342,10 @@
             <div class="card-body">
               <el-form-item label="">
                 <el-radio-group v-model="form.resource9">
-                  <p><el-radio label="完全不符合"></el-radio></p>
-                  <p><el-radio label="不太符合"></el-radio></p>
-                  <p><el-radio label="基本符合"></el-radio></p>
-                  <p><el-radio label="完全符合"></el-radio></p>
+                  <p><el-radio label="0.2">完全不符合</el-radio></p>
+                  <p><el-radio label="0.6">不太符合</el-radio></p>
+                  <p><el-radio label="0.9">基本符合</el-radio></p>
+                  <p><el-radio label="1.3">完全符合</el-radio></p>
                 </el-radio-group>
               </el-form-item>
             </div>
@@ -389,10 +375,10 @@
             <div class="card-body">
               <el-form-item label="">
                 <el-radio-group v-model="form.resource10">
-                  <p><el-radio label="完全不符合"></el-radio></p>
-                  <p><el-radio label="不太符合"></el-radio></p>
-                  <p><el-radio label="基本符合"></el-radio></p>
-                  <p><el-radio label="完全符合"></el-radio></p>
+                  <p><el-radio label="0.1">完全不符合</el-radio></p>
+                  <p><el-radio label="0.5">不太符合</el-radio></p>
+                  <p><el-radio label="0.8">基本符合</el-radio></p>
+                  <p><el-radio label="1.2">完全符合</el-radio></p>
                 </el-radio-group>
               </el-form-item>
             </div>
@@ -422,10 +408,10 @@
             <div class="card-body">
               <el-form-item label="">
                 <el-radio-group v-model="form.resource11">
-                  <p><el-radio label="完全不符合"></el-radio></p>
-                  <p><el-radio label="不太符合"></el-radio></p>
-                  <p><el-radio label="基本符合"></el-radio></p>
-                  <p><el-radio label="完全符合"></el-radio></p>
+                  <p><el-radio label="0">完全不符合</el-radio></p>
+                  <p><el-radio label="0.6">不太符合</el-radio></p>
+                  <p><el-radio label="2.3">基本符合</el-radio></p>
+                  <p><el-radio label="3.2">完全符合</el-radio></p>
                 </el-radio-group>
               </el-form-item>
             </div>
@@ -455,10 +441,10 @@
             <div class="card-body">
               <el-form-item label="">
                 <el-radio-group v-model="form.resource12">
-                  <p><el-radio label="完全不符合"></el-radio></p>
-                  <p><el-radio label="不太符合"></el-radio></p>
-                  <p><el-radio label="基本符合"></el-radio></p>
-                  <p><el-radio label="完全符合"></el-radio></p>
+                  <p><el-radio label="0.2">完全不符合</el-radio></p>
+                  <p><el-radio label="1">不太符合</el-radio></p>
+                  <p><el-radio label="2">基本符合</el-radio></p>
+                  <p><el-radio label="3.5">完全符合</el-radio></p>
                 </el-radio-group>
               </el-form-item>
             </div>
@@ -488,18 +474,15 @@
             <div class="card-body">
               <el-form-item label="">
                 <el-checkbox-group v-model="form.type13">
-                  <el-checkbox
-                    label="已确诊营养不良"
-                    name="type13"
-                  ></el-checkbox>
-                  <el-checkbox
-                    label="处于重大慢性消耗性疾病，如肿瘤或者其术后"
-                    name="type13"
-                  ></el-checkbox>
-                  <el-checkbox
-                    label="肠癌、胃癌、乳腺癌等家族病史"
-                    name="type13"
-                  ></el-checkbox>
+                  <el-checkbox label="6" name="type13"
+                    >已确诊营养不良</el-checkbox
+                  >
+                  <el-checkbox label="5.2" name="type13"
+                    >处于重大慢性消耗性疾病，如肿瘤或者其术后</el-checkbox
+                  >
+                  <el-checkbox label="3.3" name="type13"
+                    >肠癌、胃癌、乳腺癌等家族病史</el-checkbox
+                  >
                 </el-checkbox-group>
               </el-form-item>
               <p>以上均不符合（不选）</p>
@@ -509,12 +492,15 @@
 
         <el-form-item>
           <el-button type="primary" @click="addIm()">立即提交</el-button>
+          <el-button type="primary" @click="addIms()">立即计算</el-button>
         </el-form-item>
       </el-form>
     </div>
     <p>
       {{ form }}
     </p>
+    <!-- <p>{{timer}}</p>
+    <p>{{currentTime}}</p> -->
   </div>
 </template>
 
@@ -523,27 +509,72 @@ export default {
   data() {
     return {
       form: {
-        // name: "",
+        name: "",
         type1: [],
         type2: [],
         type3: [],
         type4: [],
         type6: [],
         type13: [],
-        resource5: "",
-        resource7: "",
-        resource8: "",
-        resource9: "",
-        resource10: "",
-        resource11: "",
-        resource12: "",
+        resource5: "0",
+        resource7: "0",
+        resource8: "0",
+        resource9: "0",
+        resource10: "0",
+        resource11: "0",
+        resource12: "0",
+        timesss: "",
+        score: "",
       },
     };
   },
+  created() {},
   methods: {
     // 添加免疫力评测
     addIm() {
-      let that = this;
+      //获取当前时间
+      const nowDate = new Date();
+      const date = {
+        year: nowDate.getFullYear(),
+        month: nowDate.getMonth() + 1,
+        date: nowDate.getDate(),
+        hour: nowDate.getHours(),
+        minute: nowDate.getMinutes(),
+        second: nowDate.getSeconds(),
+      };
+      const newmonth = date.month > 9 ? date.month : "0" + date.month;
+      const day = date.date > 9 ? date.date : "0" + date.date;
+      const h = date.hour > 9 ? date.hour : "0" + date.hour;
+      const m = date.minute > 9 ? date.minute : "0" + date.minute;
+      const s = date.second > 9 ? date.second : "0" + date.second;
+      // 在表单添加时间
+      this.form.timesss =
+        date.year + "-" + newmonth + "-" + day + " " + h + ":" + m + ":" + s;
+      // 得分功能
+      // 转为字符串再解析
+      let score,
+      t1 = JSON.parse(JSON.stringify(this.form.type1)),
+      t2 = JSON.parse(JSON.stringify(this.form.type2)),
+      t3 = JSON.parse(JSON.stringify(this.form.type3)),
+      t4 = JSON.parse(JSON.stringify(this.form.type4)),
+      t6 = JSON.parse(JSON.stringify(this.form.type6)),
+      t13 = JSON.parse(JSON.stringify(this.form.type13));
+      // 解析
+      let r5 = JSON.parse(this.form.resource5),
+        r7 = JSON.parse(this.form.resource7),
+        r8 = JSON.parse(this.form.resource8),
+        r9 = JSON.parse(this.form.resource9),
+        r10 = JSON.parse(this.form.resource10),
+        r11 = JSON.parse(this.form.resource11),
+        r12 = JSON.parse(this.form.resource12);
+      // 多个数组合并为一个数组
+      var array = [...t1, ...t2, ...t3, ...t4, ...t6, ...t13];
+      console.log(array);
+      let he = array.reduce((total, val) => total + parseFloat(val), 0);
+      let he2 = r5 + r7 + r8 + r9 + r10 + r11 + r12;
+      // 表单中添加得分
+      this.form.score = (98.5 - he - he2).toFixed(3);
+      // 向后端发送  表单数据
       this.$refs.form.validate(async (valid) => {
         // debugger
         console.log(this.form);
@@ -551,10 +582,11 @@ export default {
         // 验证
         if (!valid) return;
         // 提交结果
+        this.form.name = window.sessionStorage.getItem("user");
         // console.log(res.user);
         // that.form = JSON.stringify(that.form);JSON.parse()
-        const { data: res } = await this.$http.post("addIm", JSON.stringify(that.form));
-        // const { data: res } = await this.$http.post("addIm", this.form);
+        // const { data: res } = await this.$http.post("addIm", JSON.stringify(that.form));
+        const { data: res } = await this.$http.post("addIm", this.form);
         if (res != "success") {
           // console.log(that.form);
           console.log(res);
@@ -564,6 +596,7 @@ export default {
         console.log("添加成功！！");
       });
     },
+
   },
 };
 </script>
