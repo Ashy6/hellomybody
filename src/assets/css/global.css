@@ -6,9 +6,9 @@ HTML,body,#app{
 }
 /* 主体区域  !important 提高样式级别 */
 .el-card{
-    box-shadow: 0 1px 1px rgba(0, 8, 10, 0.15) !important;
+    box-shadow: 0 1px 1px rgba(185, 28, 22, 0.15) !important;
 }
-
+@import url("//unpkg.com/element-ui@2.14.1/lib/theme-chalk/index.css");
 /* 表格样式 */
 .el-table{
     margin-top: 15px;
