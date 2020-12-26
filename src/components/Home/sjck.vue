@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>体质年龄板</h3>
+        <h3>数据查看页面</h3>
     </div>
 </template>
 
