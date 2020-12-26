@@ -107,7 +107,7 @@ export default {
         const { data: res } = await this.$http.post("login", this.loginForm); //await 解析信息
         if (res.flag == "ok") {
           this.$message.success("登录成功！"); //信息提示
-          this.$router.push({ path: "/home" }); //页面路由跳转
+          this.$router.push({ path: "/first" }); //页面路由跳转
           //console.log(res.user);
           // 存储user对象  用户登录存储
           window.sessionStorage.setItem("user", res.user); //set方法，在index.js  中 get 出系统数据库的user

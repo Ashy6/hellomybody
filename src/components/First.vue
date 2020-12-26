@@ -5,8 +5,8 @@
       <el-header>
         <div class="line"></div>
         <div>
-                    <!--小屏幕导航按钮和logo-->
-                    <!-- <div class="navbar-header">
+          <!--小屏幕导航按钮和logo-->
+          <!-- <div class="navbar-header">
                         <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -15,61 +15,62 @@
                         <a href="" class="navbar-brand"><img src="../assets/img/hmb3.png" alt="" /></a>
                         <a href="" class="navbar-brand">HelloMybody</a>
                     </div> -->
-                    <div class="navbar-collapse collapse">
-          <el-menu
-            :default-active="activePath"
-            class="el-menu-demo"
-            mode="horizontal"
-            background-color="Transparent"
-            text-color="#fff"
-            active-text-color="#ffd04b"
-            :router="true"
-          >
-            <!-- default-active="/hello"   设定打开界面为hello -->
-            <!-- el-menu-vertical-demo控制下拉 -->
-            <!-- :router="true" 设定路由，让其能够根据页面进行跳转 -->
-            <!-- > unique-opened   该属性方法控制侧边栏 展开时不自动关闭-->
-            
-            <el-menu-item :to="{ path: '/hellou' }">首页</el-menu-item>
-            <!-- 一级菜单 -->
-            <el-submenu
-              :index="item.id + ''"
-              v-for="item in menuList"
-              :key="item.id">
-              <!--  v-for 编写循环 -->
-              <!-- 从menuList中取出数据放入item中，，绑定唯一标识的key -->
-              <template slot="title">
-                <span>{{ item.title }}</span>
-              </template>
-              <!-- 二级菜单 -->
-              <el-menu-item
-                :index="it.path"
-                v-for="it in item.sList"
-                :key="it.id"
-                @click="saveNavState(it.path)"
+          <div class="navbar-collapse collapse">
+            <el-menu
+              :default-active="activePath"
+              class="el-menu-demo"
+              mode="horizontal"
+              background-color="Transparent"
+              text-color="#fff"
+              active-text-color="#ffd04b"
+              :router="true"
+            >
+              <!-- default-active="/hello"   设定打开界面为hello -->
+              <!-- el-menu-vertical-demo控制下拉 -->
+              <!-- :router="true" 设定路由，让其能够根据页面进行跳转 -->
+              <!-- > unique-opened   该属性方法控制侧边栏 展开时不自动关闭-->
+
+              <el-menu-item :router="true" :to="{ path: '/hellou' }">首页</el-menu-item>
+              <!-- 一级菜单 -->
+              <el-submenu
+                :index="item.id + ''"
+                v-for="item in menuList"
+                :key="item.id"
               >
-                <!-- it.path 即字符串路径，读取数据库路径 -->
+                <!--  v-for 编写循环 -->
+                <!-- 从menuList中取出数据放入item中，，绑定唯一标识的key -->
                 <template slot="title">
-                  <i class="el-icon-location"></i>
-                  <span>{{ it.title }}</span>
+                  <span>{{ item.title }}</span>
                 </template>
-              </el-menu-item>
-            </el-submenu>
-            <!-- <el-menu-item :router="true" :to="{ path: '/jkkp' }">健康科普</el-menu-item> -->
-            <!-- <el-menu-item :to="{ path: '/jkgj' }">健康工具</el-menu-item> -->
-            <!-- <el-menu-item index="3" disabled>消息中心</el-menu-item> -->
-            <!-- <el-menu-item index="4"><a href="https://www.ele.me" target="_blank"
+                <!-- 二级菜单 -->
+                <el-menu-item
+                  :index="it.path"
+                  v-for="it in item.sList"
+                  :key="it.id"
+                  @click="saveNavState(it.path)"
+                >
+                  <!-- it.path 即字符串路径，读取数据库路径 -->
+                  <template slot="title">
+                    <i class="el-icon-location"></i>
+                    <span>{{ it.title }}</span>
+                  </template>
+                </el-menu-item>
+              </el-submenu>
+              <el-menu-item :router="true" :to="{ path: '/jkkp' }">健康科普</el-menu-item>
+              <!-- <el-menu-item :to="{ path: '/jkgj' }">健康工具</el-menu-item> -->
+              <!-- <el-menu-item index="3" disabled>消息中心</el-menu-item> -->
+              <!-- <el-menu-item index="4"><a href="https://www.ele.me" target="_blank"
               >订单管理</a>
             </el-menu-item> -->
-        <el-button type="info" @click="logout">退出登录</el-button>
-          </el-menu>
+              <el-button type="info" @click="logout">退出登录</el-button>
+            </el-menu>
           </div>
         </div>
         <!-- 按钮退出 click方法 -->
         <div></div>
       </el-header>
       <!-- 主体区域 -->
-      <el-main style="width:80%; margin:0 auto;">
+      <el-main style="width: 80%; margin: 0 auto">
         <!-- 用路由开始重定向导航栏 -->
         <router-view></router-view>
       </el-main>
@@ -82,73 +83,37 @@
                 <ul class="media-list">
                   <li class="media">
                     <a href="#">
-                      <div class="media-up">
-                        <img
-                          src="../assets/image/Cgbj0VthLJiAMbGmAAAOTQY17So137.png"
-                          class="img-responsive"
-                          alt="Responsive image"
-                        />
-                      </div>
-                      <div class="media-body">全场顺丰包邮</div>
+                      <div class="media-up"></div>
+                      <div class="media-body">全场包邮</div>
                     </a>
                   </li>
                   <li class="media">
                     <a href="#">
-                      <div class="media-up">
-                        <img
-                          src="../assets/image/Cgbj0VthLD6AHWNVAAAHnU-N-dQ054.png"
-                          class="img-responsive"
-                          alt="Responsive image"
-                        />
-                      </div>
+                      <div class="media-up"></div>
                       <div class="media-body">100+城市次日送达</div>
                     </a>
                   </li>
                   <li class="media">
                     <a href="#">
-                      <div class="media-up">
-                        <img
-                          src="../assets/image/Cgbj0VthLGiAPvqxAAAIxQPg9a0798.png"
-                          class="img-responsive"
-                          alt="Responsive image"
-                        />
-                      </div>
+                      <div class="media-up"></div>
                       <div class="media-body">7天无理由退货</div>
                     </a>
                   </li>
                   <li class="media">
                     <a href="#">
-                      <div class="media-up">
-                        <img
-                          src="../assets/image/Cgbj0VthLFuAUtd0AAALmPd8Wgw009.png"
-                          class="img-responsive"
-                          alt="Responsive image"
-                        />
-                      </div>
+                      <div class="media-up"></div>
                       <div class="media-body">15天换货保障</div>
                     </a>
                   </li>
                   <li class="media">
                     <a href="#">
-                      <div class="media-up">
-                        <img
-                          src="../assets/image/Cgbj0FthLHaATnUUAAAJC3dC3Bk024.png"
-                          class="img-responsive"
-                          alt="Responsive image"
-                        />
-                      </div>
+                      <div class="media-up"></div>
                       <div class="media-body">15天换货保障</div>
                     </a>
                   </li>
                   <li class="media">
                     <a href="#">
-                      <div class="media-up">
-                        <img
-                          src="../assets/image/Cgbj0FthLGGAB79EAAAFUWqaNBI042.png"
-                          class="img-responsive"
-                          alt="Responsive image"
-                        />
-                      </div>
+                      <div class="media-up"></div>
                       <div class="media-body">上门快修</div>
                     </a>
                   </li>
@@ -162,24 +127,21 @@
             </div>
             <div class="copyright">
               <ul>
-                <li><a href="">了解成大</a></li>
+                <li><a href="">返回首页</a></li>
                 <li><a href="">加入我们</a></li>
                 <li><a href="">联系我们</a></li>
-                <li><a href="">成大首页</a></li>
-                <li><a href="">天猫旗舰店</a></li>
-                <li><a href="">线上授权名单公示</a></li>
-                <li><a href="">出版物经营许可证</a></li>
+                <li><a href="">了解更多</a></li>
                 <li>
                   <a href=""><i class="iconfont">&#xe60a;</i>简体中文</a>
                 </li>
               </ul>
-              <p>
+              <!-- <p>
                 C2018 ChenDa Telecom Equipment Co，Ltd.All rights
                 rese粤CP备13003602号合字B220170010营业执照法律声明<img
                   src="../assets/image/ghs.png"
                   alt=""
                 />粤公网安备44049102496009号
-              </p>
+              </p> -->
             </div>
           </div>
         </footer>
@@ -194,7 +156,7 @@ export default {
     return {
       // 菜单列表
       menuList: [],
-      activePath: "/hello", //配置默认路径
+      activePath: "/hellou", //配置默认路径
     };
   },
   // 页面加载之后开始查询
@@ -210,7 +172,7 @@ export default {
       // 清除session,回到首页
       window.sessionStorage.clear();
       // 导航到首页
-      this.$router.push("/login");
+      this.$router.push("/home");
     },
     // 获取导航菜单方法
     async getMenuList() {
@@ -236,7 +198,7 @@ export default {
 /* 头部尾部 */
 .el-header,
 .el-footer {
-  background-color:#409EFF;
+  background-color: #409eff;
   color: #333;
   text-align: center;
   line-height: 60px;
@@ -244,7 +206,7 @@ export default {
 /*导航栏开始*/
 .navbar-default {
   background-color: #f7f8f8;
-  border: none; 
+  border: none;
   line-height: 180px;
   /* box-shadow: 0px 2px 8px 0px rgba(50,50,50,0.25);*/
 }
@@ -299,22 +261,24 @@ export default {
 
 /*尾部开始*/
 footer {
-  margin-top: 50px;
-  background: #fff;
+  margin-top: 60px;
+  margin-left: -20px;
+  background: rgb(162, 202, 135);
+  width: 110%;
   color: black;
   clear: both;
 }
 footer .container ul li {
   display: inline-block;
   font-size: 12px;
-  width: 110px;
+  width: 150px;
 }
 footer .container .Tel ul li {
-  width: 150px;
-  height: 68px;
+  width: 120px;
+  height: 38px;
 }
 footer .container .Tel ul li:last-child {
-  width: 170px;
+  width: 180px;
 }
 footer .container .Tel ul li:last-child p:first-child {
   color: #8c8c8c;
@@ -329,7 +293,7 @@ footer .container .Tel ul li:last-child p:last-child {
   height: 30px;
   background-color: #0daaea;
   line-height: 30px;
-  padding-left: 14px;
+  padding-left: 6px;
   font-size: 16px;
   color: #fff;
   border-radius: 20px;
@@ -340,15 +304,15 @@ footer .container .Tel ul li img {
   margin-left: 50px;
 }
 footer .container .Tel .media-body {
-  padding-left: 50px;
+  padding-left: 10px;
 }
 footer .container ul li a {
   color: black;
   text-decoration: none;
 }
 footer .container .copyright {
-  margin-top: 50px;
-  margin-left: 40px;
+  margin-top: 20px;
+  margin-left: 20px;
 }
 
 /*尾部结束*/
