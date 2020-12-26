@@ -5,7 +5,7 @@ import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
 import First from '../components/First.vue'
 import register from '../components/register.vue'
-import find404 from '../components/find404.vue'
+// import find404 from '../components/find404.vue'
 //后台界面
 import hello from '../components/Home/hello.vue'
 import userlist from '../components/Home/userlist.vue'
@@ -92,11 +92,11 @@ const routes = [
         children: [     // 三级路由 睡眠测评页面
           // { path: '/course/:name', component: () => import('../components/Users/util/g01.vue') },
           { path: '/course/:name', component: () => import('../components/Users/util/g02.vue') },
-          { path: '/course/:name', component: () => import('../components/Users/util/g03.vue') },
-          { path: '/course/:name', component: () => import('../components/Users/util/g04.vue') },
-          { path: '/course/:name', component: () => import('../components/Users/util/g05.vue') },
-          { path: '/course/:name', component: () => import('../components/Users/util/g06.vue') },
-          { path: '/course/:name', component: () => import('../components/Users/util/g07.vue') },
+          // { path: '/course/:name', component: () => import('../components/Users/util/g03.vue') },
+          // { path: '/course/:name', component: () => import('../components/Users/util/g04.vue') },
+          // { path: '/course/:name', component: () => import('../components/Users/util/g05.vue') },
+          // { path: '/course/:name', component: () => import('../components/Users/util/g06.vue') },
+          // { path: '/course/:name', component: () => import('../components/Users/util/g07.vue') },
           // { path: "/cp20101", component: cp20101, },
           // { path: "/cp20102", component: cp20102, },
           // { path: "/cp20103", component: cp20103, },
