@@ -675,12 +675,33 @@ export default {
           resource27: '',
           resource28: '',
           resource29: '',
+          timesss: "",
+          score: "",
         },
     };
   },
   methods: {
     // 添加睡眠评测
     addSleep() {
+      //获取当前时间
+      const nowDate = new Date();
+      const date = {
+        year: nowDate.getFullYear(),
+        month: nowDate.getMonth() + 1,
+        date: nowDate.getDate(),
+        hour: nowDate.getHours(),
+        minute: nowDate.getMinutes(),
+        second: nowDate.getSeconds(),
+      };
+      const newmonth = date.month > 9 ? date.month : "0" + date.month;
+      const day = date.date > 9 ? date.date : "0" + date.date;
+      const h = date.hour > 9 ? date.hour : "0" + date.hour;
+      const m = date.minute > 9 ? date.minute : "0" + date.minute;
+      const s = date.second > 9 ? date.second : "0" + date.second;
+      // 在表单添加时间
+      this.form.timesss =
+        date.year + "-" + newmonth + "-" + day + " " + h + ":" + m + ":" + s;
+      // 后端请求
       this.$refs.form.validate(async (valid) => {
         // debugger
         console.log(valid);

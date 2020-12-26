@@ -573,7 +573,7 @@ export default {
       let he = array.reduce((total, val) => total + parseFloat(val), 0);
       let he2 = r5 + r7 + r8 + r9 + r10 + r11 + r12;
       // 表单中添加得分
-      this.form.score = (98.5 - he - he2).toFixed(3);
+      this.form.score = (98.5 - he - he2).toFixed(1);
       // 向后端发送  表单数据
       this.$refs.form.validate(async (valid) => {
         // debugger
