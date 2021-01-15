@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>食品列表</h3>
-    <!-- 顶部导航 -->
+    <!-- 顶部导航 面包屑 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>用户平台</el-breadcrumb-item>

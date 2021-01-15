@@ -5,7 +5,7 @@ import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
 import First from '../components/First.vue'
 import register from '../components/register.vue'
-import find404 from '../components/find404.vue'
+// import find404 from '../components/find404.vue'
 //后台界面
 import hello from '../components/Home/hello.vue'
 import userlist from '../components/Home/userlist.vue'
@@ -125,12 +125,12 @@ const routes = [
     path: "/register",  //转发
     component: register  //引入系统注册组件
   },
-  {
-    // 404页面导航
-    path: '*',
-    // component: find404,
-    component: () => import('../components/find404.vue')
-  }
+  // {
+  //   // 404页面导航
+  //   path: '*',
+  //   // component: find404,
+  //   component: () => import('../components/find404.vue')
+  // }
 ]
 // 挂载router
 const router = new VueRouter({
