@@ -35,6 +35,7 @@ import kpwz from '../components/Users/kpwz.vue'
 import a123 from '../components/Users/a123.vue'
 import myxx from '../components/Users/myxx.vue'
 import myxg from '../components/Users/myxg.vue'
+import ly from '../components/Users/ly.vue'
 
 //工具包组件
 // import cp20103 from '../components/Users/util/cp20103.vue';
@@ -92,11 +93,11 @@ const routes = [
         children: [     // 三级路由 睡眠测评页面
           // { path: '/course/:name', component: () => import('../components/Users/util/g01.vue') },
           { path: '/course/:name', component: () => import('../components/Users/util/g02.vue') },
-          { path: '/course/:name', component: () => import('../components/Users/util/g03.vue') },
-          { path: '/course/:name', component: () => import('../components/Users/util/g04.vue') },
-          { path: '/course/:name', component: () => import('../components/Users/util/g05.vue') },
-          { path: '/course/:name', component: () => import('../components/Users/util/g06.vue') },
-          { path: '/course/:name', component: () => import('../components/Users/util/g07.vue') },
+          // { path: '/course/:name', component: () => import('../components/Users/util/g03.vue') },
+          // { path: '/course/:name', component: () => import('../components/Users/util/g04.vue') },
+          // { path: '/course/:name', component: () => import('../components/Users/util/g05.vue') },
+          // { path: '/course/:name', component: () => import('../components/Users/util/g06.vue') },
+          // { path: '/course/:name', component: () => import('../components/Users/util/g07.vue') },
           // { path: "/cp20101", component: cp20101, },
           // { path: "/cp20102", component: cp20102, },
           // { path: "/cp20103", component: cp20103, },
@@ -119,18 +120,28 @@ const routes = [
       // 个人
       { path: "/myxx", component: myxx, },
       { path: "/myxg", component: myxg, },
+      { path: "/ly", component: ly, },
     ]
   },
   {
     path: "/register",  //转发
     component: register  //引入系统注册组件
   },
+<<<<<<< HEAD
   // {
   //   // 404页面导航
   //   path: '*',
   //   // component: find404,
   //   component: () => import('../components/find404.vue')
   // }
+=======
+  {
+    // 404页面导航
+    path: '*',
+    // component: find404,
+    // component: () => import('../components/find404.vue')
+  }
+>>>>>>> 5c033c7fd06ff1135d111e4fbb117189d9bc9a33
 ]
 // 挂载router
 const router = new VueRouter({

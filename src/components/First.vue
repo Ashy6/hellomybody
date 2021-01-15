@@ -123,6 +123,15 @@
                             我的足迹
                           </router-link>
                         </el-dropdown-item>
+                        <el-dropdown-item icon="el-icon-circle-plus-outline">
+                          <router-link
+                            style="text-decoration: none"
+                            :router="true"
+                            to="/ly"
+                          >
+                            留言板
+                          </router-link>
+                        </el-dropdown-item>
                         <el-dropdown-item icon="el-icon-circle-check"
                           ><span @click="logout">
                             退出登录</span
@@ -326,7 +335,7 @@ export default {
   color: rgb(156, 13, 13);
   text-align: center;
   background-color: #409eff;
-  line-height: 60px;
+  line-height: 52px;
   /* display: flex; */
   justify-content: space-between;
 }
