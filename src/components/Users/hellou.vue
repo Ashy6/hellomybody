@@ -83,8 +83,8 @@
             src="../../assets/images/jiankang.jpg"
             alt="image slot"
           />
-        </template> </b-carousel-slide
-      >>
+        </template>
+      </b-carousel-slide>
       <b-carousel-slide>
         <template #img>
           <img
@@ -96,7 +96,6 @@
           />
         </template>
       </b-carousel-slide>
-
       <!-- Slide with blank fluid image to maintain slide aspect ratio -->
       <!-- <b-carousel-slide caption="Blank Image" img-blank img-alt="Blank image">
         <p>
