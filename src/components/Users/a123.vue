@@ -21,7 +21,7 @@
         style="width: 30%"
       ></el-date-picker>
       <el-form-item class="btns">
-        <button @click="getAge">查看年龄</button></el-form-item>
+        <button @click="getAge" v-on:keydown.enter="getAge()">查看年龄</button></el-form-item>
       <el-input
         placeholder="例如：18"
         type="ages"
