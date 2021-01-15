@@ -127,21 +127,12 @@ const routes = [
     path: "/register",  //转发
     component: register  //引入系统注册组件
   },
-<<<<<<< HEAD
   // {
   //   // 404页面导航
   //   path: '*',
   //   // component: find404,
   //   component: () => import('../components/find404.vue')
   // }
-=======
-  {
-    // 404页面导航
-    path: '*',
-    // component: find404,
-    // component: () => import('../components/find404.vue')
-  }
->>>>>>> 5c033c7fd06ff1135d111e4fbb117189d9bc9a33
 ]
 // 挂载router
 const router = new VueRouter({
