@@ -35,6 +35,7 @@ import kpwz from '../components/Users/kpwz.vue'
 import a123 from '../components/Users/a123.vue'
 import myxx from '../components/Users/myxx.vue'
 import myxg from '../components/Users/myxg.vue'
+import ly from '../components/Users/ly.vue'
 
 //工具包组件
 // import cp20103 from '../components/Users/util/cp20103.vue';
@@ -119,6 +120,7 @@ const routes = [
       // 个人
       { path: "/myxx", component: myxx, },
       { path: "/myxg", component: myxg, },
+      { path: "/ly", component: ly, },
     ]
   },
   {
@@ -129,7 +131,7 @@ const routes = [
     // 404页面导航
     path: '*',
     // component: find404,
-    component: () => import('../components/find404.vue')
+    // component: () => import('../components/find404.vue')
   }
 ]
 // 挂载router
