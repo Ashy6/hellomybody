@@ -16,12 +16,11 @@
         type="date"
         placeholder="选择日期"
         v-model="numberValidateForm.birthDay"
-        v-on:keydown.enter="getAge"
         value-format="yyyy-MM-dd"
         style="width: 30%"
       ></el-date-picker>
-      <el-form-item class="btns">
-        <button @click="getAge" v-on:keydown.enter="getAge()">查看年龄</button></el-form-item>
+      <!-- <el-form-item class="btns">
+        <button @click="getAge" v-on:keydown.enter="getAge()">查看年龄</button></el-form-item> -->
       <el-input
         placeholder="例如：18"
         type="ages"
@@ -62,7 +61,52 @@ export default {
     //     data:{birthDay:'' , ages:''}
 
     // }
-    getAge() {
+    // getAge() {
+    //   var ages,
+    //     date1 = this.numberValidateForm.birthDay,
+    //     date1Arr = date1.split("-"),
+    //     birthYear = date1Arr[0],
+    //     birthMonth = date1Arr[1],
+    //     birthDay = date1Arr[2],
+    //     d = new Date(),
+    //     nowYear = d.getFullYear(),
+    //     nowMonth = d.getMonth() + 1,
+    //     nowDay = d.getDate();
+    //   if (nowYear == birthYear) {
+    //     ages = 0; //同年 则为0周岁
+    //   } else {
+    //     var ageDiff = nowYear - birthYear; //年之差
+    //     if (ageDiff > 0) {
+    //       if (nowMonth == birthMonth) {
+    //         var dayDiff = nowDay - birthDay; //日之差
+    //         if (dayDiff < 0) {
+    //           ages = ageDiff - 1;
+    //         } else {
+    //           ages = ageDiff;
+    //         }
+    //       } else {
+    //         var monthDiff = nowMonth - birthMonth; //月之差
+    //         if (monthDiff < 0) {
+    //           ages = ageDiff - 1;
+    //         } else {
+    //           ages = ageDiff;
+    //         }
+    //       }
+    //     } else {
+    //       ages = -1; //返回-1 表示出生日期输入错误 晚于今天
+    //       // return this.$message.error("年龄输入有误！");
+    //       if (ages == -1) {
+    //         return this.$message.error("年龄输入有误！");
+    //       }
+    //     }
+    //   }
+    //   // console.log(ages);
+    //   // document.write(ages);
+    //   this.numberValidateForm.ages = ages;
+    // },
+  },
+  watch: {
+    'numberValidateForm.birthDay'(date1,oldVal) {
       var ages,
         date1 = this.numberValidateForm.birthDay,
         date1Arr = date1.split("-"),
@@ -105,7 +149,8 @@ export default {
       // document.write(ages);
       this.numberValidateForm.ages = ages;
     },
-  },
+    
+  }
 };
 </script>
 
