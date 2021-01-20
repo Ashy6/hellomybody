@@ -229,6 +229,7 @@ export default {
         if (!valid) return;
         // 提交结果
         const { data: res } = await this.$http.post("addUser", this.addForm);
+        const { data: ss } = await this.$http.post("addUserInfo", this.addForm);
         if (res.flag == "no") {
           this.$message.error("该用户名已经被注册！");
         } else {
@@ -246,7 +247,6 @@ export default {
     //   // 导航到注册
     //   this.$router.push("/register");
     // },
-
     //将表单中的内容重置
     resetLoginForm() {
       this.$refs.loginFormRef.resetFields();

@@ -291,6 +291,7 @@ export default {
         if (!valid) return;
         // 提交结果
         const { data: res } = await this.$http.post("addUser", this.addForm);
+        const { data: ss } = await this.$http.post("addUserInfo", this.addForm);
         if (res != "success") {
           return this.$message.error("添加失败！！");
         }
