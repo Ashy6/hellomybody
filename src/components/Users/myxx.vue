@@ -11,75 +11,63 @@
       ref="drawer"
     >
       <p style="padding: 30px">
-        <span style="font-size: 18px">选择您的基本资料：</span>
+        <span style="font-size: 18px">填写您的基本资料：</span>
       </p>
       <div class="demo-drawer__content">
         <el-form
-          :model="ruleForm"
+          :model="userInfo"
           :rules="rules"
-          ref="ruleForm"
+          ref="userInfo"
           label-width="100px"
           class="demo-ruleForm"
         >
           <el-form-item
             style="width: 61.8%"
             label="账户/名称:"
-            prop="name"
+            prop="username"
             disabled
           >
             <el-input
-              v-model="ruleForm.name"
+              v-model="userInfo.username"
               placeholder="用户名/账户/电话"
+              disabled
             ></el-input>
           </el-form-item>
-          <el-form-item label="您的性别:" prop="region">
+          <el-form-item label="您的性别:" prop="sex">
             <el-select
               style="width: 38.8%"
-              v-model="ruleForm.region"
+              v-model="userInfo.sex"
               placeholder="请选择您的性别"
             >
               <el-option label="男" value="man"></el-option>
               <el-option label="女" value="woman"></el-option>
             </el-select>
           </el-form-item>
+          <!-- 生日 -->
           <el-form-item label="生日:" required>
             <el-col :span="10">
-              <el-form-item prop="date1">
+              <el-form-item prop="birthday">
                 <el-date-picker
                   type="date"
                   placeholder="选择日期"
-                  v-model="ruleForm.date1"
-                  v-on:keydown.enter="getAge"
-                  style="width: 83%"
+                  v-model="userInfo.birthday"
+                  value-format="yyyy-MM-dd"
+                  style="width: 94%"
                 ></el-date-picker>
               </el-form-item>
             </el-col>
-            <el-col class="line" :span="2">--</el-col>
-            <el-col :span="10">
-              <el-form-item prop="date2">
-                <el-time-picker
-                  placeholder="选择时间"
-                  v-model="ruleForm.date2"
-                  style="width: 83%"
-                ></el-time-picker>
-              </el-form-item>
-            </el-col>
           </el-form-item>
-          <!-- <el-button @click="getAge()">计算年龄</el-button> -->
           <!-- 年龄结果 -->
-          <el-form-item style="width: 61.8%" label="年龄:" prop="ages">
+          <el-form-item style="width: 81.8%" label="年龄:" prop="ages">
             <el-input
-              placeholder="例如：18"
+              placeholder="选择您的出生年月日后自动获得"
               type="ages"
-              v-model="ruleForm.ages"
+              v-model="userInfo.ages"
               autocomplete="off"
+              disabled
             ></el-input>
           </el-form-item>
-          <!-- 显示年龄获取的数据 -->
-          <el-form-item>
-            <p>{{ ages }}</p>
-          </el-form-item>
-
+          <!-- 身高 -->
           <el-form-item
             style="width: 61.8%"
             label="身高:"
@@ -92,7 +80,7 @@
             <el-input
               placeholder="例如：175"
               type="height"
-              v-model="ruleForm.height"
+              v-model="userInfo.height"
               autocomplete="off"
             ></el-input>
           </el-form-item>
@@ -108,7 +96,7 @@
             <el-input
               placeholder="例如：70"
               type="weight"
-              v-model="ruleForm.weight"
+              v-model="userInfo.weight"
               autocomplete="off"
             ></el-input>
           </el-form-item>
@@ -124,26 +112,20 @@
             <el-input
               placeholder="例如：75"
               type="target"
-              v-model="ruleForm.target"
+              v-model="userInfo.target"
               autocomplete="off"
             ></el-input>
           </el-form-item>
         </el-form>
         <el-form label-width="100px" class="demo-ruleForm">
           <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')"
+            <el-button type="primary" @click="submitForm('userInfo')"
               >保存</el-button
             >
-            <el-button @click="resetForm('ruleForm')">重置</el-button>
+            <el-button @click="resetForm('userInfo')">重置</el-button>
             <el-button @click="cancelForm">取 消</el-button>
           </el-form-item>
         </el-form>
-        <div class="demo-drawer_footer">
-          <!-- <el-button @click="cancelForm">取 消</el-button>
-            <el-button type="primary" @click="$refs.drawer.closeDrawer()" :loading="loading" >
-              {{ loading ? "提交中 ..." : "确 定" }}
-            </el-button> -->
-        </div>
       </div>
     </el-drawer>
 
@@ -213,30 +195,30 @@
 
 <script>
 export default {
+  created() {
+    this.userInfo.username = window.sessionStorage.getItem("user");
+    // 打开界面实现查询用户信息功能
+    this.getUserInfo();
+  },
+  computed: {
+    // 标注返回值  否则watch会导致data定义数据时，类型消失
+    greeting() {
+      return this.greet() + '!'
+    }
+  },
   data() {
     return {
       active: 0,
       table: false,
       loading: false,
       dialog: false,
-      form: {
-        name: "",
-        region: "",
-        date1: "",
-        date2: "",
-        ages: "",
-        height: "",
-        weight: "",
-        target: "",
-      },
       formLabelWidth: "80px",
       timer: null,
       //侧边用户基本信息表单
-      ruleForm: {
-        name: "",
-        region: "",
-        date1: "",
-        date2: "",
+      userInfo: {
+        username: "",
+        sex: "",
+        birthday: "",
         ages: "",
         height: "",
         weight: "",
@@ -252,128 +234,112 @@ export default {
             trigger: "blur",
           },
         ],
-        region: [{ required: true, message: "请选择性别", trigger: "change" }],
-        date1: [
+        sex: [{ required: true, message: "请选择性别", trigger: "change" }],
+        birthday: [
           {
-            type: "date",
+            // type: "date",  //该问题会导致日期报错 dateObject.getTime is not a function
             required: true,
             message: "请选择日期",
-            trigger: "change",
-          },
-        ],
-        date2: [
-          {
-            type: "date",
-            required: true,
-            message: "请选择时间",
             trigger: "change",
           },
         ],
       },
     };
   },
-
   methods: {
-    //js方法实现通过出生日期获取周岁年龄
-
-    //@param date1：指的是出生日期，格式为"1990-01-01"
-
-    getAge() {
-      var ages,
-        date1Arr = ruleForm.date1.split("-"),
-        birthYear = date1Arr[0],
-        birthMonth = date1Arr[1],
-        birthDay = date1Arr[2],
-        d = new Date(),
-        nowYear = d.getFullYear(),
-        nowMonth = d.getMonth() + 1,
-        nowDay = d.getDate();
-      if (nowYear == birthYear) {
-        ages = 0; //同年 则为0周岁
-      } else {
-        var ageDiff = nowYear - birthYear; //年之差
-        if (ageDiff > 0) {
-          if (nowMonth == birthMonth) {
-            var dayDiff = nowDay - birthDay; //日之差
-            if (dayDiff < 0) {
-              ages = ageDiff - 1;
+    // 步骤数量实现的方法
+    next() {
+      if (this.active++ > 12) this.active = 0;
+    },
+    // 侧边抽屉
+    handleClose(done) {
+      if (this.loading) {
+        return;
+      }
+    },
+    cancelForm() {
+      this.loading = false;
+      this.dialog = false;
+      clearTimeout(this.timer);
+    },
+    // 侧边抽屉表单的方法
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          alert("submit!");
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    },
+    // 重置
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    },
+    //将表单中的内容重置
+    // resetuserInfo() {
+    //   this.$refs.userInfoRef.resetFields();
+    // },
+    // 查询用户信息
+    async getUserInfo() {
+      let username = this.userInfo.username;
+      const { data: res } = await this.$http.get("findUserInfo?username=" + username);
+      // const { data: res } = await this.$http.get("findUserInfo?username=" + username, {
+      //   params: username = this.userInfo.username,
+      // });
+      this.userInfo = res; // 将返回数据赋值  到 userInfo  用户数据封装
+      console.log(res);
+    },
+  },
+  watch: {
+    "userInfo.birthday": {
+      handler(newVal, oldVal) {
+        // console.log(newVal,oldVal)
+        var ages,
+          // newVal = this.userInfo.birthday,
+          date1Arr = newVal.split("-"),
+          birthYear = date1Arr[0],
+          birthMonth = date1Arr[1],
+          birthDay = date1Arr[2],
+          d = new Date(),
+          nowYear = d.getFullYear(),
+          nowMonth = d.getMonth() + 1,
+          nowDay = d.getDate();
+        if (nowYear == birthYear) {
+          ages = 0; //同年 则为0周岁
+        } else {
+          var ageDiff = nowYear - birthYear; //年之差
+          if (ageDiff > 0) {
+            if (nowMonth == birthMonth) {
+              var dayDiff = nowDay - birthDay; //日之差
+              if (dayDiff < 0) {
+                ages = ageDiff - 1;
+              } else {
+                ages = ageDiff;
+              }
             } else {
-              ages = ageDiff;
+              var monthDiff = nowMonth - birthMonth; //月之差
+              if (monthDiff < 0) {
+                ages = ageDiff - 1;
+              } else {
+                ages = ageDiff;
+              }
             }
           } else {
-            var monthDiff = nowMonth - birthMonth; //月之差
-            if (monthDiff < 0) {
-              ages = ageDiff - 1;
-            } else {
-              ages = ageDiff;
-              //console.log(ages);
+            ages = -1; //返回-1 表示出生日期输入错误 晚于今天
+            if (ages == -1) {
+              return this.$message.error("年龄输入有误！");
             }
           }
-        } else {
-          ages = -1; //返回-1 表示出生日期输入错误 晚于今天
         }
-      }
-      return ages; //返回周岁年龄
-      this.ages.push(this.ages);
-      // console.log(ages);
+        // document.write(ages);
+        this.userInfo.ages = ages;
+        // console.log(ages);
+      },
+      deep: true,
+      immediate: true
     },
-    //      判断用户的年龄
-    // getAge() {
-    //   let birthdays = new Date(this.ruleForm.date1.replace(/-/g, "-"));
-    //   let d = new Date();
-    //   let age =
-    //     d.getFullYear() -
-    //     birthdays.getFullYear() -
-    //     (d.getMonth() < birthdays.getMonth() ||
-    //     (d.getMonth() == birthdays.getMonth() &&
-    //       d.getDate() < birthdays.getDate())
-    //       ? 1
-    //       : 0);
-    //   this.ages = age;
-    // },
-  },
-
-  // 步骤数量实现的方法
-  next() {
-    if (this.active++ > 12) this.active = 0;
-  },
-  // 侧边抽屉
-  handleClose(done) {
-    if (this.loading) {
-      return;
-    }
-    //   this.$confirm('确定要提交表单吗？')
-    //     .then(_ => {
-    //       this.loading = true;
-    //       this.timer = setTimeout(() => {
-    //         done();
-    //         // 动画关闭需要一定的时间
-    //         setTimeout(() => {
-    //           this.loading = false;
-    //         }, 40);
-    //        }, 200);             //延时
-    //     })
-    //    .catch(_ => {});
-  },
-  cancelForm() {
-    this.loading = false;
-    this.dialog = false;
-    clearTimeout(this.timer);
-  },
-  // 侧边抽屉表单的方法
-  submitForm(formName) {
-    this.$refs[formName].validate((valid) => {
-      if (valid) {
-        alert("submit!");
-      } else {
-        console.log("error submit!!");
-        return false;
-      }
-    });
-  },
-  // 重置
-  resetForm(formName) {
-    this.$refs[formName].resetFields();
   },
 };
 </script>
