@@ -119,9 +119,9 @@
         </el-form>
         <el-form label-width="100px" class="demo-ruleForm">
           <el-form-item>
-            <el-button type="primary" @click="submitForm('userInfo')"
-              >保存</el-button
-            >
+            <el-button type="primary" @click="submitForm('userInfo')">{{
+              loading ? "提交中..." : "更新"
+            }}</el-button>
             <el-button @click="resetForm('userInfo')">重置</el-button>
             <el-button @click="cancelForm">取 消</el-button>
           </el-form-item>
@@ -203,8 +203,8 @@ export default {
   computed: {
     // 标注返回值  否则watch会导致data定义数据时，类型消失
     greeting() {
-      return this.greet() + '!'
-    }
+      return this.greet() + "!";
+    },
   },
   data() {
     return {
@@ -223,6 +223,7 @@ export default {
         height: "",
         weight: "",
         target: "",
+        timesss: "",
       },
       rules: {
         name: [
@@ -257,39 +258,77 @@ export default {
         return;
       }
     },
+    //取消
     cancelForm() {
       this.loading = false;
       this.dialog = false;
       clearTimeout(this.timer);
     },
-    // 侧边抽屉表单的方法
+    // 侧边抽屉 -- 添加用户信息的方法 --  表单的方法
     submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          alert("submit!");
-        } else {
-          console.log("error submit!!");
-          return false;
+      //获取当前时间
+      const nowDate = new Date();
+      const date = {
+        year: nowDate.getFullYear(),
+        month: nowDate.getMonth() + 1,
+        date: nowDate.getDate(),
+        hour: nowDate.getHours(),
+        minute: nowDate.getMinutes(),
+        second: nowDate.getSeconds(),
+      };
+      const newmonth = date.month > 9 ? date.month : "0" + date.month;
+      const day = date.date > 9 ? date.date : "0" + date.date;
+      const h = date.hour > 9 ? date.hour : "0" + date.hour;
+      const m = date.minute > 9 ? date.minute : "0" + date.minute;
+      const s = date.second > 9 ? date.second : "0" + date.second;
+      // 在表单添加时间
+      this.userInfo.timesss =
+        date.year + "-" + newmonth + "-" + day + " " + h + ":" + m + ":" + s;
+      this.$refs[formName].validate(async (valid) => {
+        if (valid) return;
+        const { data: res } = await this.$http.post(
+          "addUserInfo",
+          this.userInfo
+        );
+        if (this.loading) {
+          return;
         }
+        this.$confirm("确定更新您的基本信息吗？")
+          .then((_) => {
+            this.loading = true;
+            this.timer = setTimeout(() => {
+              // done();
+              // 动画关闭需要一定的时间
+              setTimeout(() => {
+                this.loading = false;
+                this.dialog = false;
+                if (res != "success") {
+                  return this.$message.error("更新失败！！");
+                }
+                this.$message.success("更新成功！！");
+                // this.dialog = false;
+                this.getUserInfo();
+              }, 400);
+            }, 2000);
+          })
+          .catch((_) => {});
       });
     },
     // 重置
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
-    //将表单中的内容重置
+//将表单中的内容重置
     // resetuserInfo() {
     //   this.$refs.userInfoRef.resetFields();
-    // },
-    // 查询用户信息
+    // },    // 查询用户信息
     async getUserInfo() {
       let username = this.userInfo.username;
-      const { data: res } = await this.$http.get("findUserInfo?username=" + username);
-      // const { data: res } = await this.$http.get("findUserInfo?username=" + username, {
-      //   params: username = this.userInfo.username,
-      // });
+      const { data: res } = await this.$http.get(
+        "findUserInfo?username=" + username
+      );
       this.userInfo = res; // 将返回数据赋值  到 userInfo  用户数据封装
-      console.log(res);
+      // console.log(res);
     },
   },
   watch: {
@@ -338,7 +377,7 @@ export default {
         // console.log(ages);
       },
       deep: true,
-      immediate: true
+      immediate: true,
     },
   },
 };
