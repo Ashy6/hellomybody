@@ -46,7 +46,6 @@
               size="mini"
               @click="deleteUser(scope.row.id)"
             ></el-button>
-          
           </template>
         </el-table-column>
       </el-table>
@@ -63,14 +62,24 @@
         </el-timeline-item>
         <el-timeline-item timestamp="2018/4/3" placement="top">
           <el-card>
-            <h4>更新 Github 模板</h4>
-            <p>王小虎 提交于 2018/4/3 20:46</p>
+            <h4>留言标题</h4>
+            <p>此处为留言内容</p>
           </el-card>
         </el-timeline-item>
         <el-timeline-item timestamp="2018/4/2" placement="top">
           <el-card>
-            <h4>更新 Github 模板</h4>
-            <p>王小虎 提交于 2018/4/2 20:46</p>
+            <h4>该模板将在下个版本上线</h4>
+            <p>敬请期待</p>
+          </el-card>
+        </el-timeline-item>
+      </el-timeline>
+      <el-timeline>
+        <el-timeline-item v-for="item in questionList" :key="item.id" timestamp="2018/4/2" placement="top">
+          <el-card>
+            <!-- <h4 :index="it.title" v-for="it in item.title" :key="it.id">{{it.title}}</h4> -->
+            <p>{{item.name}}在{{item.asktime}}的留言：</p>
+            <h3>主题：{{item.title}} <h6>内容：{{item.news}}</h6></h3>
+            <p><span>赞{{item.vote_up}}</span> <span>踩{{item.vote_down}}</span></p>
           </el-card>
         </el-timeline-item>
       </el-timeline>
@@ -175,7 +184,7 @@ export default {
     // 查询问题
     async getQuestionList() {
       // 调用post请求
-      // 将整个的请求 信息  传到 res 上 
+      // 将整个的请求 信息  传到 res 上
       //访问路径 /Question   解析结果到data中res（返回结果）
       const { data: res } = await this.$http.get("mongodb/listQ", {
         // params: this.questionInfo,
@@ -184,7 +193,7 @@ export default {
       // console.log(questionInfo);
       // this.number = res.numbers; // 总个数
       console.log(res);
-    }, 
+    },
     // 添加问题
     //监听问题   清零
     addDialogClosed() {
@@ -222,7 +231,7 @@ export default {
         // params.title = this.addQuestion.title
         // params.news = this.addQuestion.news
         // params.asktime = this.addQuestion.asktime
-        console.log(this.addQuestion.name)
+        console.log(this.addQuestion.name);
         const { data: res } = await this.$http.post(
           "mongodb/addQuestion",
           this.addQuestion
