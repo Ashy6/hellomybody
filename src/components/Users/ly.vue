@@ -8,48 +8,10 @@
       <el-breadcrumb-item>留言板</el-breadcrumb-item>
     </el-breadcrumb>
     <el-button type="primary" @click="addDialogVisible = true">
-      提问题
+      提问/留言
     </el-button>
     <p></p>
     <div class="block">
-      <!-- 用户列表 -->
-      <el-table :data="questionList" border stripe>
-        <!--  stripe隔行变色 -->
-        <el-table-column type="index"></el-table-column>
-        <!--  索引列 -->
-        <el-table-column label="用户名" prop="name"></el-table-column>
-        <!--  索引列 -->
-        <el-table-column label="标题" prop="title"></el-table-column>
-        <!--  索引列 -->
-        <el-table-column label="问题/留言" prop="news"></el-table-column>
-        <!--  索引列 -->
-        <el-table-column label="时间" prop="asktime"></el-table-column>
-        <!--  索引列 -->
-        <el-table-column label="赞" prop="vote_up"></el-table-column>
-        <!--  索引列 -->
-        <el-table-column label="踩" prop="vpte_down"></el-table-column>
-        <!--  索引列 -->
-        <el-table-column label="操作">
-          <template slot-scope="scope">
-            <!-- 修改 -->
-            <el-button
-              type="primary"
-              icon="el-icon-edit"
-              size="mini"
-              @click="showEditDialog(scope.row.id)"
-            ></el-button>
-            <!-- 删除 -->
-            <el-button
-              content="删除用户"
-              type="danger"
-              icon="el-icon-delete"
-              size="mini"
-              @click="deleteUser(scope.row.id)"
-            ></el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-      <div :data="questionList"><p prop="asktime"></p></div>
       <!-- <el-table :data="questionList" border stripe> -->
       <el-timeline :data="questionList">
         <el-timeline-item border timestamp="asktime" placement="top">
@@ -66,13 +28,8 @@
             <p>此处为留言内容</p>
           </el-card>
         </el-timeline-item>
-        <el-timeline-item timestamp="2018/4/2" placement="top">
-          <el-card>
-            <h4>该模板将在下个版本上线</h4>
-            <p>敬请期待</p>
-          </el-card>
-        </el-timeline-item>
       </el-timeline>
+        <!-- 留言板 -->
       <el-timeline>
         <el-timeline-item v-for="item in questionList" :key="item.id" timestamp="2018/4/2" placement="top">
           <el-card>
@@ -80,6 +37,14 @@
             <p>{{item.name}}在{{item.asktime}}的留言：</p>
             <h3>主题：{{item.title}} <h6>内容：{{item.news}}</h6></h3>
             <p><span>赞{{item.vote_up}}</span> <span>踩{{item.vote_down}}</span></p>
+            <!-- 删除 -->
+            <el-button
+              content="删除用户"
+              type="danger"
+              icon="el-icon-delete"
+              size="mini"
+              @click="deleteUser(scope.row.id)"
+            ></el-button>
           </el-card>
         </el-timeline-item>
       </el-timeline>
