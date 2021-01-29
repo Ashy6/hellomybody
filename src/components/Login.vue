@@ -122,8 +122,8 @@ export default {
     return {
       // 属性 表单数据
       loginForm: {
-        username: "zjs",
-        password: "123456",
+        username: "",
+        password: "",
       },
       // userList: [],
       //添加   属性
@@ -133,6 +133,7 @@ export default {
         password: "",
         checkPass: "",
         email: "",
+        timesss: "",
       },
       // 表单验证 --注册
       addFormRules: {
@@ -217,12 +218,30 @@ export default {
         }
       });
     },
-    // 用户注册
     // 清空表单，关闭窗口
     addDialogClosed() {
       this.$refs.addFormRef.resetFields();
     },
+    // 用户注册
     addUser() {
+      //获取当前时间
+      const nowDate = new Date();
+      const date = {
+        year: nowDate.getFullYear(),
+        month: nowDate.getMonth() + 1,
+        date: nowDate.getDate(),
+        hour: nowDate.getHours(),
+        minute: nowDate.getMinutes(),
+        second: nowDate.getSeconds(),
+      };
+      const newmonth = date.month > 9 ? date.month : "0" + date.month;
+      const day = date.date > 9 ? date.date : "0" + date.date;
+      const h = date.hour > 9 ? date.hour : "0" + date.hour;
+      const m = date.minute > 9 ? date.minute : "0" + date.minute;
+      const s = date.second > 9 ? date.second : "0" + date.second;
+      // 在表单添加时间
+      this.addForm.timesss =
+        date.year + "-" + newmonth + "-" + day + " " + h + ":" + m + ":" + s;
       this.$refs.addFormRef.validate(async (valid) => {
         // console.log(valid);
         // 验证
