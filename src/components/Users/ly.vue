@@ -31,7 +31,7 @@
       </el-timeline>
         <!-- 留言板 -->
       <el-timeline>
-        <el-timeline-item v-for="item in questionList" :key="item.id" timestamp="2018/4/2" placement="top">
+        <el-timeline-item v-for="item in questionList" :key="item.id" v-bind:timestamp="item.asktime" placement="top">
           <el-card>
             <!-- <h4 :index="it.title" v-for="it in item.title" :key="it.id">{{it.title}}</h4> -->
             <p>{{item.name}}在{{item.asktime}}的留言：</p>
