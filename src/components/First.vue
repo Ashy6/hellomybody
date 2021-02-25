@@ -29,7 +29,7 @@
               class="el-menu-demo"
               mode="horizontal"
               background-color="Transparent"
-              text-color="#000"
+              text-color="#fff"
               active-text-color="#409EFF"
               :router="true"
               :span="12"
@@ -56,15 +56,10 @@
               >
                 <!--  v-for 编写循环 -->
                 <!-- 从menuList中取出数据放入item中，，绑定唯一标识的key -->
-                <template
-                  slot="title"
-                  :xs="24"
-                  :sm="12"
-                  :md="8"
-                  :lg="6"
-                  :xl="6"
-                >
-                  <el-col>{{ item.title }}</el-col>
+                <template slot="title">
+                  <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">{{
+                    item.title
+                  }}</el-col>
                 </template>
                 <!-- 二级菜单 -->
                 <el-menu-item
@@ -72,6 +67,7 @@
                   v-for="it in item.sList"
                   :key="it.id"
                   @click="saveNavState(it.path)"
+              background-color="red"
                 >
                   <!-- it.path 即字符串路径，读取数据库路径 -->
                   <template slot="title">
@@ -98,7 +94,7 @@
                       <el-dropdown-menu slot="dropdown" background-color="fff">
                         <el-dropdown-item icon="el-icon-circle-plus-outline">
                           <router-link
-                            style="text-decoration: none; color:#67C23A;"
+                            style="text-decoration: none; color: #67c23a"
                             :router="true"
                             to="/myxx"
                           >
@@ -107,7 +103,7 @@
                         </el-dropdown-item>
                         <el-dropdown-item icon="el-icon-circle-plus-outline">
                           <router-link
-                            style="text-decoration: none; color:#E6A23C;"
+                            style="text-decoration: none; color: #e6a23c"
                             :router="true"
                             to="/myxg"
                           >
@@ -116,7 +112,7 @@
                         </el-dropdown-item>
                         <el-dropdown-item icon="el-icon-circle-plus-outline">
                           <router-link
-                            style="text-decoration: none; color:#909399;"
+                            style="text-decoration: none; color: #909399"
                             :router="true"
                             to="/myjl"
                           >
@@ -125,7 +121,7 @@
                         </el-dropdown-item>
                         <el-dropdown-item icon="el-icon-circle-plus-outline">
                           <router-link
-                            style="text-decoration: none; color:#000;"
+                            style="text-decoration: none; color: #000"
                             :router="true"
                             to="/ly"
                           >
@@ -133,7 +129,7 @@
                           </router-link>
                         </el-dropdown-item>
                         <el-dropdown-item icon="el-icon-circle-check"
-                          ><span @click="logout" style="color:#F56C6C;">
+                          ><span @click="logout" style="color: #f56c6c">
                             退出登录</span
                           ></el-dropdown-item
                         >
@@ -349,9 +345,9 @@ export default {
   /* background-color: "Transparent"; */
   // color: rgb(156, 13, 13);
   text-align: center;
-  background-color: #ebeef5;
+  background-color: #202023;
   // background-color: "Transparent";
-  line-height: 59px;
+  line-height: 60px;
   /* display: flex; */
   justify-content: space-between;
   z-index: 99;
@@ -370,24 +366,20 @@ export default {
   font-weight: bold;
   color: #409eff;
 }
-
 .el-menu-demo {
+  // 时间
   font-family: "Microsoft YaHei", sans-serif;
+  color: aliceblue;
+  text-align: right;
+  font-size: 16px;
 }
 .navbar-default .navbar-brand > img {
   height: 60px;
   margin-top: -10px;
 }
 
-.erweima .container-fluid {
-  width: 100%;
-}
-.navbar-nav .navbar-form .form-group input {
-  margin-top: 6px;
-  border-radius: 18px;
-}
-// 导航按钮
 .navbar-toggle {
+  // 导航按钮
   margin-top: 17px;
   border: 1px solid #409eff;
   // background-color: #00b3ff;
@@ -402,8 +394,11 @@ export default {
 /*导航栏结束*/
 /* 下拉菜单 -- 用户功能 -- 用户栏 */
 .el-dropdown-link {
+  // 欢迎
   cursor: pointer;
-  color: #000;
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 60px;
 }
 .el-icon-arrow-down {
   font-size: 12px;
@@ -418,7 +413,7 @@ export default {
 /*---------------------分割线------------------------*/
 /* .el-main 正文*/
 .el-main {
-  background-color: #f2f6fc;
+  // background-color: #d9d9d9;
   min-height: 715px;
 }
 /*尾部开始*/
