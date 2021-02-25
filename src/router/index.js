@@ -22,6 +22,7 @@ import bbgx from '../components/Home/bbgx.vue'
 import meals from '../components/Users/meals.vue'
 import hellou from '../components/Users/hellou.vue'
 import jkgj from '../components/Users/jkgj.vue'
+import jkgj2 from '../components/Users/jkgj2.vue'
 import g01 from '../components/Users/util/g01.vue'
 import g02 from '../components/Users/util/g02.vue'
 import mygj from '../components/Users/mygj.vue'
@@ -84,6 +85,7 @@ const routes = [
       { path: "/hellou", component: hellou, },
       { path: "/meals", component: meals, },
       { path: "/jkgj", component: jkgj, },
+      { path: "/jkgj2", component: jkgj2, },
       { path: "/g01", component: g01, },
       { path: "/g02", component: g02, },
       // { path: '/course/:name', component: () => import('../components/Users/jkgj.vue') },
