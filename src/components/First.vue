@@ -1,9 +1,9 @@
 <template>
-  <div class="first">
-    <el-container>
+  <div>
+    <el-container class="home-container">
       <!-- 顶部导航栏 -->
       <el-header>
-        <div class="line"></div>
+        <!-- <div class="line"></div> -->
         <div>
           <!--小屏幕导航按钮和logo-->
           <div class="navbar-header">
@@ -16,8 +16,12 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <img src="../assets/img/hmb3.png" alt="" style="height: 60px" />
-            <!-- <a href="" class="navbar-brand">HelloMybody</a> -->
+            <div class="navbar-brand">
+              <img src="../assets/img/hmb3.png" alt="" style="height: 60px" />
+            </div>
+            <p class="navbar-brand hello">
+              <span>HelloBody</span>
+            </p>
           </div>
           <div class="navbar-collapse collapse">
             <el-menu
@@ -25,10 +29,10 @@
               class="el-menu-demo"
               mode="horizontal"
               background-color="Transparent"
-              text-color="#fff"
-              active-text-color="#ffd04b"
+              text-color="#000"
+              active-text-color="#409EFF"
               :router="true"
-              :span="10"
+              :span="12"
             >
               <!-- default-active="/hello"   设定打开界面为hello -->
               <!-- el-menu-vertical-demo控制下拉 -->
@@ -52,8 +56,15 @@
               >
                 <!--  v-for 编写循环 -->
                 <!-- 从menuList中取出数据放入item中，，绑定唯一标识的key -->
-                <template slot="title">
-                  <span>{{ item.title }}</span>
+                <template
+                  slot="title"
+                  :xs="24"
+                  :sm="12"
+                  :md="8"
+                  :lg="6"
+                  :xl="6"
+                >
+                  <el-col>{{ item.title }}</el-col>
                 </template>
                 <!-- 二级菜单 -->
                 <el-menu-item
@@ -69,36 +80,25 @@
                   </template>
                 </el-menu-item>
               </el-submenu>
-              <!-- <el-menu-item :router="true" :to="{ path: '/kpwz' }"
-                >健康科普</el-menu-item
-              > -->
-              <!-- <el-menu-item :to="{ path: '/jkgj' }">健康工具</el-menu-item> -->
-              <!-- <el-menu-item index="3" disabled>消息中心</el-menu-item> -->
-              <!-- <el-menu-item index="4"><a href="https://www.ele.me" target="_blank"
-              >订单管理</a>
-            </el-menu-item> -->
+              <template>
+                {{ currentTime }}
+              </template>
               <el-menu-item
                 :span="5"
                 class="pull-right"
                 style="margin-right: 60px"
               >
-                <template>
-                  {{ currentTime }}
-                </template>
                 <template slot="title">
-                  <el-col :span="3" class="pull-right">
+                  <el-col :span="3">
                     <el-dropdown trigger="click">
                       <span class="el-dropdown-link">
                         欢迎您{{ "，" + form.userName
                         }}<i class="el-icon-arrow-down el-icon--right"></i>
                       </span>
-                      <el-dropdown-menu
-                        slot="dropdown"
-                        background-color="Transparent"
-                      >
+                      <el-dropdown-menu slot="dropdown" background-color="fff">
                         <el-dropdown-item icon="el-icon-circle-plus-outline">
                           <router-link
-                            style="text-decoration: none"
+                            style="text-decoration: none; color:#67C23A;"
                             :router="true"
                             to="/myxx"
                           >
@@ -107,7 +107,7 @@
                         </el-dropdown-item>
                         <el-dropdown-item icon="el-icon-circle-plus-outline">
                           <router-link
-                            style="text-decoration: none"
+                            style="text-decoration: none; color:#E6A23C;"
                             :router="true"
                             to="/myxg"
                           >
@@ -116,7 +116,7 @@
                         </el-dropdown-item>
                         <el-dropdown-item icon="el-icon-circle-plus-outline">
                           <router-link
-                            style="text-decoration: none"
+                            style="text-decoration: none; color:#909399;"
                             :router="true"
                             to="/myjl"
                           >
@@ -125,7 +125,7 @@
                         </el-dropdown-item>
                         <el-dropdown-item icon="el-icon-circle-plus-outline">
                           <router-link
-                            style="text-decoration: none"
+                            style="text-decoration: none; color:#000;"
                             :router="true"
                             to="/ly"
                           >
@@ -133,7 +133,7 @@
                           </router-link>
                         </el-dropdown-item>
                         <el-dropdown-item icon="el-icon-circle-check"
-                          ><span @click="logout">
+                          ><span @click="logout" style="color:#F56C6C;">
                             退出登录</span
                           ></el-dropdown-item
                         >
@@ -152,77 +152,93 @@
         <router-view></router-view>
       </el-main>
       <!-- 底部区域 -->
-      <el-footer>
-        <footer>
-          <div class="container">
-            <div class="Tel">
-              <div class="row">
-                <ul class="media-list">
-                  <li class="media">
-                    <a href="#">
-                      <div class="media-up"></div>
-                      <div class="media-body">尾部</div>
-                    </a>
-                  </li>
-                  <li class="media">
-                    <a href="#">
-                      <div class="media-up"></div>
-                      <div class="media-body">尾部</div>
-                    </a>
-                  </li>
-                  <li class="media">
-                    <a href="#">
-                      <div class="media-up"></div>
-                      <div class="media-body">尾部</div>
-                    </a>
-                  </li>
-                  <li class="media">
-                    <a href="#">
-                      <div class="media-up"></div>
-                      <div class="media-body">尾部</div>
-                    </a>
-                  </li>
-                  <li class="media">
-                    <a href="#">
-                      <div class="media-up"></div>
-                      <div class="media-body">尾部</div>
-                    </a>
-                  </li>
-                  <li class="media">
-                    <a href="#">
-                      <div class="media-up"></div>
-                      <div class="media-body">尾部</div>
-                    </a>
-                  </li>
-                  <li class="pull-right">
-                    <p>尾部</p>
-                    <p>400-123-4567</p>
-                    <p>在线客服</p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="copyright">
-              <ul>
-                <li><a href="">尾部</a></li>
-                <li><a href="">尾部</a></li>
-                <li><a href="">尾部</a></li>
-                <li><a href="">尾部</a></li>
-                <li>
-                  <a href=""><i class="iconfont">&#xe60a;</i>简体中文</a>
-                </li>
-              </ul>
-              <!-- <p>
-                C2018 ChenDa Telecom Equipment Co，Ltd.All rights
-                rese粤CP备13003602号合字B220170010营业执照法律声明<img
-                  src="../assets/image/ghs.png"
-                  alt=""
-                />粤公网安备44049102496009号
-              </p> -->
+      <el-footer class="foot">
+        <div class="row">
+          <div class="ashy col-xl-9 col-sm-12 col-xs-12">
+            <ul class="row">
+              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
+                <a href="">返回首页</a>
+              </li>
+              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
+                <a href="">项目介绍</a>
+              </li>
+              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
+                <a href="">项目大纲</a>
+              </li>
+              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
+                <a href="">项目进度</a>
+              </li>
+              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
+                <a href="">项目案例</a>
+              </li>
+              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
+                <a href="">项目案例</a>
+              </li>
+              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
+                <a href="">项目案例</a>
+              </li>
+              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
+                <a href="">项目案例</a>
+              </li>
+              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
+                <a href="">项目案例</a>
+              </li>
+              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
+                <a href="">项目案例</a>
+              </li>
+              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
+                <a href="">项目案例</a>
+              </li>
+              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
+                <a href="">项目案例</a>
+              </li>
+            </ul>
+            <div class="as">
+              <p>Copyright @ 2020-2021 Ashy- 个人开发 www.hellobody.online</p>
+              <p>
+                <a href="http://www.boohee.com/"
+                  >健康网站分享--薄荷健康（愿世间的美好与你环环相扣）</a
+                >
+              </p>
+              <p>
+                <a href="https://www.hiyd.com/"
+                  >健身视频网站--Hi运动（用简单的方法打造美）</a
+                >
+              </p>
+              <p>
+                <a href="https://www.gotokeep.com/"
+                  >健身网站分享--Keep（自律使我自由）</a
+                >
+              </p>
             </div>
           </div>
-          <!-- <el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop> -->
-        </footer>
+          <div class="row col-xl-3 col-sm-12 col-xs-12 pull-right">
+            <div class="git">
+              <h3>项目开源</h3>
+              <p>永远相信世间最美好的东西总是免费的，比如</p>
+              <p>阳光、空气、雨水以及本项目：</p>
+              <p>
+                <a href="https://gitee.com/ashy66/hellomybody">
+                  <img src="../assets/image/gitee.jpg" alt="" />
+                </a>
+                <a href="https://github.com/Ashy6/hmb">
+                  <img src="../assets/image/github.jpg" alt="" />
+                </a>
+              </p>
+            </div>
+            <p>
+              <span>
+                <a href="https://gitee.com/ashy66/hellomybody">gitee </a>or
+              </span>
+              <span>
+                <a href="https://github.com/Ashy6/hmb"> github</a>
+              </span>
+            </p>
+          </div>
+        </div>
+        <!-- <el-backtop
+          target=".page-component__scroll .el-scrollbar__wrap"
+        ></el-backtop> -->
       </el-footer>
     </el-container>
   </div>
@@ -325,163 +341,153 @@ export default {
 };
 </script>
 
-<style>
+<style lang="less">
 .home-container {
   height: 100%;
 }
-/* 头部尾部 */
 .el-header {
   /* background-color: "Transparent"; */
-  color: rgb(156, 13, 13);
+  // color: rgb(156, 13, 13);
   text-align: center;
-  background-color: #409eff;
-  line-height: 52px;
+  background-color: #ebeef5;
+  // background-color: "Transparent";
+  line-height: 59px;
   /* display: flex; */
   justify-content: space-between;
-}
-/* .el-main { */
-/* justify-content: space-between; 
-  margin-left: -2%; */
-/* } */
-.el-footer {
-  background-color: #409eff;
-  /* background-color:"Transparent"; */
-  color: #333;
-  text-align: center;
-  line-height: 60px;
+  z-index: 99;
+  text-decoration: none;
 }
 /*导航栏开始*/
 .navbar-header {
-  /* background-color: "Transparent"; */
-  background-color: #409eff;
+  background-color: "Transparent";
+  // background-color: #ebeef5;
+  z-index: 10;
+  // border: 1px solid yellow;
+  // background-color: yellow;
 }
-.navbar-default {
-  /* background-color: #f7f8f8; */
-  /* background-color: "Transparent"; */
-  border: none;
-  line-height: 60px;
-  /* box-shadow: 0px 2px 8px 0px rgba(50,50,50,0.25);*/
-}
-.navbar-default .navbar-brand {
-  font-size: 30px;
+.navbar-header .hello {
+  font-size: 25px;
   font-weight: bold;
-  color: #73c6c9;
-  height: 70px;
-  line-height: 35px;
+  color: #409eff;
+}
+
+.el-menu-demo {
+  font-family: "Microsoft YaHei", sans-serif;
 }
 .navbar-default .navbar-brand > img {
-  height: 65px;
+  height: 60px;
   margin-top: -10px;
 }
-.navbar-nav > li > a {
-  font-size: 15px;
-  font-weight: bold;
-  color: #666;
-  height: 70px;
-  line-height: 35px;
-}
+
 .erweima .container-fluid {
   width: 100%;
 }
 .navbar-nav .navbar-form .form-group input {
   margin-top: 6px;
   border-radius: 18px;
-} /*
-.navbar-nav .navbar-form .form-group>button{
-    background-color: white;
-    margin-bottom: 1px;
-    border-radius:18px;
-}*/
+}
+// 导航按钮
 .navbar-toggle {
   margin-top: 17px;
+  border: 1px solid #409eff;
+  // background-color: #00b3ff;
 }
-.navbar-default .navbar-toggle:hover {
-  border-color: #808080;
-  /* border-color: yellow; */
-  /* background-color: rgb(189, 215, 233); */
-}
-.navbar-default .navbar-toggle .icon-bar {
-  background-color: #f7f30b;
+// .navbar-toggle .icon-bar {
+//   background-color: #00b3ff;
+// }
+
+.navbar-toggle .icon-bar {
+  background-color: #409eff;
 }
 /*导航栏结束*/
-/* 下拉菜单 -- 用户功能 */
+/* 下拉菜单 -- 用户功能 -- 用户栏 */
 .el-dropdown-link {
   cursor: pointer;
-  color: #ffffff;
+  color: #000;
 }
 .el-icon-arrow-down {
   font-size: 12px;
 }
 .demonstration {
   display: block;
-  color: #8492a6;
+  color: #1e63c5;
   font-size: 14px;
   margin-bottom: 20px;
 }
 /* 下拉结束 */
-/* 中间 */
-.body1 {
-  background-color: #e9eef3;
-  color: #333;
-  text-align: center;
-  line-height: 860px;
+/*---------------------分割线------------------------*/
+/* .el-main 正文*/
+.el-main {
+  background-color: #f2f6fc;
+  min-height: 715px;
+}
+/*尾部开始*/
+
+footer.el-footer .row {
+  display: block;
+  width: 100%;
+  /* height: 280px; */
+  background-color: #f7f8f8;
+}
+footer.el-footer.foot {
+  height: 500px;
+  padding: unset;
 }
 
-/*尾部开始*/
-footer {
-  margin-top: 60px;
-  /* margin-left: -20px; */
-  background: rgb(162, 202, 135);
-  width: 100%;
-  color: black;
-  clear: both;
-}
-footer .container ul li {
+.el-footer {
   display: inline-block;
-  font-size: 12px;
-  width: 150px;
+  padding-top: 15px;
+  /* margin-top: 250px;自己调试 */
+  /* background-color: #409eff; */
+  background-color: #f7f8f8;
+  /* background-color:"Transparent"; */
+  color: #333;
+  /* text-align: center; */
 }
-footer .container .Tel ul li {
-  width: 120px;
-  height: 38px;
+// .el-footer div {
+//   display: block;
+// }
+.el-footer div ul {
+  margin-left: 30px;
 }
-footer .container .Tel ul li:last-child {
-  width: 180px;
+.el-footer div li {
+  margin: 0 auto;
+  padding: 0;
+  line-height: 40px;
+  display: block;
+  font-size: 15px;
 }
-footer .container .Tel ul li:last-child p:first-child {
-  color: #8c8c8c;
-  font-size: 13px;
+.el-footer div a {
+  color: #666;
 }
-footer .container .Tel ul li:last-child p:nth-of-type(2) {
-  color: #0daaea;
-  font-size: 25px;
-}
-footer .container .Tel ul li:last-child p:last-child {
-  width: 88px;
-  height: 30px;
-  background-color: #0daaea;
-  line-height: 30px;
-  padding-left: 6px;
-  font-size: 16px;
-  color: #fff;
-  border-radius: 20px;
-}
-footer .container .Tel ul li img {
-  width: 50px;
-  height: 39px;
-  margin-left: 50px;
-}
-footer .container .Tel .media-body {
-  padding-left: 10px;
-}
-footer .container ul li a {
-  color: black;
+.el-footer div a:hover {
+  color: #00b3ff;
   text-decoration: none;
 }
-footer .container .copyright {
-  margin-top: 20px;
-  margin-left: 20px;
+.el-footer div .as {
+  padding: unset;
+  // text-align: center;
+  // line-height: 30px;
 }
-
+.el-footer div img {
+  height: 60px;
+  padding-right: 5px;
+}
+.el-footer .git {
+  margin-top: 25px;
+}
+.el-footer div div h3,
+p {
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 15px;
+}
+.el-footer div .lianjie {
+  margin: auto;
+}
+.el-footer div .lianjie span {
+  font-size: 15px;
+  text-align: center;
+}
 /*尾部结束*/
 </style>
