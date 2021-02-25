@@ -33,6 +33,7 @@ import axios from 'axios'
 // 挂载全局使用axios
 Vue.prototype.$http = axios
 // 设置访问根路径
+// axios.defaults.baseURL = "http://39.107.244.76:9000"
 axios.defaults.baseURL = "http://localhost:9000"
 
 Vue.config.productionTip = false
