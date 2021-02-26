@@ -77,60 +77,84 @@ export default {
         sum = parseFloat((height - sex) * sex2); //定义标准体重公式
       if (height > 120 && height < 300) {
         if (width <= sum + sum * 0.1 && width >= sum - sum * 0.1) {
-          alert(
-            "您的标准体重为" +
+          this.$notify({
+            title: "正常",
+            message:
+              "您的标准体重为" +
               sum.toFixed(3) +
               "(kg),在" +
               (sum * 0.9).toFixed(3) +
               "(kg)~" +
               (sum * 1.1).toFixed(3) +
               "(kg)之间，" +
-              "属于正常体重。请继续保持ヽ( ⌒ω⌒)人(=^‥^= )ﾉ！！！"
-          );
+              "属于正常体重。请继续保持ヽ( ⌒ω⌒)人(=^‥^= )ﾉ！！！",
+            type: "success",
+            duration: 0, // 不会自动消失
+          });
         } else if (width <= sum + sum * 0.2 && width >= sum + sum * 0.1) {
-          alert(
-            "您的标准体重为" +
+          this.$notify({
+            title: "偏胖",
+            message:
+              "您的标准体重为" +
               sum.toFixed(3) +
               "(kg),在" +
               (sum * 1.1).toFixed(3) +
               "(kg)~" +
               (sum * 1.2).toFixed(3) +
               "(kg)之间，" +
-              "属于偏胖(过重)。建议减少脂肪和油脂的摄入，并加强体育锻炼！！"
-          );
+              "属于偏胖(过重)。建议减少脂肪和油脂的摄入，并加强体育锻炼！！",
+            type: "warning",
+            duration: 0,
+          });
         } else if (width >= sum - sum * 0.2 && width <= sum - sum * 0.1) {
-          alert(
-            "您的标准体重为" +
+          this.$notify({
+            title: "偏瘦",
+            message:
+              "您的标准体重为" +
               sum.toFixed(3) +
               "(kg),在" +
               (sum * 0.8).toFixed(3) +
               "(kg)~" +
               (sum * 0.9).toFixed(3) +
               "(kg)之间，" +
-              "属于偏瘦(过轻)。建议您注重饮食健康，太瘦并不是一种美 (  •̆ ᵕ •̆ )◞♡ ！"
-          );
+              "属于偏瘦(过轻)。建议您注重饮食健康，太瘦并不是一种美 (  •̆ ᵕ •̆ )◞♡ ！",
+            type: "warning",
+            duration: 0,
+          });
         } else if (width > sum + sum * 0.2) {
-          alert(
-            "您的标准体重为" +
+          this.$notify.error({
+            title: "过重",
+            message:
+              "您的标准体重为" +
               sum.toFixed(3) +
               "(kg),超过" +
               (sum * 1.2).toFixed(3) +
-              "(kg)，属于肥胖(超重)。亲，这边建议您注意减脂 (*≧▽≦)ﾉｼ)) ！"
-          );
+              "(kg)，属于肥胖(超重)。亲，这边建议您注意减脂 (*≧▽≦)ﾉｼ)) ！",
+            duration: 0,
+          });
         } else if (width < sum - sum * 0.2) {
-          alert(
-            "您的标准体重为" +
+          this.$notify.error({
+            title: "过瘦",
+            message:
+              "您的标准体重为" +
               sum.toFixed(3) +
               "(kg),远小于" +
               (sum * 0.8).toFixed(3) +
-              "(kg)，体重严重不足。" +
-              "应当注意加强营养，如有不适，建议尽早就医。"
-          );
+              "(kg)，体重严重不足，营养不良。" +
+              "应当注意加强营养，如有不适，建议尽早就医。",
+            duration: 0,
+          });
         } else {
-          alert("您的输入有误");
+          this.$notify.info({
+            title: "不正常",
+            message: "您的输入有误",
+          });
         }
       } else {
-        alert("您的输入有误，请重新输入");
+        this.$notify.info({
+          title: "不正常",
+          message: "您的输入有误",
+        });
       }
       this.body.news2 = news2;
       this.body.bweight = sum.toFixed(3);
