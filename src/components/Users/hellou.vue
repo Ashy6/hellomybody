@@ -4,12 +4,11 @@
       <b-carousel
         id="carousel-1"
         v-model="slide"
-        :interval="4000"
+        :interval="3000"
         controls
         indicators
-        background="#ababab"
-        img-width="1024"
-        img-height="480"
+        img-width="1920"
+        img-height="1080"
         style="text-shadow: 1px 1px 2px #333"
         @sliding-start="onSlideStart"
         @sliding-end="onSlideEnd"
@@ -32,10 +31,11 @@
         <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
         <b-carousel-slide>
           <template #img>
+            <!-- 睡眠测试 -->
             <img
               class="d-block img-fluid w-100"
               width="100%"
-              height="480"
+              height="100%"
               src="../../assets/images/shuimianceshi.jpg"
               alt="image slot"
             />
@@ -45,8 +45,8 @@
           <template #img>
             <img
               class="d-block img-fluid w-100"
-              width="1024"
-              height="480"
+              width="100%"
+              height="100%"
               src="../../assets/images/yundong.jpg"
               alt="image slot"
             />
@@ -56,8 +56,8 @@
           <template #img>
             <img
               class="d-block img-fluid w-100"
-              width="1024"
-              height="480"
+              width="100%"
+              height="100%"
               src="../../assets/images/yundong2.jpg"
               alt="image slot"
             />
@@ -67,8 +67,8 @@
           <template #img>
             <img
               class="d-block img-fluid w-100"
-              width="1024"
-              height="480"
+              width="100%"
+              height="100%"
               src="../../assets/images/fapang.jpg"
               alt="image slot"
             />
@@ -78,8 +78,8 @@
           <template #img>
             <img
               class="d-block img-fluid w-100"
-              width="1024"
-              height="480"
+              width="100%"
+              height="100%"
               src="../../assets/images/jiankang.jpg"
               alt="image slot"
             />
@@ -89,8 +89,8 @@
           <template #img>
             <img
               class="d-block img-fluid w-100"
-              width="1024"
-              height="480"
+              width="100%"
+              height="100%"
               src="../../assets/images/yangsheng.jpg"
               alt="image slot"
             />
@@ -127,10 +127,13 @@
         </div>
         <div class="box112">
           <p>
-            <router-link :router="true" to="/jkgj">卡路里消耗计算器</router-link>
+            <router-link :to="{ path: '/jkgj' }">卡路里消耗计算器</router-link>
           </p>
           <p class="pull-right">
-            <router-link :router="true" to="/jkgj2">食物卡路里计算器</router-link>
+            <router-link :to="{ path: '/jkgj2' }">食物卡路里计算器</router-link>
+          </p>
+          <p class="pull-right">
+            <router-link :to="{ path: '/jkgj2' }">体脂计算器</router-link>
           </p>
         </div>
       </div>
@@ -205,7 +208,7 @@ div {
 .box1 .box11 .box111 {
   display: inline-block;
   background-color: #fff;
-  padding-bottom: 20.1%;
+  padding-bottom: 18.2%;
   // height: 250px;
   width: 80%;
   // font-size: 55px;
@@ -223,12 +226,14 @@ div {
   display: block;
   // line-height: 15px;
   background-color: #fff;
-  border-radius: 15px;
-  padding-bottom: 5px;
+  border-radius: 30px;
+  padding-bottom: 15px;
+  line-height: 15px;
+  // text-align: center;
   // float: left;
 }
 .box1 .box11 .box111 span {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 600;
 }
 .box1 .box11 .box112 {
