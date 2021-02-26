@@ -43,8 +43,7 @@
                 <!-- <template :to="{ path: '/hellou' }">首页</template> -->
                 <router-link
                   style="text-decoration: none"
-                  :router="true"
-                  to="/hellou"
+                  :to="{ path: '/hellou' }"
                   >首页</router-link
                 >
               </el-menu-item>
@@ -67,7 +66,7 @@
                   v-for="it in item.sList"
                   :key="it.id"
                   @click="saveNavState(it.path)"
-              background-color="red"
+                  background-color="red"
                 >
                   <!-- it.path 即字符串路径，读取数据库路径 -->
                   <template slot="title">
@@ -151,8 +150,46 @@
       <el-footer class="foot">
         <div class="row">
           <div class="ashy col-xl-9 col-sm-12 col-xs-12">
-            <ul class="row">
-              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
+            <el-row :gutter="10">
+              <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                <router-link :to="{ path: '/hellou' }">返回首页</router-link>
+              </el-col>
+              <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                <a href="">项目介绍</a>
+              </el-col>
+              <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                <a href="">项目大纲</a>
+              </el-col>
+              <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                <a href="">项目进度</a>
+              </el-col>
+              <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                <a href="">常用工具</a>
+              </el-col>
+              <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                <router-link :to="{ path: '/mygj' }">我的工具</router-link>
+              </el-col>
+              <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                <a href="">项目案例</a>
+              </el-col>
+              <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                <a href="">项目案例</a>
+              </el-col>
+              <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                <a href="">项目案例</a>
+              </el-col>
+              <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                <a href="">项目案例</a>
+              </el-col>
+              <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                <a href="">项目案例</a>
+              </el-col>
+              <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                <a href="">项目案例</a>
+              </el-col>
+            </el-row>
+            <!-- -----**************---------- -->
+            <!-- <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
                 <a href="">返回首页</a>
               </li>
               <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
@@ -187,10 +224,12 @@
               </li>
               <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
                 <a href="">项目案例</a>
-              </li>
-            </ul>
+              </li> -->
             <div class="as">
-              <p>Copyright @ 2020-2021 Ashy- 个人开发 www.hellobody.online</p>
+              <p>
+                Copyright @ 2020-2021 Ashy- 个人开发
+                <a href="http://www.hellobody.online">www.hellobody.online</a>
+              </p>
               <p>
                 <a href="http://www.boohee.com/"
                   >健康网站分享--薄荷健康（愿世间的美好与你环环相扣）</a
@@ -232,9 +271,41 @@
             </p>
           </div>
         </div>
-        <!-- <el-backtop
-          target=".page-component__scroll .el-scrollbar__wrap"
-        ></el-backtop> -->
+
+        <div class="web">
+          |<a target="_blank" href="http://www.jirou.com/"> 肌肉网</a> |<a
+            target="_blank"
+            href="http://www.fitnes.cn/"
+          >
+            我爱健身网</a
+          >
+          |<a target="_blank" href="http://qmjs.tiqiu.com/"> 全民健身</a> |<a
+            target="_blank"
+            href="http://www.caibb.com/"
+          >
+            网络购彩</a
+          >
+          |<a target="_blank" href="http://www.51fit.com.cn">51健身</a> |<a
+            target="_blank"
+            href="http://www.kukefit.com"
+          >
+            酷客健身</a
+          >
+          |<a href="http://www.kaluli.com/" target="_blank"> 卡路里运动营养</a>
+          |<a href="http://www.znymqg.com/" target="_blank"> 羽毛球</a> |<a
+            href="http://qmjs.tiqiu.com/"
+            target="_blank"
+          >
+            全民健身</a
+          >
+          |<a href="http://www.lmjsport.cn/" target="_blank"> 家用跑步机</a> |<a
+            href="http://www.cnlmj.com/"
+            target="_blank"
+          >
+            健身房器材</a
+          >
+          |
+        </div>
       </el-footer>
     </el-container>
   </div>
@@ -414,7 +485,8 @@ export default {
 /* .el-main 正文*/
 .el-main {
   // background-color: #d9d9d9;
-  min-height: 715px;
+  min-height: 570px;
+  margin-bottom: 20px;
 }
 /*尾部开始*/
 
@@ -424,14 +496,15 @@ footer.el-footer .row {
   /* height: 280px; */
   background-color: #f7f8f8;
 }
-footer.el-footer.foot {
+footer.el-footer {
   height: 500px;
   padding: unset;
 }
 
 .el-footer {
   display: inline-block;
-  padding-top: 15px;
+  margin-top: -20px;
+  // padding-top: 15px;
   /* margin-top: 250px;自己调试 */
   /* background-color: #409eff; */
   background-color: #f7f8f8;
@@ -439,13 +512,8 @@ footer.el-footer.foot {
   color: #333;
   /* text-align: center; */
 }
-// .el-footer div {
-//   display: block;
-// }
-.el-footer div ul {
-  margin-left: 30px;
-}
-.el-footer div li {
+.el-footer div .el-col {
+  text-align: center;
   margin: 0 auto;
   padding: 0;
   line-height: 40px;
@@ -463,6 +531,10 @@ footer.el-footer.foot {
   padding: unset;
   // text-align: center;
   // line-height: 30px;
+}
+.el-footer .ashy {
+  // margin-right: 20px;
+  padding: unset;
 }
 .el-footer div img {
   height: 60px;
@@ -485,4 +557,17 @@ p {
   text-align: center;
 }
 /*尾部结束*/
+.web {
+  display: block;
+  // margin: -20px;
+  width: 100%;
+  text-align: center;
+  background-color: #202023;
+  // background-color: "Transparent";
+  line-height: 60px;
+  /* display: flex; */
+  justify-content: space-between;
+  z-index: 999;
+  text-decoration: none;
+}
 </style>
