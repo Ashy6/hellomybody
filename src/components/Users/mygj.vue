@@ -1,7 +1,7 @@
 <template>
   <div class="box1 el-row">
-    <div :md="2" class="body0"></div>
-    <el-col :xs="24" :sm="24" :md="20">
+    <div :sm="2" :md="4.5" class="body0"></div>
+    <el-col :xs="24" :sm="20" :md="15">
       <div class="body1">
         <!-- 顶部导航 -->
         <el-breadcrumb separator-class="el-icon-arrow-right">
@@ -12,7 +12,7 @@
           <el-breadcrumb-item>我的工具</el-breadcrumb-item>
         </el-breadcrumb>
         <div class="jk1">
-          <h2>健康医疗类api工具分享</h2>
+          <h2>健康医疗类 Api 工具分享</h2>
         </div>
         <el-collapse accordion>
           <el-collapse-item>
@@ -162,7 +162,7 @@
               <iframe
                 id="api_iframe_bmcx"
                 name="api_iframe_bmcx"
-                src="https://www.bmcx.com/apiiframe/?api_from=bmcx&api_url=https://pianfang.bmcx.com/&api_width=98%&api_backgroundcolor=FFFFFF"
+                src="https://www.bmcx.com/apiiframe/?api_from=bmcx&api_url=https://pianfang.bmcx.com/&api_width=98%&api_backgroundcolor=FFFFFF&api_navigation=no"
                 width="100%"
                 height="550"
                 scrolling="no"
@@ -412,13 +412,13 @@ export default {
   margin: 20px 0px 50px 0px;
   // margin-top: 20px;
   padding: 15px;
-  background-color: #e6e6e6;
+  background-color: #DCDFE6;
   border-radius: 35px;
   box-shadow: 5px 5px 5px -1px rgb(19, 11, 11);
   
 }
 .body0 {
-  width: 8%;
+  width: 18%;
   height: 10px;
   float: left;
 }
