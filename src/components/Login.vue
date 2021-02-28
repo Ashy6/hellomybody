@@ -6,7 +6,6 @@
       <div class="avatar_box">
         <img src="../assets/img/login_run.jpg" />
       </div>
-
       <!-- 表单区域 -->
       <el-form
         ref="loginFormRef"
@@ -53,7 +52,6 @@
         </el-form-item>
       </el-form>
     </div>
-
     <!-- 新增用户区域 -->
     <el-dialog
       title="用户注册"
@@ -142,7 +140,7 @@ export default {
           {
             min: 2,
             max: 12,
-            message: "长度在 6 到 16 个字符",
+            message: "长度在 2 到 12 个字符",
             trigger: "blur",
           },
         ],
