@@ -1,7 +1,7 @@
 <template>
   <div class="box1 el-row">
-    <div :md="2" class="body0"></div>
-    <el-col :xs="24" :sm="24" :md="20">
+    <div :md="4" class="body0"></div>
+    <el-col :xs="24" :sm="24" :md="16">
       <div class="body1">
         <!-- 顶部导航 -->
         <el-breadcrumb separator-class="el-icon-arrow-right">
@@ -119,7 +119,7 @@ export default {
   padding: 15px;
 }
 .body0 {
-  width: 8%;
+  width: 15%;
   height: 10px;
   float: left;
 }

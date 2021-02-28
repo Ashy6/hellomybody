@@ -1,8 +1,8 @@
 <template>
   <div class="box1 el-row">
     <!-- <el-row :gutter="10"> -->
-      <div :md="2" class="body0"></div>
-      <el-col :xs="24" :sm="24" :md="20">
+      <div :md="4" class="body0"></div>
+      <el-col :xs="24" :sm="22" :md="16">
         <div class="body1">
           <div>
             <!-- 顶部导航 -->
@@ -116,7 +116,7 @@ export default {
   padding: 15px;
 }
 .body0 {
-  width: 8%;
+  width: 16%;
   height: 10px;
   // display: block;
   float: left;
