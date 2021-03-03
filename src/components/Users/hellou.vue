@@ -133,7 +133,7 @@
             <router-link :to="{ path: '/jkgj2' }">食物卡路里计算器</router-link>
           </p>
           <p class="pull-right">
-            <router-link :to="{ path: '/jkgj2' }">体脂计算器</router-link>
+            <router-link :to="{ path: '/g02' }">体脂计算器</router-link>
           </p>
         </div>
       </div>
