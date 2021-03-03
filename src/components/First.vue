@@ -66,12 +66,12 @@
                   v-for="it in item.sList"
                   :key="it.id"
                   @click="saveNavState(it.path)"
-                  background-color="red"
+                  background-color="yellow"
                 >
                   <!-- it.path 即字符串路径，读取数据库路径 -->
                   <template slot="title">
                     <i class="el-icon-location"></i>
-                    <span>{{ it.title }}</span>
+                    <span style="color:red">{{ it.title }}</span>
                   </template>
                 </el-menu-item>
               </el-submenu>
