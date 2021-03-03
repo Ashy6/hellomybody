@@ -17,11 +17,11 @@
           <div class="card-header" id="heading01">
             <h2 class="mb-0">
               <button
-                class="btn btn-link btn-block text-left collapsed"
-                type="button"
+                class="btn btn-block text-left collapsed"
+                type="text"
                 data-toggle="collapse"
                 data-target="#collapse01"
-                aria-expanded="true"
+                aria-expanded="false"
                 aria-controls="collapse01"
               >
                 问题#1.以下符合我日常情况的有（可多选）？
@@ -53,7 +53,7 @@
           <div class="card-header" id="heading02">
             <h2 class="mb-0">
               <button
-                class="btn btn-link btn-block text-left collapsed"
+                class="btn btn-block text-left collapsed"
                 type="button"
                 data-toggle="collapse"
                 data-target="#collapse02"
@@ -93,7 +93,7 @@
           <div class="card-header" id="heading03">
             <h2 class="mb-0">
               <button
-                class="btn btn-link btn-block text-left collapsed"
+                class="btn btn-block text-left collapsed"
                 type="button"
                 data-toggle="collapse"
                 data-target="#collapse03"
@@ -135,7 +135,7 @@
           <div class="card-header" id="heading04">
             <h2 class="mb-0">
               <button
-                class="btn btn-link btn-block text-left collapsed"
+                class="btn btn-block text-left collapsed"
                 type="button"
                 data-toggle="collapse"
                 data-target="#collapse04"
@@ -180,7 +180,7 @@
           <div class="card-header" id="heading05">
             <h2 class="mb-0">
               <button
-                class="btn btn-link btn-block text-left collapsed"
+                class="btn btn-block text-left collapsed"
                 type="button"
                 data-toggle="collapse"
                 data-target="#collapse05"
@@ -225,7 +225,7 @@
           <div class="card-header" id="heading06">
             <h2 class="mb-0">
               <button
-                class="btn btn-link btn-block text-left collapsed"
+                class="btn btn-block text-left collapsed"
                 type="button"
                 data-toggle="collapse"
                 data-target="#collapse06"
@@ -267,7 +267,7 @@
           <div class="card-header" id="heading07">
             <h2 class="mb-0">
               <button
-                class="btn btn-link btn-block text-left collapsed"
+                class="btn btn-block text-left collapsed"
                 type="button"
                 data-toggle="collapse"
                 data-target="#collapse07"
@@ -300,7 +300,7 @@
           <div class="card-header" id="heading08">
             <h2 class="mb-0">
               <button
-                class="btn btn-link btn-block text-left collapsed"
+                class="btn btn-block text-left collapsed"
                 type="button"
                 data-toggle="collapse"
                 data-target="#collapse08"
@@ -333,7 +333,7 @@
           <div class="card-header" id="heading09">
             <h2 class="mb-0">
               <button
-                class="btn btn-link btn-block text-left collapsed"
+                class="btn btn-block text-left collapsed"
                 type="button"
                 data-toggle="collapse"
                 data-target="#collapse09"
@@ -366,7 +366,7 @@
           <div class="card-header" id="heading10">
             <h2 class="mb-0">
               <button
-                class="btn btn-link btn-block text-left collapsed"
+                class="btn btn-block text-left collapsed"
                 type="button"
                 data-toggle="collapse"
                 data-target="#collapse10"
@@ -399,7 +399,7 @@
           <div class="card-header" id="heading11">
             <h2 class="mb-0">
               <button
-                class="btn btn-link btn-block text-left collapsed"
+                class="btn btn-block text-left collapsed"
                 type="button"
                 data-toggle="collapse"
                 data-target="#collapse11"
@@ -432,7 +432,7 @@
           <div class="card-header" id="heading12">
             <h2 class="mb-0">
               <button
-                class="btn btn-link btn-block text-left collapsed"
+                class="btn btn-block text-left collapsed"
                 type="button"
                 data-toggle="collapse"
                 data-target="#collapse12"
@@ -465,7 +465,7 @@
           <div class="card-header" id="heading13">
             <h2 class="mb-0">
               <button
-                class="btn btn-link btn-block text-left collapsed"
+                class="btn btn-block text-left collapsed"
                 type="button"
                 data-toggle="collapse"
                 data-target="#collapse13"
@@ -510,11 +510,10 @@
       </el-form>
     </div>
     <div class="resultSuggest">
-      <!-- :data="tableData"  -->
-      <!-- <el-table style="width: 100%">
-        <el-table-column prop="date"  width="180">日期
+      <!-- <el-table style="width: 100%" :data="tableData" >
+        <el-table-column prop="date"  width="180" label="日期">
         </el-table-column>
-        <el-table-column prop="name"  width="180">姓名
+        <el-table-column prop="name"  width="180" label="姓名">
         </el-table-column>
         <el-table-column prop="address" label="地址"> </el-table-column>
       </el-table> -->
@@ -676,16 +675,10 @@ export default {
       this.form.score = (98.5 - he - he2).toFixed(1);
       // 向后端发送  表单数据
       this.$refs.form.validate(async (valid) => {
-        // debugger
-        // console.log(this.form);
-        // console.log(valid);
         // 验证
         if (!valid) return;
         // 提交结果
         this.form.name = window.sessionStorage.getItem("user");
-        // console.log(res.user);
-        // that.form = JSON.stringify(that.form);JSON.parse()
-        // const { data: res } = await this.$http.post("addIm", JSON.stringify(that.form));
         const { data: res } = await this.$http.post("addIm", this.form);
         if (res != "success") {
           // console.log(that.form);

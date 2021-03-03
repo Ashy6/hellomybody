@@ -238,7 +238,7 @@ export default {
             padding: "0px 0px 0px 150px",
             color: "blue",
           },
-          label: this.$createElement("strong", "滑动滑块，找到你的位置"),
+          label: this.$createElement("strong", "滑动滑块，根据您自己的体重找到您的位置"),
         },
         35: {
           style: {
