@@ -10,6 +10,26 @@
         <el-breadcrumb-item>免疫力测试</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
+    <h2>本页面为免疫力测评页面，通过测试，你将得到一个得分（仅供参考）</h2>
+    <el-tooltip placement="bottom-start">
+      <div slot="content" style="font-size: 18px">
+        免疫力低下的身体易于被感染或患癌症，免疫力超常也会产生对身体有害的结果，<br />
+        如引发过敏反应、自身免疫疾病等。各种原因使免疫系统不能正常发挥保护作用，<br />
+        在此情况下，极易招致细菌、病毒、真菌等感染。
+        表现就是容易生病，因经常患病，加重了机体的消耗，<br />
+        所以一般有体质虚弱、营养不良、精神萎靡、疲乏无力、食欲降低、睡眠障碍等表现。<br />
+        生病、打针、吃药，便成了家常便饭，每次生病都要很长时间才能恢复，而且常常反复发作。
+        长此以往会导致身体和智力发育不良，还易诱发重大疾病，<br />
+        当免疫力低下时应多补充一些含锌、硒和蛋白质高的食物，<br />
+        当人体免疫功能失调，或者免疫系统不健全时，下列问题就会反复发作：<br />
+        感冒反复发作、扁桃体炎反复发作、哮喘反复发作、支气管炎反复发作、<br />
+        肺炎反复发作、腹泻反复发作，所以千万不可小视。
+      </div>
+      <el-button plain style="border: 0px; font-size: 18px">
+        免疫力低下
+      </el-button>
+    </el-tooltip>
+    <p>[本次测评预计用时：6分钟]</p>
     <!-- 折叠列表 -->
     <div class="accordion" id="accordionExample">
       <el-form ref="form" :model="form" label-width="10px">

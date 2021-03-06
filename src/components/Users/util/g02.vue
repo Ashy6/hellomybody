@@ -11,7 +11,7 @@
       </el-breadcrumb>
     </div>
     <div class="boxt container">
-      <div class="left">
+      <div class="left shadow-lg p-3 mb-5 bg-white rounded">
         <!-- 标题开始 -->
         <el-tooltip placement="bottom-start">
           <div slot="content" style="font-size: 20px">
@@ -102,7 +102,7 @@
           <!-- 按钮 -->
         </el-form>
       </div>
-      <div class="right">
+      <div class="right shadow-lg p-3 mb-5 bg-white rounded">
         <h2>标准体重的计算：</h2>
         <h4>
           {{ body.stature ? "[ " + body.stature + " (cm)" : "[ 身高(cm)" }}－{{
@@ -197,7 +197,7 @@
       </div>
     </div>
     <div class="three container">
-      <div class="block">
+      <div class="block shadow-lg p-3 mb-5 bg-white rounded">
         <!-- vertical 竖向 -->
         <el-slider
           v-model="value4"
@@ -206,8 +206,8 @@
         ></el-slider>
         <!-- 标准体重 -->
         <!-- <p>value5={{ value5 }}</p> -->
+        <p>{{ body.news }}</p>
       </div>
-      <p>{{ body.news }}</p>
     </div>
   </div>
 </template>
@@ -235,10 +235,13 @@ export default {
       marks: {
         0: {
           style: {
-            padding: "0px 0px 0px 150px",
+            padding: "0px 0px 0px 250px",
             color: "blue",
           },
-          label: this.$createElement("strong", "滑动滑块，根据您自己的体重找到您的位置"),
+          label: this.$createElement(
+            "strong",
+            "滑动滑块，根据您自己的体重找到您的位置"
+          ),
         },
         35: {
           style: {
@@ -530,11 +533,14 @@ export default {
   }
 }
 .three {
-  margin-top: 20px;
+  // margin-top: 20px;
   font-size: 15px;
   p {
     padding-top: 20px;
     line-height: 30px;
+  }
+  .block {
+  border-radius: 15px 55px ;
   }
 }
 </style>
