@@ -23,6 +23,7 @@ import meals from '../components/Users/meals.vue'
 import hellou from '../components/Users/hellou.vue'
 import jkgj from '../components/Users/jkgj.vue'
 import jkgj2 from '../components/Users/jkgj2.vue'
+import kll from '../components/Users/kll.vue'
 import g01 from '../components/Users/util/g01.vue'
 import g02 from '../components/Users/util/g02.vue'
 import mygj from '../components/Users/mygj.vue'
@@ -86,6 +87,7 @@ const routes = [
       { path: "/meals", component: meals, },
       { path: "/jkgj", component: jkgj, },
       { path: "/jkgj2", component: jkgj2, },
+      { path: "/kll", component: kll, },
       { path: "/g01", component: g01, },
       { path: "/g02", component: g02, },
       // { path: '/course/:name', component: () => import('../components/Users/jkgj.vue') },
@@ -109,10 +111,7 @@ const routes = [
         ]
       },
       { path: "/myjl", component: myjl, },
-      {
-        path: "/cpsm",    // 睡眠测评页面
-        component: cpsm,
-      },
+      { path: "/cpsm", component: cpsm, }, // 睡眠测评页面
       { path: "/cpjf", component: cpjf, },
       { path: "/cpcd", component: cpcd, },
       { path: "/cpmyl", component: cpmyl, },
