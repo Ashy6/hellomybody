@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>用户列表</h3>
+    <!-- <h3>用户列表</h3> -->
     <!-- 顶部导航 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
