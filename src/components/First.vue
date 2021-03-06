@@ -71,7 +71,7 @@
                   <!-- it.path 即字符串路径，读取数据库路径 -->
                   <template slot="title">
                     <i class="el-icon-location"></i>
-                    <span style="color:red">{{ it.title }}</span>
+                    <span style="color: #fff">{{ it.title }}</span>
                   </template>
                 </el-menu-item>
               </el-submenu>
@@ -87,8 +87,7 @@
                   <el-col :span="3">
                     <el-dropdown trigger="click">
                       <span class="el-dropdown-link">
-                        欢迎您{{ "，" + form.userName
-                        }}<i class="el-icon-arrow-down el-icon--right"></i>
+                        欢迎您{{ "，" + form.userName }}
                       </span>
                       <el-dropdown-menu slot="dropdown" background-color="fff">
                         <el-dropdown-item icon="el-icon-circle-plus-outline">
@@ -485,6 +484,7 @@ export default {
 /* .el-main 正文*/
 .el-main {
   // background-color: #d9d9d9;
+  background-image: url(../assets/image/innovation.png);
   min-height: 570px;
   margin-bottom: 20px;
 }
