@@ -96,10 +96,10 @@
                             :router="true"
                             to="/myxx"
                           >
-                            我的信息
+                            个人中心
                           </router-link>
                         </el-dropdown-item>
-                        <el-dropdown-item icon="el-icon-circle-plus-outline">
+                        <!-- <el-dropdown-item icon="el-icon-circle-plus-outline">
                           <router-link
                             style="text-decoration: none; color: #e6a23c"
                             :router="true"
@@ -107,7 +107,7 @@
                           >
                             修改信息
                           </router-link>
-                        </el-dropdown-item>
+                        </el-dropdown-item> -->
                         <el-dropdown-item icon="el-icon-circle-plus-outline">
                           <router-link
                             style="text-decoration: none; color: #909399"
