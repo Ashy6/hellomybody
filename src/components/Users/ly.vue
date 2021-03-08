@@ -22,7 +22,19 @@
         <!-- <table></table> -->
         <!-- 留言板 -->
         <div class="liuyan">
-          <el-timeline prop="asktime" column-key="asktime" sortable>
+          <div class="radio">
+            排序：
+            <el-radio-group v-model="reverse">
+              <el-radio :label="true">倒序</el-radio>
+              <el-radio :label="false">正序</el-radio>
+            </el-radio-group>
+          </div>
+          <el-timeline
+            :reverse="reverse"
+            prop="asktime"
+            column-key="asktime"
+            sortable
+          >
             <!-- v-infinite-scroll="load" -->
             <el-timeline-item
               v-for="item in questionList"
@@ -140,6 +152,7 @@
 export default {
   data() {
     return {
+      reverse: true,
       options: [
         {
           label: "提问或者留言",
