@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="box1 container">
-      <h3>食品列表</h3>
       <!-- 顶部导航 面包屑 -->
       <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item :to="{ path: '/hellou' }">首页</el-breadcrumb-item>
@@ -119,7 +118,7 @@ export default {
 
 <style lang="less" scoped>
 div .el-breadcrumb {
-  margin-bottom: 15px;
+  margin: 15px;
   font-size: 18px;
 }
 .box1 {
