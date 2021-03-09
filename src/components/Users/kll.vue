@@ -33,7 +33,7 @@
         </el-row>
 
         <!-- 用户列表 -->
-        <el-table :data="foodList" border stripe>
+        <el-table :data="foodList" stripe>
           <!--  stripe隔行变色 -->
           <el-table-column type="index"></el-table-column>
           <!--  索引列 -->
