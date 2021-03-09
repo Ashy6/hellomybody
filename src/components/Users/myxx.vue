@@ -180,7 +180,7 @@
           <el-col :xs="24" :sm="8" :xl="8">
             <div
               class="shadow-lg p-3 mb-5 bg-white rounded"
-              style="background-color: pink; border: 1px solid red"
+              style="border: 1px solid red"
             >
               <el-row class="demo-avatar demo-basic">
                 <el-col :span="24">
@@ -268,7 +268,6 @@
           <el-col :xs="24" :sm="16" :xl="16">
             <div
               class="shadow-lg p-3 mb-5 bg-white rounded"
-              style="height: 200px"
             >
               <!-- tab切换 -->
               <el-tabs type="border-card">
@@ -295,7 +294,7 @@
                     <p>
                       {{
                         number2 > 1
-                          ? "共 " + (number2 - 1) + " 条记录"
+                          ? "共 " + (number2 - 1) + " 次记录"
                           : "去进行我的第一次体脂记录吧！ヾ(^▽^*))) "
                       }}
                     </p>
@@ -365,7 +364,7 @@
                     <p>
                       {{
                         number > 0
-                          ? "共 " + number + " 条记录"
+                          ? "共 " + number + " 次记录"
                           : "去进行我的第一次健康记录啦 ！（*＾ワ＾*）"
                       }}
                     </p>
@@ -459,12 +458,6 @@
                   </div>
                 </el-tab-pane>
               </el-tabs>
-              <el-row :gutter="3">
-                <el-col :xs="4" :sm="4"> </el-col>
-                <el-col :xs="20" :sm="20">
-                  <div></div>
-                </el-col>
-              </el-row>
             </div>
           </el-col>
         </el-row>
@@ -511,9 +504,6 @@ export default {
       number2: 0,
       // 个人信息
       a: "",
-      // 右开双抽屉
-      // drawer: false,
-      // innerDrawer: false,
       // 左抽屉
       table: false,
       loading: false,
