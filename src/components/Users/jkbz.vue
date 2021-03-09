@@ -466,9 +466,7 @@
                 </div>
                 <el-button slot="reference">OPEN ME</el-button>
               </el-popover>
-              <el-button
-                style="margin: 10px;"
-                @click="addUserBody()"
+              <el-button style="margin: 10px" @click="addUserBody()"
                 >记录一下</el-button
               >
             </div>
@@ -502,15 +500,15 @@
           type="text"
           style="margin: 20px; font-size: 18px"
         >
-          每日一记 - 身高体重
+          每日一记 -> 身高体重
         </el-button>
-        <el-button
+        <!-- <el-button
           class="pull-right"
           type="text"
           style="margin: 20px; font-size: 18px"
         >
           从我的信息中获取（查询我的数据）
-        </el-button>
+        </el-button> -->
         <router-link
           style="text-decoration: none; color: #909399"
           :router="true"
@@ -521,7 +519,7 @@
             type="text"
             style="margin: 20px; font-size: 18px"
           >
-            前往 『个人中心』
+            Go-> 『个人中心』
           </el-button>
         </router-link>
       </div>
@@ -595,6 +593,8 @@ export default {
         height: "",
         weight: "",
         target: "",
+        bmi: "",
+        bfat: "",
         timesss: "",
       },
       //  用户的表单验证规则
