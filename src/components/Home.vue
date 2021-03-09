@@ -51,6 +51,19 @@
                 <span>{{ it.title }}</span>
               </template>
             </el-menu-item>
+            <!-- [
+           {
+             id: 100,
+             path: "/admin",
+             sList: [
+               { id: 101, path: "/user", title: "用户列表" },
+               { id: 102, path: "/rights", title: "修改权限" },
+             ],
+             title: "用户管理",
+           },
+           {
+           }
+          ] -->
           </el-submenu>
           <!--                 
                 <el-menu-item index="3">
