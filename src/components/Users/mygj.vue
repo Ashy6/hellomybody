@@ -371,6 +371,7 @@ export default {
 .box1 {
   margin: -20px;
   background-color: #d4d4d4;
+  opacity:0.95;
 }
 /* 面包屑 */
 .el-breadcrumb {
