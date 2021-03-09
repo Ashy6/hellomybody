@@ -3,9 +3,8 @@
     <div class="container">
       <!-- 顶部导航 -->
       <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/hellou' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item>个人中心</el-breadcrumb-item>
-        <el-breadcrumb-item>我的信息</el-breadcrumb-item>
         <!-- <el-breadcrumb-item>修改信息</el-breadcrumb-item> -->
       </el-breadcrumb>
       <h3></h3>
@@ -198,6 +197,13 @@
                         ></el-avatar>
                         <br />{{ userInfo.username }}
                       </p>
+                      <p>
+                        {{
+                          userInfo.id
+                            ? "本系统第 " + userInfo.id + " 位客官"
+                            : ""
+                        }}
+                      </p>
                       <div style="border: 1px dashed red"></div>
                       <div>
                         <h5>
@@ -207,6 +213,9 @@
                             type="text"
                             >个人信息<i class="el-icon-view"></i
                           ></el-button>
+                          <span class="pull-right" style="margin: 15px">
+                            注册时间： {{ FirstTimeLogin.firstTime }}
+                          </span>
                         </h5>
                       </div>
                       <div style="border: 1px dashed red"></div>
@@ -261,6 +270,195 @@
               class="shadow-lg p-3 mb-5 bg-white rounded"
               style="height: 200px"
             >
+              <!-- tab切换 -->
+              <el-tabs type="border-card">
+                <!-- <el-tab-pane label="用户管理">用户管理</el-tab-pane>
+                <el-tab-pane label="配置管理">配置管理</el-tab-pane> -->
+                <el-tab-pane label="体脂记录">
+                  <router-link
+                    style="text-decoration: none; color: #909399"
+                    :router="true"
+                    to="/g02"
+                  >
+                    <el-button style="margin: 5px; font-size: 18px">
+                      去记录我的体脂
+                    </el-button>
+                  </router-link>
+                  <div class="block">
+                    <div class="radio">
+                      排序：
+                      <el-radio-group v-model="reverse">
+                        <el-radio :label="true">正序</el-radio>
+                        <el-radio :label="false">倒序</el-radio>
+                      </el-radio-group>
+                    </div>
+                    <p>
+                      {{
+                        number2 > 1
+                          ? "共 " + (number2 - 1) + " 条记录"
+                          : "去进行我的第一次体脂记录吧！ヾ(^▽^*))) "
+                      }}
+                    </p>
+                    <!-- 时间线 -->
+                    <el-timeline :reverse="reverse">
+                      <el-timeline-item
+                        v-for="(info, index) in userInfoList"
+                        :key="index"
+                        :timestamp="info.timesss"
+                      >
+                        <h4 style="color: #67c23a">
+                          {{
+                            info.weight || info.bmi || info.bfat
+                              ? "体脂记录："
+                              : ""
+                          }}
+                        </h4>
+                        <h4 style="color: #f56c6c">
+                          {{
+                            info.weight || info.bmi || info.bfat
+                              ? ""
+                              : "录入了空数据 （录了个寂寞 o(*≧д≦)o!!） -- 建议删除没用的空数据"
+                          }}
+                        </h4>
+                        <h5>
+                          {{
+                            info.weight
+                              ? "更新体重：" + info.weight + "kg ;"
+                              : ""
+                          }}
+                          {{ info.bmi ? "BMI的值为：" + info.bmi + ";" : "" }}
+                          {{
+                            info.bfat ? "体脂率为：" + info.bfat + "% ;" : ""
+                          }}
+                          <!-- 删除 -->
+                          <el-button
+                            class="pull-right"
+                            type="text"
+                            icon="el-icon-delete"
+                            size="mini"
+                            @click="deleteInfo(info.id)"
+                            >删除本条记录
+                          </el-button>
+                        </h5>
+                      </el-timeline-item>
+                    </el-timeline>
+                  </div>
+                </el-tab-pane>
+                <el-tab-pane label="健康记录">
+                  <router-link
+                    style="text-decoration: none; color: #909399"
+                    :router="true"
+                    to="/jkbz"
+                  >
+                    <el-button type="" style="margin: 5px; font-size: 18px">
+                      去记录我的信息
+                    </el-button>
+                  </router-link>
+                  <div class="block">
+                    <div class="radio">
+                      排序：
+                      <el-radio-group v-model="reverse">
+                        <el-radio :label="true">正序</el-radio>
+                        <el-radio :label="false">倒序</el-radio>
+                      </el-radio-group>
+                    </div>
+                    <p>
+                      {{
+                        number > 0
+                          ? "共 " + number + " 条记录"
+                          : "去进行我的第一次健康记录啦 ！（*＾ワ＾*）"
+                      }}
+                    </p>
+                    <!-- 时间线 -->
+                    <el-timeline :reverse="reverse">
+                      <el-timeline-item
+                        v-for="(body, index) in userBodyList"
+                        :key="index"
+                        :timestamp="body.times"
+                      >
+                        <h4 style="color: #67c23a">
+                          {{
+                            body.vital ||
+                            body.vision ||
+                            body.temperature ||
+                            body.heart ||
+                            body.legspeed ||
+                            body.pblood ||
+                            body.fblood ||
+                            body.gblood ||
+                            body.chest ||
+                            body.waistline ||
+                            body.hipline ||
+                            body.tooth ||
+                            body.grip
+                              ? "记录健康信息："
+                              : ""
+                          }}
+                        </h4>
+                        <h4 style="color: #f56c6c">
+                          {{
+                            body.vital ||
+                            body.vision ||
+                            body.temperature ||
+                            body.heart ||
+                            body.legspeed ||
+                            body.pblood ||
+                            body.fblood ||
+                            body.gblood ||
+                            body.chest ||
+                            body.waistline ||
+                            body.hipline ||
+                            body.tooth ||
+                            body.grip
+                              ? ""
+                              : "录入了空数据 （录了个寂寞 o(*≧д≦)o!!） -- 建议删除没用的空数据"
+                          }}
+                        </h4>
+                        <p>
+                          {{ body.vital ? "肺活量：" + body.vital + ";" : "" }}
+                          {{
+                            body.vision ? "视力值：" + body.vision + ";" : ""
+                          }}
+                          {{
+                            body.temperature
+                              ? "体温：" + body.temperature + ";"
+                              : ""
+                          }}
+                          {{ body.heart ? "心率：" + body.heart + ";" : "" }}
+                          {{
+                            body.legspeed ? "步速：" + body.legspeed + ";" : ""
+                          }}
+                          {{ body.pblood ? "血压：" + body.pblood + ";" : "" }}
+                          {{ body.fblood ? "血脂：" + body.fblood + ";" : "" }}
+                          {{ body.gblood ? "血糖：" + body.gblood + ";" : "" }}
+                          {{ body.chest ? "胸围：" + body.chest + ";" : "" }}
+                          {{
+                            body.waistline
+                              ? "腰围：" + body.waistline + ";"
+                              : ""
+                          }}
+                          {{
+                            body.hipline ? "臀围：" + body.hipline + ";" : ""
+                          }}
+                          {{
+                            body.tooth ? "牙齿数量：" + body.tooth + ";" : ""
+                          }}
+                          {{ body.grip ? "握力指数：" + body.grip + ";" : "" }}
+                          <!-- 删除 -->
+                          <el-button
+                            class="pull-right"
+                            type="text"
+                            icon="el-icon-delete"
+                            size="mini"
+                            @click="deleteBody(body.id)"
+                            >删除本条记录
+                          </el-button>
+                        </p>
+                      </el-timeline-item>
+                    </el-timeline>
+                  </div>
+                </el-tab-pane>
+              </el-tabs>
               <el-row :gutter="3">
                 <el-col :xs="4" :sm="4"> </el-col>
                 <el-col :xs="20" :sm="20">
@@ -272,7 +470,7 @@
         </el-row>
       </div>
     </div>
-    {{ userInfo }}
+    <!-- {{ userInfo }} -->
   </div>
 </template>
 
@@ -284,9 +482,11 @@ export default {
     // if (this.userInfo.birthday == null) {
     //   this.userInfo.birthday = "2000-01-01";
     // }
+    this.findFirstTimeLogin();
     this.getUserInfo();
+    this.getUserBodyList();
+    this.getUserInfoList();
     // 获取用户列表
-    this.getUserList();
   },
   computed: {
     // 标注返回值  否则watch会导致data定义数据时，类型消失
@@ -296,6 +496,20 @@ export default {
   },
   data() {
     return {
+      // 时间线
+      reverse: true,
+      // 用户记录
+      userBodyList: [],
+      userInfoList: [],
+      queryInfo: {
+        username: "",
+        query: "", //  查询信息  模糊查询的内容
+        pageNum: 1, //  当前页
+        pageSize: 10, //  每页最大数
+      },
+      number: 0, //  初始的最大值为 0
+      number2: 0,
+      // 个人信息
       a: "",
       // 右开双抽屉
       // drawer: false,
@@ -308,6 +522,7 @@ export default {
       timer: null,
       //侧边用户基本信息表单
       userInfo: {
+        id: "",
         username: "",
         sex: "",
         birthday: "",
@@ -315,7 +530,12 @@ export default {
         height: "",
         weight: "",
         target: "",
+        bmi: "",
+        bfat: "",
         timesss: "",
+      },
+      FirstTimeLogin: {
+        firstTime: "",
       },
       rules: {
         name: [
@@ -360,7 +580,25 @@ export default {
     };
   },
   methods: {
-    // 显示影藏密码
+    // 用户历史信息查询
+    async getUserBodyList() {
+      let username = window.sessionStorage.getItem("user");
+      const { data: res } = await this.$http.get(
+        "findBodyList?username=" + username
+      );
+      this.userBodyList = res.data;
+      this.number = res.numbers; // 总个数
+    },
+    // 用户历史体脂查询
+    async getUserInfoList() {
+      let username = window.sessionStorage.getItem("user");
+      const { data: res } = await this.$http.get(
+        "findInfoList?username=" + username
+      );
+      this.userInfoList = res.data;
+      this.number2 = res.numbers;
+    },
+    // 显示隐藏密码
     async show(username) {
       // 进行一次查询操作
       this.a = "1";
@@ -369,13 +607,13 @@ export default {
         "getUpdateUser?username=" + username
       );
       this.editForm = res; // 封装editForm{}
-      console.log("执行了show方法");
+      // console.log("执行了show方法");
     },
     hide() {
       this.a = "2";
       this.editForm.email = "";
       this.editForm.password = "";
-      console.log("执行了hide方法");
+      // console.log("执行了hide方法");
     },
     // 右边抽屉的方法
     handleClose(done) {
@@ -426,7 +664,7 @@ export default {
         if (this.loading) {
           return;
         }
-        this.$confirm("确定更新您的基本信息吗？")
+        this.$confirm("您确定 更新您的基本信息吗？")
           .then((_) => {
             this.loading = true;
             this.timer = setTimeout(() => {
@@ -459,13 +697,13 @@ export default {
     // resetuserInfo() {
     //   this.$refs.userInfoRef.resetFields();
     // },
-    // 查询用户
-    async getUserList() {
-      const { data: res } = await this.$http.get("allUser", {
-        params: this.queryInfo,
-      });
-      this.userList = res.data; // 将返回数据赋值  到 userList  用户数据封装
-      this.number = res.numbers; // 总个数
+    // 查询用户注册的时间
+    async findFirstTimeLogin() {
+      let username = window.sessionStorage.getItem("user");
+      const { data: re } = await this.$http.get(
+        "findFirstTimeLogin?username=" + username
+      );
+      this.FirstTimeLogin = re; // 数据封装
     },
     // 查询用户信息
     async getUserInfo() {
@@ -473,8 +711,7 @@ export default {
       const { data: res } = await this.$http.get(
         "findUserInfo?username=" + username
       );
-      this.userInfo = res; // 将返回数据赋值  到 userInfo  用户数据封装
-      // console.log(res);
+      this.userInfo = res; // 数据封装
     },
     // 修改用户
     async showEditDialog(username) {
@@ -505,10 +742,6 @@ export default {
     },
     // 删除用户
     async deleteUser() {
-      // this.$alert("小主要三思啊 (  ･᷄ὢ･᷅) ！", "警告", {
-      //   confirmButtonText: "确定",
-      //   type: "error",
-      // });
       const confirmResult = await this.$confirm(
         "小主，注销账户是不可逆操作！可以取消吗(´-﹏-`；) ？",
         "住手 ！",
@@ -522,22 +755,24 @@ export default {
       if (confirmResult != "confirm") {
         return this.$message.info("已取消！");
       }
-      //  else {
-      //   this.$alert("小主要三思啊 (  ･᷄ὢ･᷅) ！", "警告", {
-      //     confirmButtonText: "确定",
-      //     type: "error",
-      //   });
-      // }
-      // let username = this.userInfo.username;
-      let username = window.sessionStorage.getItem("user");
-      // console.log(username);
-      //删除的方法
-      const { data: res } = await this.$http.delete(
-        "deleteUsername?username=" + username
+      var state,
+        username = window.sessionStorage.getItem("user");
+      const { data: res } = await this.$http.put(
+        `userStatename?username=${username}&state=${(state = false)}`
       );
       if (res != "success") {
-        return this.$message.error("删除失败！");
+        userInfo.username = !userInfo.username;
+        return this.$message.error("删除失败！！！");
       }
+      this.$message.info("账户已注销！！！");
+      //真正的---删除的方法（已实现）
+      // const { data: res } = await this.$http.delete(
+      //   "deleteUsername?username=" + username
+      // );
+      // if (res != "success") {
+      //   return this.$message.error("删除失败！");
+      // }
+      // 假删除---修改用户的状态
       this.$message.success("青山不改，绿水长流，咱们有缘再见！");
       // 清除session,回到首页   清除token
       window.sessionStorage.clear();
@@ -545,37 +780,48 @@ export default {
       // 导航到首页
       this.$router.push("/login");
     },
-    // deleteUsername() {
-    //   // 删除信息封装到result中   提示信息
-    //   this.$confirm("用户注销后不可恢复！", "提示", {
-    //     confirmButtonText: "确定",
-    //     cancelButtonText: "取消",
-    //     type: "warning",
-    //   }).catch((err) => err);
-    //   // 取消删除
-    //   if (confirmResult != "confirm") {
-    //     return this.$message.info("已取消！");
-    //   }
-    //   // this.$confirm("小主要三思啊 (  ･᷄ὢ･᷅) ！", "警告", {
-    //   //   confirmButtonText: "确定",
-    //   //   cancelButtonText: "取消",
-    //   //   type: "error",
-    //   // }).catch((err) => err);
-    //   // //*2
-    //   // if (confirmResult != "confirm") {
-    //   //   return this.$message.info("已取消！");
-    //   // }
-    //   // this.$confirm(
-    //   //   "既然我们终将不能在一起，那也许防守也是一种解脱  ~ ~",
-    //   //   "那好吧",
-    //   //   {
-    //   //     confirmButtonText: "再见 (*• . •*)",
-    //   //     cancelButtonText: "不要！！",
-    //   //     type: "error",
-    //   //   }
-    //   // ).catch((err) => err);
-    //   this.deleteUser();
-    // },
+    // 用户删除记录
+    async deleteBody(id) {
+      const confirmResult = await this.$confirm(
+        "确定要删除本条记录吗？  Σ┗(＠ロ＠;)┛",
+        "删除提示",
+        {
+          confirmButtonText: "Yes,sir!",
+          cancelButtonText: "No,stop!",
+        }
+      ).catch((err) => err);
+      // 取消删除
+      if (confirmResult != "confirm") {
+        return this.$message.info("已取消！");
+      }
+      const { data: res } = await this.$http.delete("deleteRecord?id=" + id);
+      if (res != "success") {
+        return this.$message.error("删除失败！");
+      }
+      this.$message.success("删除成功！");
+      this.getUserBodyList();
+    },
+    // 删除体脂记录
+    async deleteInfo(id) {
+      const confirmResult = await this.$confirm(
+        "确定要删除本条记录吗？  Σ┗(＠ロ＠;)┛",
+        "删除提示",
+        {
+          confirmButtonText: "Yes,sir!",
+          cancelButtonText: "No,stop!",
+        }
+      ).catch((err) => err);
+      // 取消删除
+      if (confirmResult != "confirm") {
+        return this.$message.info("已取消！");
+      }
+      const { data: res } = await this.$http.delete("deleteInfo?id=" + id);
+      if (res != "success") {
+        return this.$message.error("删除失败！");
+      }
+      this.$message.success("删除成功！");
+      this.getUserInfoList();
+    },
   },
   watch: {
     "userInfo.birthday": {
