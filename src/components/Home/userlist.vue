@@ -33,7 +33,6 @@
           </el-button>
         </el-col>
       </el-row>
-
       <!-- 用户列表 -->
       <el-table :data="userList" border stripe>
         <!--  stripe隔行变色 -->
@@ -60,21 +59,34 @@
         <!--  索引列 -->
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <!-- 修改 -->
-            <el-button
-              type="primary"
-              icon="el-icon-edit"
-              size="mini"
-              @click="showEditDialog(scope.row.id)"
-            ></el-button>
-            <!-- 删除 -->
-            <el-button
+            <el-tooltip
+              effect="dark"
+              content="修改用户"
+              placement="top-start"
+              :enterable="false"
+            >
+              <!-- 修改 -->
+              <el-button
+                type="primary"
+                icon="el-icon-edit"
+                size="mini"
+                @click="showEditDialog(scope.row.id)"
+              ></el-button>
+            </el-tooltip>
+            <el-tooltip
+              effect="dark"
               content="删除用户"
-              type="danger"
-              icon="el-icon-delete"
-              size="mini"
-              @click="deleteUser(scope.row.id)"
-            ></el-button>
+              placement="top-start"
+              :enterable="false"
+            >
+              <!-- 删除 -->
+              <el-button
+                type="danger"
+                icon="el-icon-delete"
+                size="mini"
+                @click="deleteUser(scope.row.id)"
+              ></el-button>
+            </el-tooltip>
             <!-- 权限 -->
             <el-tooltip
               effect="dark"
@@ -118,7 +130,12 @@
       width="50%"
       @close="addDialogClosed"
     >
-      <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="70px">
+      <el-form
+        :model="addForm"
+        :rules="addFormRules"
+        ref="addFormRef"
+        label-width="70px"
+      >
         <!-- 用户名 -->
         <el-form-item label="用户名" prop="username">
           <el-input v-model="addForm.username"></el-input>
@@ -291,7 +308,7 @@ export default {
         if (!valid) return;
         // 提交结果
         const { data: res } = await this.$http.post("addUser", this.addForm);
-        const { data: ss } = await this.$http.post("addUserInfo", this.addForm);
+        const { data: ss } = await this.$http.post("addUserInfoName", this.addForm);
         if (res != "success") {
           return this.$message.error("添加失败！！");
         }
