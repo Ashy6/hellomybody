@@ -32,7 +32,7 @@ import cpsm from '../components/Users/cpsm.vue'
 import cpjf from '../components/Users/cpjf.vue'
 import cpcd from '../components/Users/cpcd.vue'
 import cpmyl from '../components/Users/cpmyl.vue'
-import fxjk from '../components/Users/fxjk.vue'
+import jkbz from '../components/Users/jkbz.vue'
 import kpwz from '../components/Users/kpwz.vue'
 import a123 from '../components/Users/a123.vue'
 import myxx from '../components/Users/myxx.vue'
@@ -115,7 +115,7 @@ const routes = [
       { path: "/cpjf", component: cpjf, },
       { path: "/cpcd", component: cpcd, },
       { path: "/cpmyl", component: cpmyl, },
-      { path: "/fxjk", component: fxjk, },
+      { path: "/jkbz", component: jkbz, },
       { path: "/kpwz", component: kpwz, },
       { path: "/a123", component: a123, },
       // 个人
