@@ -93,14 +93,33 @@
             </el-radio-group>
           </el-form-item>
           <el-form-item class="btns">
-            <el-button type="info" round plain @click="resetForm('body')"
-              >重置输入</el-button
-            >
             <el-button round @click="getWeight">体重分析</el-button>
             <el-button round @click="getBody">体脂分析</el-button>
           </el-form-item>
+          <el-form-item class="btns">
+            <el-button type="info" round plain @click="resetForm('body')"
+              >重置输入
+            </el-button>
+            <el-button @click="addbody()">记录一下</el-button>
+            <router-link
+              style="text-decoration: none"
+              :router="true"
+              to="/myxx"
+            >
+              <el-button
+                class="pull-right"
+                type="text"
+                style="margin: 5px; font-size: 18px"
+              >
+                Go-> 『个人中心』
+              </el-button>
+            </router-link>
+          </el-form-item>
           <!-- 按钮 -->
         </el-form>
+        <!-- 因为要提交的表单是 userInfo 而不是 body
+        所以这里做一个 假验证 -->
+        <el-form ref="userInfoRef" :model="userInfo"> </el-form>
       </div>
       <div class="right shadow-lg p-3 mb-5 bg-white rounded">
         <h2>标准体重的计算：</h2>
@@ -214,8 +233,25 @@
 
 <script>
 export default {
+  created() {
+    this.userInfo.username = window.sessionStorage.getItem("user");
+    // 打开界面实现查询用户信息功能
+    this.getUserInfoMessage();
+  },
   data() {
     return {
+      userInfo: {
+        username: "",
+        sex: "",
+        birthday: "",
+        ages: "",
+        height: "",
+        weight: "",
+        target: "",
+        bmi: "",
+        bfat: "",
+        timesss: "",
+      },
       body: {
         stature: "",
         weight: "",
@@ -321,7 +357,6 @@ export default {
       },
     };
   },
-  created() {},
   computed: {
     value5: {
       get: function () {
@@ -355,6 +390,69 @@ export default {
     },
   },
   methods: {
+    // 查询用户信息
+    async getUserInfoMessage() {
+      let username = window.sessionStorage.getItem("user");
+      const { data: res } = await this.$http.get(
+        "findUserInfo?username=" + username
+      );
+      this.userInfo = res; // 将返回数据赋值  到 userInfo  用户数据封装
+    },
+    // 记录数据
+    addbody() {
+      const nowDate = new Date();
+      const date = {
+        year: nowDate.getFullYear(),
+        month: nowDate.getMonth() + 1,
+        date: nowDate.getDate(),
+        hour: nowDate.getHours(),
+        minute: nowDate.getMinutes(),
+        second: nowDate.getSeconds(),
+      };
+      const newmonth = date.month > 9 ? date.month : "0" + date.month;
+      const day = date.date > 9 ? date.date : "0" + date.date;
+      const h = date.hour > 9 ? date.hour : "0" + date.hour;
+      const m = date.minute > 9 ? date.minute : "0" + date.minute;
+      const s = date.second > 9 ? date.second : "0" + date.second;
+      this.userInfo.timesss =
+        date.year + "-" + newmonth + "-" + day + " " + h + ":" + m + ":" + s;
+      this.userInfo.height = this.body.stature;
+      this.userInfo.weight = this.body.weight;
+      // bmi值与体脂率，计算所得
+      this.userInfo.bmi = (
+        this.body.weight /
+        ((this.body.stature / 100).toFixed(3) *
+          (this.body.stature / 100).toFixed(3))
+      ).toFixed(3);
+      this.userInfo.bfat = (
+        1.2 *
+          (
+            this.body.weight /
+            ((this.body.stature / 100).toFixed(3) *
+              (this.body.stature / 100).toFixed(3))
+          ).toFixed(3) +
+        0.23 * this.body.personage -
+        5.4 -
+        10.8 * this.body.personsex
+      ).toFixed(3);
+      this.$refs.body.validate(async (valid) => {
+        // 验证
+        if (!valid) return;
+        // 提交结果
+        const { data: res } = await this.$http.post(
+          "addUserInfo",
+          this.userInfo
+        );
+        console.log(this.userInfo);
+        if (res != "success") {
+          // console.log(that.form);
+          console.log(res);
+          return this.$message.error("添加失败！！");
+        }
+        this.$message.success("记录成功！！");
+        // console.log("添加成功！！");
+      });
+    },
     // 滑块格式化值
     formatTooltip(val) {
       return this.a < 1 ? val : (this.a * val).toFixed(3);
@@ -513,6 +611,9 @@ export default {
     max-width: 300px;
     display: inline-block;
   }
+  .btns {
+    margin: 5px;
+  }
 }
 .right {
   box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1);
@@ -540,7 +641,7 @@ export default {
     line-height: 30px;
   }
   .block {
-  border-radius: 15px 55px ;
+    border-radius: 15px 55px;
   }
 }
 </style>
