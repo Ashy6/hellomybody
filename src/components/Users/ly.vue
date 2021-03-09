@@ -1,23 +1,26 @@
 <template>
   <div>
     <div class="container">
-      <h1>留言板</h1>
-      <!-- 顶部导航 -->
-      <el-breadcrumb
-        separator-class="el-icon-arrow-right"
-        style="padding: 30px"
-      >
-        <el-breadcrumb-item :to="{ path: '/hellou' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>用户社区</el-breadcrumb-item>
-        <el-breadcrumb-item>留言板</el-breadcrumb-item>
-      </el-breadcrumb>
-      <p style="font-size: 16px">
-        感谢您的使用，如果您有什么问题想法建议或者意见都可以在此处留言
-      </p>
+      <div class="boxly">
+        <!-- 顶部导航 -->
+        <el-breadcrumb
+          separator-class="el-icon-arrow-right"
+          style="padding-top: 30px"
+        >
+          <el-breadcrumb-item :to="{ path: '/hellou' }"
+            >首页</el-breadcrumb-item
+          >
+          <el-breadcrumb-item>留言板</el-breadcrumb-item>
+        </el-breadcrumb>
+      </div>
       <div class="block">
         <el-button type="primary" @click="addDialogVisible = true">
           提问/留言
         </el-button>
+        <span align="center" style="font-size: 16px; display:block">
+          感谢您的使用，如果您有什么问题想法建议或者意见都可以在此处留言
+        </span>
+
         <!-- {{ questionList }} -->
         <!-- <table></table> -->
         <!-- 留言板 -->
@@ -25,8 +28,8 @@
           <div class="radio">
             排序：
             <el-radio-group v-model="reverse">
-              <el-radio :label="true">倒序</el-radio>
-              <el-radio :label="false">正序</el-radio>
+              <el-radio :label="true">正序</el-radio>
+              <el-radio :label="false">倒序</el-radio>
             </el-radio-group>
           </div>
           <el-timeline
@@ -76,6 +79,30 @@
                   <p class="vote_down">
                     被 <span>{{ item.vote_down }}</span> 踩
                   </p>
+                </h5>
+              </el-card>
+            </el-timeline-item>
+            <el-timeline-item timestamp="2077-13-14 00:00:00" placement="top">
+              <el-card class="cards infinite-list-item">
+                <h4>
+                  来自 <span> 开发者 </span> 的留言：
+                  <span class="pull-right"></span>
+                </h4>
+                <p class="title">
+                  内容：<span class="pull-right">分类：置顶消息</span>
+                </p>
+                <h1 type="textarea" align="center">
+                  富强、民主、文明、和谐、自由、平等、公正、法治，爱国、敬业、诚信、友善
+                </h1>
+                <h5>
+                  <el-button
+                    type="success"
+                    icon="el-icon-loading"
+                    size="mini"
+                    @click="hhh()"
+                  ></el-button>
+                  <p class="vote_up">获得 <span>9999+</span> 赞</p>
+                  <p class="vote_down">被 <span>0</span> 踩</p>
                 </h5>
               </el-card>
             </el-timeline-item>
@@ -322,11 +349,27 @@ export default {
         });
       }
     },
+    hhh() {
+      this.$notify({
+        title: "欢迎使用",
+        message: "小可爱，您有任何建议都可以留言，，，，",
+        type: "success",
+        center: true,
+        offset: 200,
+      });
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.block,
+.boxly {
+  background-color: lemonchiffon;
+  padding: 15px;
+  opacity: 0.98;
+  border-radius: 5px;
+}
 /* 面包屑 */
 .el-breadcrumb {
   font-size: 18px;
