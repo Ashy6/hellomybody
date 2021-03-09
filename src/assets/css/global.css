@@ -1,16 +1,36 @@
 /* 全局样式设置 */
-HTML,body,#app{
+HTML,
+body,
+#app {
     height: 100%;
     margin: 0;
-    padding: 50;
+    /* padding: 50; */
 }
+
 /* 主体区域  !important 提高样式级别 */
-.el-card{
+.el-card {
     box-shadow: 0 1px 1px rgba(185, 28, 22, 0.15) !important;
 }
+
 @import url("//unpkg.com/element-ui@2.14.1/lib/theme-chalk/index.css");
+
 /* 表格样式 */
-.el-table{
+.el-table {
     margin-top: 15px;
     margin-bottom: 10px;
 }
+
+/* 链接样式 */
+.router-link {
+    text-decoration: none;
+}
+
+/* 面包屑 */
+.el-breadcrumb {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+/* 
+a:hover {
+    text-decoration: none;
+} */
