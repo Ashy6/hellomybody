@@ -199,9 +199,7 @@
                       </p>
                       <p>
                         {{
-                          userInfo.id
-                            ? "本系统第 " + userInfo.id + " 位客官"
-                            : ""
+                          userInfo.id ? "本系统第 " + user.id + " 位客官" : ""
                         }}
                       </p>
                       <div style="border: 1px dashed red"></div>
@@ -266,9 +264,7 @@
             </div>
           </el-col>
           <el-col :xs="24" :sm="16" :xl="16">
-            <div
-              class="shadow-lg p-3 mb-5 bg-white rounded"
-            >
+            <div class="shadow-lg p-3 mb-5 bg-white rounded">
               <!-- tab切换 -->
               <el-tabs type="border-card">
                 <!-- <el-tab-pane label="用户管理">用户管理</el-tab-pane>
@@ -475,6 +471,7 @@ export default {
     // if (this.userInfo.birthday == null) {
     //   this.userInfo.birthday = "2000-01-01";
     // }
+    this.getUserID();
     this.findFirstTimeLogin();
     this.getUserInfo();
     this.getUserBodyList();
@@ -511,6 +508,7 @@ export default {
       formLabelWidth: "80px",
       timer: null,
       //侧边用户基本信息表单
+      user: { id: "" },
       userInfo: {
         id: "",
         username: "",
@@ -694,6 +692,14 @@ export default {
         "findFirstTimeLogin?username=" + username
       );
       this.FirstTimeLogin = re; // 数据封装
+    },
+    // 查询用户ID
+    async getUserID() {
+      let username = window.sessionStorage.getItem("user");
+      const { data: res } = await this.$http.get(
+        "findUserID?username=" + username
+      );
+      this.user = res; // 数据封装
     },
     // 查询用户信息
     async getUserInfo() {
