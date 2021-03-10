@@ -49,7 +49,7 @@
                         <p>1.输入您的体重千克数；</p>
                         <p>2.填写对应的活动分钟；</p>
                         <p>3.点击计算每日消耗量。</p>
-                        <p><img src="../../assets/image/kul1.gif" alt="" /></p>
+                        <p><img src="../../../assets/image/kul1.gif" alt="" /></p>
                       </div>
                     </el-col>
                   </el-row>

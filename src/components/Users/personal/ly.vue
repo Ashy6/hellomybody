@@ -7,7 +7,7 @@
           separator-class="el-icon-arrow-right"
           style="padding-top: 30px"
         >
-          <el-breadcrumb-item :to="{ path: '/hellou' }"
+          <el-breadcrumb-item :to="{ path: '/welcome' }"
             >首页</el-breadcrumb-item
           >
           <el-breadcrumb-item>留言板</el-breadcrumb-item>

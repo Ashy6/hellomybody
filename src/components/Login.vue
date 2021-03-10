@@ -1,111 +1,161 @@
 <template>
-  <div class="login_container">
-    <!-- 登录块 -->
-    <div class="login_box">
-      <!-- login -->
-      <div class="avatar_box">
-        <img src="../assets/img/login_run.jpg" />
-      </div>
-      <!-- 表单区域 -->
-      <el-form
-        ref="loginFormRef"
-        :rules="loginRules"
-        :model="loginForm"
-        class="login_form"
-        label-width="80px"
-      >
-        <!-- 用户名 -->
-        <el-form-item prop="username">
-          <el-input
-            v-model="loginForm.username"
-            prefix-icon="iconfont icon-denglu1"
-            clearable
-          ></el-input>
-        </el-form-item>
-        <!-- 密码 -->
-        <el-form-item prop="password">
-          <el-input
-            v-model="loginForm.password"
-            prefix-icon="iconfont icon-mima1"
-            type="password"
-            show-password
-            clearable
-          ></el-input>
-        </el-form-item>
-        <!-- 按钮 -->
-        <el-form-item class="btns">
-          <el-button type="primary" round plain @click="login()"
-            >登录</el-button
-          >
-          <!-- 注册界面 -->
-          <el-button type="primary" round plain @click="addDialogVisible = true"
-            >注册
-            <!-- <router-link :to="{ path: 'src/components/Users/register.vue'}" >注册</router-link> -->
-            <!-- <router-link tag='span' to="#" @click.native="handleEditPassword">
+  <!-- <div> -->
+    <div class="login_container">
+      <!-- 登录块 -->
+      <div class="login_box">
+        <!-- login -->
+        <div class="avatar_box">
+          <img src="../assets/img/login_run.jpg" />
+        </div>
+        <!-- 表单区域 -->
+        <el-form
+          ref="loginFormRef"
+          :rules="loginRules"
+          :model="loginForm"
+          class="login_form"
+          label-width="80px"
+        >
+          <!-- 用户名 -->
+          <el-form-item prop="username">
+            <el-input
+              v-model="loginForm.username"
+              prefix-icon="iconfont icon-denglu1"
+              clearable
+            ></el-input>
+          </el-form-item>
+          <!-- 密码 -->
+          <el-form-item prop="password">
+            <el-input
+              v-model="loginForm.password"
+              prefix-icon="iconfont icon-mima1"
+              type="password"
+              show-password
+              clearable
+            ></el-input>
+          </el-form-item>
+          <!-- 按钮 -->
+          <el-form-item class="btns">
+            <el-button type="primary" round plain @click="login()"
+              >登录</el-button
+            >
+            <!-- 注册界面 -->
+            <el-button
+              type="primary"
+              round
+              plain
+              @click="addDialogVisible = true"
+              >注册
+              <!-- <router-link :to="{ path: 'src/components/Users/register.vue'}" >注册</router-link> -->
+              <!-- <router-link tag='span' to="#" @click.native="handleEditPassword">
                             <span class="a-inner"> 注册</span>
                         </router-link> -->
-          </el-button>
-          <el-button type="info" round plain @click="resetLoginForm()"
-            >重置</el-button
-          >
-          <!--  @click实现调用方法 -->
-        </el-form-item>
-      </el-form>
-    </div>
-    <!-- 新增用户区域 -->
-    <el-dialog
-      title="用户注册"
-      :visible.sync="addDialogVisible"
-      width="50%"
-      @close="addDialogClosed"
-    >
-      <el-form
-        :model="addForm"
-        :rules="addFormRules"
-        ref="addFormRef"
-        label-width="70px"
+            </el-button>
+            <el-button type="info" round plain @click="resetLoginForm()"
+              >重置</el-button
+            >
+            <!--  @click实现调用方法 -->
+          </el-form-item>
+        </el-form>
+      </div>
+      <!-- 新增用户区域 -->
+      <el-dialog
+        style="border"
+        title="用户注册"
+        :visible.sync="addDialogVisible"
+        width="45%"
+        @close="addDialogClosed"
       >
-        <!-- 用户名 -->
-        <el-form-item label="用户名" prop="username">
-          <el-input clearable v-model="addForm.username"></el-input>
-        </el-form-item>
-        <!-- 密码 -->
-        <el-form-item label="密码" prop="password">
-          <el-input
-            clearable
-            type="password"
-            show-password
-            v-model="addForm.password"
-            autocomplete="off"
-          >
-          </el-input>
-          <!-- autocomplete="off" off浏览器将不提示记住密码-->
-        </el-form-item>
-        <!-- 确认 密码 -->
-        <el-form-item label="确认密码" prop="checkPass">
-          <el-input
-            type="password"
-            v-model="addForm.checkPass"
-            autocomplete="off"
-            show-password
-            clearable
-          ></el-input>
-        </el-form-item>
-        <!-- 邮箱 -->
-        <el-form-item label="邮箱" prop="email">
-          <el-input clearable v-model="addForm.email"></el-input>
-        </el-form-item>
-      </el-form>
-      <span slot="footer" class="dislog-footer">
-        <el-button @click="addDialogVisible = false">取消</el-button>
-        <el-button @click="addUser" type="primary">确定</el-button>
-      </span>
-    </el-dialog>
-  </div>
+        <el-form
+          :model="addForm"
+          :rules="addFormRules"
+          ref="addFormRef"
+          label-width="70px"
+        >
+          <!-- 用户名 -->
+          <el-form-item label="用户名" prop="username">
+            <el-input clearable v-model="addForm.username"></el-input>
+          </el-form-item>
+          <!-- 密码 -->
+          <el-form-item label="密码" prop="password">
+            <el-input
+              clearable
+              type="password"
+              show-password
+              v-model="addForm.password"
+              autocomplete="off"
+            >
+            </el-input>
+            <!-- autocomplete="off" off浏览器将不提示记住密码-->
+          </el-form-item>
+          <!-- 确认 密码 -->
+          <el-form-item label="确认密码" prop="checkPass">
+            <el-input
+              type="password"
+              v-model="addForm.checkPass"
+              autocomplete="off"
+              show-password
+              clearable
+            ></el-input>
+          </el-form-item>
+          <!-- 邮箱 -->
+          <el-form-item label="邮箱" prop="email">
+            <el-input clearable v-model="addForm.email"></el-input>
+          </el-form-item>
+        </el-form>
+        <span slot="footer" class="dislog-footer">
+          <el-button @click="addDialogVisible = false">取消</el-button>
+          <el-button @click="addUser" type="primary">确定</el-button>
+        </span>
+      </el-dialog>
+    </div>
+    <!-- <div>
+      <div id="slideshow">
+        <img
+          src="https://www.jsdaima.com/Uploads/js/201708/1501816443/images/image1.jpg"
+          alt="Slideshow Image 1"
+          class="active"
+        />
+        <img
+          src="https://www.jsdaima.com/Uploads/js/201708/1501816443/images/image2.jpg"
+          alt="Slideshow Image 2"
+        />
+        <img
+          src="https://www.jsdaima.com/Uploads/js/201708/1501816443/images/image3.jpg"
+          alt="Slideshow Image 3"
+        />
+        <img
+          src="https://www.jsdaima.com/Uploads/js/201708/1501816443/images/image1.jpg"
+          alt="Slideshow Image 4"
+        />
+        <img
+          src="https://www.jsdaima.com/Uploads/js/201708/1501816443/images/image2.jpg"
+          alt="Slideshow Image 5"
+        />
+      </div>
+    </div> -->
+  <!-- </div> -->
 </template>
+
+<script type="text/javascript" src="js/jquery-1.2.6.min.js"></script>
 <script>
 // 绑定数据
+
+// setTimeout(function () {
+//   alert("Hello");
+// }, 3000);
+// setTimeout(function () {
+//   setInterval(slideSwitch(), 2000);
+// }, 1000);
+
 export default {
+  created() {
+    // this.slideSwitch = this.slideSwitch;
+    // setInterval("slideSwitch()", 2000);
+    // this.slideSwitch().setInterval("", 2000);
+    // $(function () {
+    //   setInterval("slideSwitch()", 2000);
+    // });
+  },
   data() {
     // 注册规则
     var validatePass = (rule, value, callback) => {
@@ -187,6 +237,25 @@ export default {
   },
   //实现方法
   methods: {
+    // slideSwitch() {
+    //   var $active = $("#slideshow IMG.active");
+    //   if ($active.length == 0) $active = $("#slideshow IMG:last");
+    //   // use this to pull the images in the order they appear in the markup
+    //   var $next = $active.next().length
+    //     ? $active.next()
+    //     : $("#slideshow IMG:first");
+    //   // uncomment the 3 lines below to pull the images in random order
+    //   var $sibs = $active.siblings();
+    //   var rndNum = Math.floor(Math.random() * $sibs.length);
+    //   var $next = $($sibs[rndNum]);
+    //   $active.addClass("last-active");
+    //   $next
+    //     .css({ opacity: 0.0 })
+    //     .addClass("active")
+    //     .animate({ opacity: 1.0 }, 1000, function () {
+    //       $active.removeClass("active last-active");
+    //     });
+    // },
     //验证登录
     login() {
       this.$refs.loginFormRef.validate(async (valid) => {
@@ -216,10 +285,6 @@ export default {
         }
       });
     },
-    // 清空表单，关闭窗口
-    addDialogClosed() {
-      this.$refs.addFormRef.resetFields();
-    },
     // 用户注册
     addUser() {
       //获取当前时间
@@ -246,7 +311,7 @@ export default {
         if (!valid) return;
         // 提交结果
         const { data: res } = await this.$http.post("addUser", this.addForm);
-        const { data: ss } = await this.$http.post("addUserInfo", this.addForm);
+        const { data: ss } = await this.$http.post("addUserInfoName", this.addForm);
         if (res.flag == "no") {
           this.$message.error("该用户名已经被注册！");
         } else {
@@ -267,6 +332,10 @@ export default {
     //将表单中的内容重置
     resetLoginForm() {
       this.$refs.loginFormRef.resetFields();
+    },
+    // 清空表单，关闭窗口
+    addDialogClosed() {
+      this.$refs.addFormRef.resetFields();
     },
   },
 };
@@ -307,4 +376,87 @@ export default {
   justify-self: start;
   padding-left: 40px;
 }
+
+// // 背景
+// #slideshow {
+//   position: relative;
+//   height: 350px;
+//   z-index: -1;
+// }
+
+// #slideshow IMG {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   z-index: 8;
+//   opacity: 0;
+// }
+
+// #slideshow IMG.active {
+//   z-index: 10;
+//   opacity: 1;
+// }
+
+// #slideshow IMG.last-active {
+//   z-index: 9;
+// }
+
+// #slideshow img {
+//   /* Set rules to fill background */
+//   min-height: 100%;
+//   min-width: 1024px;
+
+//   /* Set up proportionate scaling */
+//   width: 100%;
+//   height: auto;
+
+//   /* Set up positioning */
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+// }
+
+// @media screen and (max-width: 1024px) {
+//   img.bg {
+//     left: 50%;
+//     margin-left: -512px;
+//   }
+// }
+
+// #page-wrap {
+//   position: relative;
+//   width: 400px;
+//   margin: 50px auto;
+//   padding: 20px;
+//   background: #fff;
+//   -moz-box-shadow: 0 0 20px black;
+//   -webkit-box-shadow: 0 0 20px black;
+//   box-shadow: 0 0 20px black;
+// }
+
+// p {
+//   font: 15px/2 Microsoft Yahei;
+//   margin: 0 0 30px 0;
+//   color: #fff;
+// }
+
+// #content {
+//   width: 920px;
+//   margin: 0 auto;
+//   background: rgba(11, 11, 11, 0.5);
+//   padding: 20px;
+// }
+
+// #content h1 {
+//   font-family: "Microsoft Yahei";
+//   color: #fff;
+// }
+
+// #content a {
+//   color: #a82711;
+//   font-weight: bold;
+//   text-transform: uppercase;
+//   background: #000;
+//   padding: 10px;
+// }
 </style>

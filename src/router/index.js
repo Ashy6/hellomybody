@@ -19,25 +19,34 @@ import kfz from '../components/Home/kfz.vue'
 import bbgx from '../components/Home/bbgx.vue'
 //import axios from 'axios'
 // 用户页面
-import meals from '../components/Users/meals.vue'
 import hellou from '../components/Users/hellou.vue'
-import jkgj from '../components/Users/jkgj.vue'
-import jkgj2 from '../components/Users/jkgj2.vue'
-import kll from '../components/Users/kll.vue'
-import g01 from '../components/Users/util/g01.vue'
-import g02 from '../components/Users/util/g02.vue'
-import mygj from '../components/Users/mygj.vue'
-import myjl from '../components/Users/myjl.vue'
-import cpsm from '../components/Users/cpsm.vue'
-import cpjf from '../components/Users/cpjf.vue'
-import cpcd from '../components/Users/cpcd.vue'
-import cpmyl from '../components/Users/cpmyl.vue'
-import jkbz from '../components/Users/jkbz.vue'
-import kpwz from '../components/Users/kpwz.vue'
-import a123 from '../components/Users/a123.vue'
-import myxx from '../components/Users/myxx.vue'
-import myxg from '../components/Users/myxg.vue'
-import ly from '../components/Users/ly.vue'
+// --工具页
+import jkgj from '../components/Users/util/jkgj.vue'
+import jkgj2 from '../components/Users/util/jkgj2.vue'
+import kll from '../components/Users/util/kll.vue'
+import mygj from '../components/Users/util/mygj.vue'
+// --测评页
+import cpsm from '../components/Users/evaluation/cpsm.vue'
+import cpjf from '../components/Users/evaluation/cpjf.vue'
+import cpcd from '../components/Users/evaluation/cpcd.vue'
+import cpmyl from '../components/Users/evaluation/cpmyl.vue'
+// --分析页
+import g01 from '../components/Users/analyse/g01.vue'
+import jktz from '../components/Users/analyse/jktz.vue'
+import jkbz from '../components/Users/analyse/jkbz.vue'
+// --个人页
+import myxx from '../components/Users/personal/myxx.vue'
+import ly from '../components/Users/personal/ly.vue'
+// --版本页面
+import introduce from '../components/Users/project/introduce.vue'
+import notice from '../components/Users/project/notice.vue'
+import outline from '../components/Users/project/outline.vue'
+// --即将上线或者未部署的界面
+import myxg from '../components/Users/others/myxg.vue'
+import a123 from '../components/Users/others/a123.vue'
+import kpwz from '../components/Users/others/kpwz.vue'
+import meals from '../components/Users/others/meals.vue'
+import myjl from '../components/Users/others/myjl.vue'
 
 //工具包组件
 // import cp20103 from '../components/Users/util/cp20103.vue';
@@ -81,22 +90,21 @@ const routes = [
   {
     path: "/first",  //转发
     component: First,  //引入系统首页组件
-    redirect: "/hellou",    //起始页 hello 路由重定向，重定向到子页面
+    redirect: "/welcome",    //起始页 hello 路由重定向，重定向到子页面
     children: [
-      { path: "/hellou", component: hellou, },
+      { path: "/welcome", component: hellou, },
       { path: "/meals", component: meals, },
-      { path: "/jkgj", component: jkgj, },
-      { path: "/jkgj2", component: jkgj2, },
-      { path: "/kll", component: kll, },
+      { path: "/calories_dissipation", component: jkgj, },
+      { path: "/calories_food", component: jkgj2, },
+      { path: "/calories_find", component: kll, },
       { path: "/g01", component: g01, },
-      { path: "/g02", component: g02, },
       // { path: '/course/:name', component: () => import('../components/Users/jkgj.vue') },
       // { path: '/course/:name', component: () => import('../components/Users/util/g01.vue') },
       {
-        path: "/mygj", component: mygj,
+        path: "/my_tool", component: mygj,
         children: [     // 三级路由 睡眠测评页面
           // { path: '/course/:name', component: () => import('../components/Users/util/g01.vue') },
-          { path: '/course/:name', component: () => import('../components/Users/util/g02.vue') },
+          // { path: '/course/:name', component: () => import('../components/Users/util/jktz.vue') },
           // { path: '/course/:name', component: () => import('../components/Users/util/g03.vue') },
           // { path: '/course/:name', component: () => import('../components/Users/util/g04.vue') },
           // { path: '/course/:name', component: () => import('../components/Users/util/g05.vue') },
@@ -110,18 +118,25 @@ const routes = [
           // { path: "/cp20106", component: cp20106, },
         ]
       },
-      { path: "/myjl", component: myjl, },
-      { path: "/cpsm", component: cpsm, }, // 睡眠测评页面
+      // 测评页面
+      { path: "/sleep_test", component: cpsm, }, // 睡眠测评页面
+      { path: "/Immunity_test", component: cpmyl, },
       { path: "/cpjf", component: cpjf, },
       { path: "/cpcd", component: cpcd, },
-      { path: "/cpmyl", component: cpmyl, },
-      { path: "/jkbz", component: jkbz, },
+      // 健康分析页
+      { path: "/fat_analysis", component: jktz, },
+      { path: "/health_standard", component: jkbz, },
       { path: "/kpwz", component: kpwz, },
       { path: "/a123", component: a123, },
       // 个人
-      { path: "/myxx", component: myxx, },
+      { path: "/personal_center", component: myxx, },
       { path: "/myxg", component: myxg, },
-      { path: "/ly", component: ly, },
+      { path: "/leave_message", component: ly, },
+      { path: "/myjl", component: myjl, },
+      // 版本
+      { path: "/introduce", component: introduce, },
+      { path: "/notice", component: notice, },
+      { path: "/outline", component: outline, },
     ]
   },
   {

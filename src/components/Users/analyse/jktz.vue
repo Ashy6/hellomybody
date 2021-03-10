@@ -3,7 +3,7 @@
     <!-- 顶部导航 -->
     <div class="container">
       <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{ path: '/hellou' }">
+        <el-breadcrumb-item :to="{ path: '/welcome' }">
           首页
         </el-breadcrumb-item>
         <el-breadcrumb-item>数据分析</el-breadcrumb-item>
@@ -104,7 +104,7 @@
             <router-link
               style="text-decoration: none"
               :router="true"
-              to="/myxx"
+              to="/personal_center"
             >
               <el-button
                 class="pull-right"

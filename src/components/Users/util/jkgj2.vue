@@ -57,7 +57,7 @@
                     <p>2.点击计算大致每天需要的热量。</p>
                     <p>3.选择实物量（可以重复选择）；</p>
                     <p>4.您也可以“重新计算”重置结果。</p>
-                    <p><img src="../../assets/image/kul1.gif" alt="" /></p>
+                    <p><img src="../../../assets/image/kul1.gif" alt="" /></p>
                   </div>
                 </el-col>
               </el-row>
