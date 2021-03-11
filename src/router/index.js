@@ -173,7 +173,8 @@ router.beforeEach((to, form, next) => {     //3个方法  你 要往那里去 �
   const userFlag = window.sessionStorage.getItem("user");
   //有值，则完成登录，进入首页  无值返回登录页 
   if (!userFlag) {
-    // this.$message.success("欢迎你，管理员"); //信息提示
+    window.alert("请先登录");
+    // window.$message.success("用户未登陆！"); //信息提示
     // error("用户未登陆！");
     return next('/login');
   }
