@@ -637,6 +637,8 @@ export default {
 </script>
 
 <style lang="less">
+// @media screen and  (max-width: 699px) {
+// }
 .home-container {
   height: 100%;
   // width: 100%;

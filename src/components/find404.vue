@@ -1,6 +1,6 @@
 <template>
   <div class="img1 note" :style ="note">
-    <h1>=͟͟͞͞(꒪ᗜ꒪ ‧̣̥̇)卧━=͟͟͞͞(Ŏ◊Ŏ ‧̣̥̇)━擦!!!! --- <span>这个页面还在开发中</span> -- 敬请期待 -- (*≧▽≦)ﾉｼ))</h1>
+    <h1>=͟͟͞͞(꒪ᗜ꒪ ‧̣̥̇)卧━=͟͟͞͞(Ŏ◊Ŏ ‧̣̥̇)━擦!!!! --- <span>这个页面不存在啊</span> -- 敬请期待 -- (*≧▽≦)ﾉｼ))</h1>
     <div class="note1" :style="note">{{ data1 }}</div>
   </div>
 </template>
