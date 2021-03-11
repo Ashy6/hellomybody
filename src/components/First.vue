@@ -1,8 +1,8 @@
 <template>
   <div>
-    <el-container class="home-container">
+    <div class="home-container">
       <!-- 顶部导航栏 -->
-      <el-header>
+      <el-header class="navbar-fixed-top">
         <!-- <div class="line"></div> -->
         <div>
           <!--小屏幕导航按钮和logo-->
@@ -43,7 +43,7 @@
                 <!-- <template :to="{ path: '/hellou' }">首页</template> -->
                 <router-link
                   style="text-decoration: none"
-                  :to="{ path: '/hellou' }"
+                  :to="{ path: '/welcome' }"
                   >首页</router-link
                 >
               </el-menu-item>
@@ -94,36 +94,9 @@
                           <router-link
                             style="text-decoration: none; color: #67c23a"
                             :router="true"
-                            to="/myxx"
+                            to="/personal_center"
                           >
                             个人中心
-                          </router-link>
-                        </el-dropdown-item>
-                        <!-- <el-dropdown-item icon="el-icon-circle-plus-outline">
-                          <router-link
-                            style="text-decoration: none; color: #e6a23c"
-                            :router="true"
-                            to="/myxg"
-                          >
-                            修改信息
-                          </router-link>
-                        </el-dropdown-item> -->
-                        <el-dropdown-item icon="el-icon-circle-plus-outline">
-                          <router-link
-                            style="text-decoration: none; color: #909399"
-                            :router="true"
-                            to="/myjl"
-                          >
-                            我的足迹
-                          </router-link>
-                        </el-dropdown-item>
-                        <el-dropdown-item icon="el-icon-circle-plus-outline">
-                          <router-link
-                            style="text-decoration: none; color: #000"
-                            :router="true"
-                            to="/ly"
-                          >
-                            留言板
                           </router-link>
                         </el-dropdown-item>
                         <el-dropdown-item icon="el-icon-circle-check"
@@ -141,172 +114,219 @@
         </div>
       </el-header>
       <!-- 主体区域 -->
-      <el-main style="width: 100%; margin: 0 auto">
+      <el-main class="main">
         <!-- 用路由开始重定向导航栏 -->
         <router-view></router-view>
       </el-main>
+      <!-- 项目介绍 -->
+      <el-dialog
+        icon="el-icon-document"
+        title="README.md"
+        :visible.sync="centerDialogVisible"
+        width="500px"
+        center
+      >
+        <p style="font-size: 35px">
+          <i class="el-icon-loading"></i>正在 -
+          <i class="el-icon-edit"></i> ..............
+        </p>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="centerDialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="centerDialogVisible = false"
+            >确 定</el-button
+          >
+        </span>
+      </el-dialog>
+      <!-- 版本公告 -->
+      <el-dialog
+        title="当前版本"
+        :visible.sync="centerDialogVisible2"
+        width="500px"
+        center
+      >
+        <p style="font-size: 40px">内测版</p>
+        <h2 style="text-aline: center; padding: 10px 30px">
+          即将上线： 用户信息 <span style="color: #b03a5b">ECharts</span>
+          图文分析
+        </h2>
+        <h2 style="text-aline: center; padding: 10px 30px">
+          版本预告： 用户信息 头像上传
+        </h2>
+        <h2 style="text-aline: center; padding: 10px 30px">
+          版本预告：<span> 邮箱 注册、修改密码验证</span>
+        </h2>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="centerDialogVisible2 = false">取 消</el-button>
+          <el-button type="primary" @click="centerDialogVisible2 = false"
+            >确 定</el-button
+          >
+        </span>
+      </el-dialog>
       <!-- 底部区域 -->
-      <el-footer class="foot">
-        <div class="row">
-          <div class="ashy col-xl-9 col-sm-12 col-xs-12">
-            <el-row :gutter="10">
-              <el-col :xs="12" :sm="8" :md="6" :lg="4">
-                <router-link :to="{ path: '/hellou' }">返回首页</router-link>
-              </el-col>
-              <el-col :xs="12" :sm="8" :md="6" :lg="4">
-                <a href="">项目介绍</a>
-              </el-col>
-              <el-col :xs="12" :sm="8" :md="6" :lg="4">
-                <a href="">项目大纲</a>
-              </el-col>
-              <el-col :xs="12" :sm="8" :md="6" :lg="4">
-                <a href="">项目进度</a>
-              </el-col>
-              <el-col :xs="12" :sm="8" :md="6" :lg="4">
-                <a href="">常用工具</a>
-              </el-col>
-              <el-col :xs="12" :sm="8" :md="6" :lg="4">
-                <router-link :to="{ path: '/mygj' }">我的工具</router-link>
-              </el-col>
-              <el-col :xs="12" :sm="8" :md="6" :lg="4">
-                <a href="">项目案例</a>
-              </el-col>
-              <el-col :xs="12" :sm="8" :md="6" :lg="4">
-                <a href="">项目案例</a>
-              </el-col>
-              <el-col :xs="12" :sm="8" :md="6" :lg="4">
-                <a href="">项目案例</a>
-              </el-col>
-              <el-col :xs="12" :sm="8" :md="6" :lg="4">
-                <a href="">项目案例</a>
-              </el-col>
-              <el-col :xs="12" :sm="8" :md="6" :lg="4">
-                <a href="">项目案例</a>
-              </el-col>
-              <el-col :xs="12" :sm="8" :md="6" :lg="4">
-                <a href="">项目案例</a>
-              </el-col>
-            </el-row>
-            <!-- -----**************---------- -->
-            <!-- <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
-                <a href="">返回首页</a>
-              </li>
-              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
-                <a href="">项目介绍</a>
-              </li>
-              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
-                <a href="">项目大纲</a>
-              </li>
-              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
-                <a href="">项目进度</a>
-              </li>
-              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
-                <a href="">项目案例</a>
-              </li>
-              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
-                <a href="">项目案例</a>
-              </li>
-              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
-                <a href="">项目案例</a>
-              </li>
-              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
-                <a href="">项目案例</a>
-              </li>
-              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
-                <a href="">项目案例</a>
-              </li>
-              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
-                <a href="">项目案例</a>
-              </li>
-              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
-                <a href="">项目案例</a>
-              </li>
-              <li class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-4">
-                <a href="">项目案例</a>
-              </li> -->
-            <div class="as">
-              <p>
-                Copyright @ 2020-2021 Ashy- 个人开发
-                <a href="http://www.hellobody.online">www.hellobody.online</a>
-              </p>
-              <p>
-                <a href="http://www.boohee.com/"
-                  >健康网站分享--薄荷健康（愿世间的美好与你环环相扣）</a
-                >
-              </p>
-              <p>
-                <a href="https://www.hiyd.com/"
-                  >健身视频网站--Hi运动（用简单的方法打造美）</a
-                >
-              </p>
-              <p>
-                <a href="https://www.gotokeep.com/"
-                  >健身网站分享--Keep（自律使我自由）</a
-                >
-              </p>
+      <div class="foot">
+        <div class="container">
+          <div class="left-top">
+            <div class="ashy col-xl-9 col-sm-12 col-xs-12">
+              <!-- 左布局 -->
+              <el-row :gutter="10">
+                <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                  <div class="as1">
+                    <router-link :to="{ path: '/welcome' }"
+                      >返回首页</router-link
+                    >
+                  </div>
+                </el-col>
+                <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                  <div class="as1">
+                    <el-button
+                      @click="centerDialogVisible = true"
+                      type="text"
+                      style="margin: 0px; padding: 0px"
+                    >
+                      项目介绍
+                    </el-button>
+                    <!-- <router-link :to="{ path: '/introduce' }"
+                      >项目介绍</router-link
+                    > -->
+                  </div>
+                </el-col>
+                <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                  <div class="as1">
+                    <router-link :to="{ path: '/outline' }"
+                      >项目大纲</router-link
+                    >
+                  </div>
+                </el-col>
+                <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                  <div class="as1">
+                    <el-button
+                      @click="centerDialogVisible2 = true"
+                      type="text"
+                      style="margin: 0px; padding: 0px"
+                    >
+                      版本公告
+                    </el-button>
+                    <!-- <router-link :to="{ path: '/notice' }"
+                      >版本公告</router-link
+                    > -->
+                  </div>
+                </el-col>
+                <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                  <div class="as1">
+                    <router-link :to="{ path: '/calories_find' }"
+                      >卡路里查询</router-link
+                    >
+                  </div>
+                </el-col>
+                <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                  <div class="as1">
+                    <router-link :to="{ path: '/leave_message' }"
+                      >留言板</router-link
+                    >
+                  </div>
+                </el-col>
+                <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                  <div class="as1">
+                    <router-link :to="{ path: '/my_tool' }"
+                      >我的工具</router-link
+                    >
+                  </div>
+                </el-col>
+                <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                  <div class="as1">
+                    <router-link :to="{ path: '/fat_analysis' }"
+                      >体脂计算</router-link
+                    >
+                  </div>
+                </el-col>
+                <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                  <div class="as1">
+                    <router-link :to="{ path: '/health_standard' }"
+                      >健康标准</router-link
+                    >
+                  </div>
+                </el-col>
+                <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                  <div class="as1">
+                    <router-link :to="{ path: '/personal_center' }"
+                      >个人中心</router-link
+                    >
+                  </div>
+                </el-col>
+                <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                  <div class="as1">
+                    <router-link :to="{ path: '/Immunity_test' }"
+                      >免疫力测试</router-link
+                    >
+                  </div>
+                </el-col>
+                <el-col :xs="12" :sm="8" :md="6" :lg="4">
+                  <div class="as1">
+                    <router-link :to="{ path: '/sleep_test' }"
+                      >睡眠测试</router-link
+                    >
+                  </div>
+                </el-col>
+              </el-row>
+              <!-- 左侧链接 -->
+              <div class="as">
+                <h6>
+                  <el-button type="text" @click="bohe()">
+                    健康网站分享--薄荷健康（愿世间的美好与你环环相扣）
+                  </el-button>
+                </h6>
+                <h6>
+                  <el-button type="text" @click="hiyundong()">
+                    健身视频网站--Hi运动（用简单的方法打造美）
+                  </el-button>
+                </h6>
+                <h6>
+                  <el-button type="text" @click="keep()">
+                    健身APP分享--Keep（自律使我自由）
+                  </el-button>
+                </h6>
+              </div>
+            </div>
+            <!-- 右侧 -->
+            <div class="ashy2 col-xl-3 col-sm-12 col-xs-12 pull-right">
+              <div>
+                <h3>项目开源</h3>
+                <p>
+                  永远相信世间最美好的东西总是免费的，比如<br />
+                  阳光、空气、雨水以及本项目：
+                </p>
+                <div class="git">
+                  <el-button type="text" @click="gitee()">
+                    <img src="../assets/image/gitee.jpg" alt="" /><br />Gitee
+                  </el-button>
+                  <el-button type="text" @click="github()">
+                    <img src="../assets/image/github.jpg" alt="" /><br />Github
+                  </el-button>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="row col-xl-3 col-sm-12 col-xs-12 pull-right">
-            <div class="git">
-              <h3>项目开源</h3>
-              <p>永远相信世间最美好的东西总是免费的，比如</p>
-              <p>阳光、空气、雨水以及本项目：</p>
-              <p>
-                <a href="https://gitee.com/ashy66/hellomybody">
-                  <img src="../assets/image/gitee.jpg" alt="" />
-                </a>
-                <a href="https://github.com/Ashy6/hmb">
-                  <img src="../assets/image/github.jpg" alt="" />
-                </a>
-              </p>
-            </div>
-            <p>
-              <span>
-                <a href="https://gitee.com/ashy66/hellomybody">gitee </a>or
-              </span>
-              <span>
-                <a href="https://github.com/Ashy6/hmb"> github</a>
-              </span>
-            </p>
-          </div>
         </div>
-
-        <div class="web">
-          |<a target="_blank" href="http://www.jirou.com/"> 肌肉网</a> |<a
-            target="_blank"
-            href="http://www.fitnes.cn/"
-          >
-            我爱健身网</a
-          >
-          |<a target="_blank" href="http://qmjs.tiqiu.com/"> 全民健身</a> |<a
-            target="_blank"
-            href="http://www.caibb.com/"
-          >
-            网络购彩</a
-          >
-          |<a target="_blank" href="http://www.51fit.com.cn">51健身</a> |<a
-            target="_blank"
-            href="http://www.kukefit.com"
-          >
-            酷客健身</a
-          >
-          |<a href="http://www.kaluli.com/" target="_blank"> 卡路里运动营养</a>
-          |<a href="http://www.znymqg.com/" target="_blank"> 羽毛球</a> |<a
-            href="http://qmjs.tiqiu.com/"
-            target="_blank"
-          >
-            全民健身</a
-          >
-          |<a href="http://www.lmjsport.cn/" target="_blank"> 家用跑步机</a> |<a
-            href="http://www.cnlmj.com/"
-            target="_blank"
-          >
-            健身房器材</a
-          >
-          |
-        </div>
-      </el-footer>
-    </el-container>
+      </div>
+      <!-- 底部链接 -->
+      <div class="web">
+        |
+        <el-button type="text" @click="jirou()">肌肉网 </el-button>
+        |
+        <el-button type="text" @click="fitnes()">我爱健身网 </el-button>
+        |
+        <el-button type="text" @click="tiqiu()">全民健身 </el-button>
+        |
+        <el-button type="text" @click="fit()">51健身 </el-button>
+        |
+        <el-button type="text" @click="kukefit()">酷客健身 </el-button>
+        ||
+        <el-button type="text" @click="hellobody()">
+          Copyright @ 2020-2021 Ashy- 个人开发
+        </el-button>
+        ||
+      </div>
+    </div>
   </div>
 </template>
 
@@ -322,6 +342,8 @@ export default {
       form: {
         userName: "",
       },
+      centerDialogVisible: false,
+      centerDialogVisible2: false,
     };
   },
   // 页面加载之后开始查询
@@ -403,6 +425,213 @@ export default {
       window.sessionStorage.setItem("activePath", activePath);
       this.activePath = activePath;
     },
+    async bohe() {
+      const confirmResult = await this.$confirm(
+        "您即将前往外部网站，是否继续？" + "http://www.boohee.com/",
+        "网页跳转提示：",
+        {
+          confirmButtonText: "继续",
+          cancelButtonText: "取消",
+          type: "info",
+        }
+      ).catch((err) => err);
+      // 取消删除
+      if (confirmResult != "confirm") {
+        return this.$message.success("已取消！");
+      }
+      this.$message.success("已完成！");
+      return window.open("http://www.boohee.com/");
+    },
+    async hiyundong() {
+      const confirmResult = await this.$confirm(
+        "您即将前往外部网站，是否继续？" + "https://www.hiyd.com/",
+        "网页跳转提示：",
+        {
+          confirmButtonText: "继续",
+          cancelButtonText: "取消",
+          type: "info",
+        }
+      ).catch((err) => err);
+      // 取消删除
+      if (confirmResult != "confirm") {
+        return this.$message.success("已取消！");
+      }
+      this.$message.success("已完成！");
+      return window.open("https://www.hiyd.com/");
+    },
+    async keep() {
+      const confirmResult = await this.$confirm(
+        "您即将前往外部网站，是否继续？" + "https://www.gotokeep.com/",
+        "网页跳转提示：",
+        {
+          confirmButtonText: "继续",
+          cancelButtonText: "取消",
+          type: "info",
+        }
+      ).catch((err) => err);
+      // 取消删除
+      if (confirmResult != "confirm") {
+        return this.$message.success("已取消！");
+      }
+      this.$message.success("已完成！");
+      return window.open("https://www.gotokeep.com/");
+    },
+    async hellobody() {
+      const confirmResult = await this.$confirm(
+        "域名已注册，即将部署：" + "www.hellobody.online",
+        "感谢您的认可",
+        {
+          confirmButtonText: "继续",
+          cancelButtonText: "取消",
+          type: "success",
+        }
+      ).catch((err) => err);
+      // 取消删除
+      if (confirmResult != "confirm") {
+        return this.$message.success("已取消！");
+      }
+      this.$message.success("已完成！");
+      return window.open("http://www.hellobody.online");
+    },
+    async gitee() {
+      const confirmResult = await this.$confirm(
+        "首先感谢您的认可，代码拙劣之处在所难免，还望多多指教，万分感谢！" +
+          "项目的说明文档以及设计思路即将会补全；如果您有好的建议与想法，真心希望您肯告诉我" +
+          "https://gitee.com/ashy66/hellomybody",
+        "有任何问题欢迎讨论！",
+        {
+          confirmButtonText: "继续，还望大佬给个star！",
+          cancelButtonText: "取消，(´°̥̥̥̥̥̥̥̥ω°̥̥̥̥̥̥̥̥｀) ",
+          type: "success",
+        }
+      ).catch((err) => err);
+      // 取消删除
+      if (confirmResult != "confirm") {
+        return this.$message.success("已取消！");
+      }
+      this.$message.success("已完成！");
+      return window.open("https://gitee.com/ashy66/hellomybody");
+    },
+    async github() {
+      const confirmResult = await this.$confirm(
+        "目前还是个测试版本，项目是基于码云托管代码的，GayHub上目前只有文件。" +
+          "https://github.com/Ashy6/hmb",
+        "感谢认可！",
+        {
+          confirmButtonText: "继续，还望大佬给个star！",
+          cancelButtonText: "取消，(´°̥̥̥̥̥̥̥̥ω°̥̥̥̥̥̥̥̥｀) ",
+          type: "success",
+        }
+      ).catch((err) => err);
+      // 取消删除
+      if (confirmResult != "confirm") {
+        return this.$message.success("已取消！");
+      }
+      this.$message.success("已完成！");
+      return window.open("https://github.com/Ashy6/hmb");
+    },
+    async jirou() {
+      const confirmResult = await this.$confirm(
+        "您即将前往外部网站，是否继续？" + "http://www.jirou.com/",
+        "网页跳转提示：",
+        {
+          confirmButtonText: "继续",
+          cancelButtonText: "取消",
+          type: "info",
+        }
+      ).catch((err) => err);
+      // 取消删除
+      if (confirmResult != "confirm") {
+        return this.$message.success("已取消！");
+      }
+      this.$message.success("已完成！");
+      return window.open("http://www.jirou.com/");
+    },
+    async fitnes() {
+      const confirmResult = await this.$confirm(
+        "您即将前往外部网站，是否继续？" + "http://www.fitnes.cn/",
+        "网页跳转提示：",
+        {
+          confirmButtonText: "继续",
+          cancelButtonText: "取消",
+          type: "info",
+        }
+      ).catch((err) => err);
+      // 取消删除
+      if (confirmResult != "confirm") {
+        return this.$message.success("已取消！");
+      }
+      this.$message.success("已完成！");
+      return window.open("http://www.fitnes.cn/");
+    },
+    async tiqiu() {
+      const confirmResult = await this.$confirm(
+        "您即将前往外部网站，是否继续？" + "http://qmjs.tiqiu.com/",
+        "网页跳转提示：",
+        {
+          confirmButtonText: "继续",
+          cancelButtonText: "取消",
+          type: "info",
+        }
+      ).catch((err) => err);
+      // 取消删除
+      if (confirmResult != "confirm") {
+        return this.$message.success("已取消！");
+      }
+      this.$message.success("已完成！");
+      return window.open("http://qmjs.tiqiu.com/");
+    },
+    async fit() {
+      const confirmResult = await this.$confirm(
+        "您即将前往外部网站，是否继续？" + "http://www.51fit.com.cn",
+        "网页跳转提示：",
+        {
+          confirmButtonText: "继续",
+          cancelButtonText: "取消",
+          type: "info",
+        }
+      ).catch((err) => err);
+      // 取消删除
+      if (confirmResult != "confirm") {
+        return this.$message.success("已取消！");
+      }
+      this.$message.success("已完成！");
+      return window.open("http://www.51fit.com.cn");
+    },
+    async kukefit() {
+      const confirmResult = await this.$confirm(
+        "您即将前往外部网站，是否继续？" + "http://www.kukefit.com",
+        "网页跳转提示：",
+        {
+          confirmButtonText: "继续",
+          cancelButtonText: "取消",
+          type: "info",
+        }
+      ).catch((err) => err);
+      // 取消删除
+      if (confirmResult != "confirm") {
+        return this.$message.success("已取消！");
+      }
+      this.$message.success("已完成！");
+      return window.open("http://www.kukefit.com");
+    },
+    async tiqiu() {
+      const confirmResult = await this.$confirm(
+        "您即将前往外部网站，是否继续？" + "http://qmjs.tiqiu.com/",
+        "网页跳转提示：",
+        {
+          confirmButtonText: "继续",
+          cancelButtonText: "取消",
+          type: "info",
+        }
+      ).catch((err) => err);
+      // 取消删除
+      if (confirmResult != "confirm") {
+        return this.$message.success("已取消！");
+      }
+      this.$message.success("已完成！");
+      return window.open("http://qmjs.tiqiu.com/");
+    },
   },
 };
 </script>
@@ -410,10 +639,10 @@ export default {
 <style lang="less">
 .home-container {
   height: 100%;
+  // width: 100%;
 }
 .el-header {
-  /* background-color: "Transparent"; */
-  // color: rgb(156, 13, 13);
+  background-color: "#202023";
   text-align: center;
   background-color: #202023;
   // background-color: "Transparent";
@@ -424,15 +653,23 @@ export default {
   text-decoration: none;
 }
 /*导航栏开始*/
-.navbar-header {
-  background-color: "Transparent";
-  // background-color: #ebeef5;
-  z-index: 10;
-  // border: 1px solid yellow;
-  // background-color: yellow;
+.navigation {
+  background-color: #202023;
+  margin: 0 -20px;
+  line-height: 60px;
+  // 小的
+  .packet {
+    border: 1px solid green;
+    // width: 100%;
+    // position: absolute;
+    // top: 0px;
+    // left: 0px;
+    // z-index: 1;
+  }
 }
+// hellobody文字
 .navbar-header .hello {
-  font-size: 25px;
+  font-size: 23px;
   font-weight: bold;
   color: #409eff;
 }
@@ -454,13 +691,13 @@ export default {
   border: 1px solid #409eff;
   // background-color: #00b3ff;
 }
-// .navbar-toggle .icon-bar {
-//   background-color: #00b3ff;
-// }
-
 .navbar-toggle .icon-bar {
-  background-color: #409eff;
+  background-color: #00b3ff;
 }
+
+// .navbar-toggle .icon-bar {
+//   background-color: #409eff;
+// }
 /*导航栏结束*/
 /* 下拉菜单 -- 用户功能 -- 用户栏 */
 .el-dropdown-link {
@@ -482,92 +719,145 @@ export default {
 /* 下拉结束 */
 /*---------------------分割线------------------------*/
 /* .el-main 正文*/
-.el-main {
+.main {
+  width: 100%;
+  margin: 0 auto;
+  // padding-top: 60px;
+  margin-top: 60px;
   // background-color: #d9d9d9;
   background-image: url(../assets/image/innovation.png);
-  min-height: 570px;
-  margin-bottom: 20px;
+  min-height: 680px;
+  // margin-bottom: 20px;
+  // 全局p
+  p {
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 10px;
+  }
+  /* 面包屑 */
+  .el-breadcrumb {
+    font-size: 18px;
+    // margin-bottom: 15px;
+    background-color: lemonchiffon;
+    // padding: 15px;
+    display: inline-block;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    cursor: pointer;
+    padding: 10px 20px;
+    border: 1px solid #018dc4;
+    -webkit-border-radius: 3px 29px;
+    border-radius: 3px 29px;
+    font: normal 16px / normal "Times New Roman", Times, serif;
+    color: rgba(255, 255, 255, 0.9);
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    // background: #0199d9;
+    -webkit-box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2);
+    // text-shadow: -1px -1px 0 rgba(15,73,168,0.66) ;
+    -webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+    -moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+    -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+    transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+  }
 }
 /*尾部开始*/
-
-footer.el-footer .row {
-  display: block;
-  width: 100%;
-  /* height: 280px; */
-  background-color: #f7f8f8;
-}
-footer.el-footer {
-  height: 500px;
-  padding: unset;
-}
-
-.el-footer {
-  display: inline-block;
+.foot {
   margin-top: -20px;
-  // padding-top: 15px;
-  /* margin-top: 250px;自己调试 */
-  /* background-color: #409eff; */
+  padding-top: 30px;
   background-color: #f7f8f8;
-  /* background-color:"Transparent"; */
-  color: #333;
-  /* text-align: center; */
-}
-.el-footer div .el-col {
-  text-align: center;
-  margin: 0 auto;
-  padding: 0;
-  line-height: 40px;
-  display: block;
-  font-size: 15px;
-}
-.el-footer div a {
-  color: #666;
-}
-.el-footer div a:hover {
-  color: #00b3ff;
-  text-decoration: none;
-}
-.el-footer div .as {
-  padding: unset;
-  // text-align: center;
-  // line-height: 30px;
-}
-.el-footer .ashy {
-  // margin-right: 20px;
-  padding: unset;
-}
-.el-footer div img {
-  height: 60px;
-  padding-right: 5px;
-}
-.el-footer .git {
-  margin-top: 25px;
-}
-.el-footer div div h3,
-p {
-  text-align: center;
-  margin: 0 auto;
-  padding-top: 15px;
-}
-.el-footer div .lianjie {
-  margin: auto;
-}
-.el-footer div .lianjie span {
-  font-size: 15px;
-  text-align: center;
+  .left-top {
+    .ashy {
+      div {
+        .as1 {
+          text-align: center;
+          // height: 20px;
+          // width: 80px;
+          .el-button {
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+            // margin: 20px 0;
+            line-height: 28px;
+            // border:1px solid orchid;
+          }
+          .el-button:hover {
+            color: #409eff;
+            font-size: 14.2px;
+          }
+        }
+        a {
+          line-height: 30px;
+          color: #666;
+          font-size: 14px;
+          margin: 20px 0;
+        }
+        a:hover {
+          text-decoration: none;
+          color: #409eff;
+          font-size: 14.2px;
+        }
+      }
+      .as {
+        margin: 15px 0;
+        text-align: center;
+        h6 {
+          padding: 0 auto;
+          .el-button {
+            color: #666;
+            line-height: 10px;
+            padding: 0 auto;
+          }
+          .el-button:hover {
+            color: #409eff;
+          }
+        }
+      }
+    }
+    .ashy2 {
+      text-align: center;
+      margin-top: 20px;
+      .git {
+        // border: 1px solid rebeccapurple;
+        margin: 0 auto;
+        padding: 0 auto;
+        .el-button {
+          padding: 0 auto;
+          margin: 0 auto;
+          color: #666;
+        }
+        .el-button:hover {
+          color: #409eff;
+        }
+        img {
+          // border: 1px solid rebeccapurple;
+          height: 40px;
+        }
+      }
+    }
+  }
 }
 /*尾部结束*/
 .web {
   display: block;
-  // margin: -20px;
   width: 100%;
   text-align: center;
   background-color: #202023;
-  // background-color: "Transparent";
-  line-height: 60px;
-  /* display: flex; */
+  line-height: 50px;
   justify-content: space-between;
-  z-index: 999;
+  // z-index: 999;
   text-decoration: none;
+  margin-bottom: -30px;
+  color: #666;
+  .el-button {
+    padding: 0 auto;
+    margin: 0 auto;
+    color: #666;
+  }
+  .el-button:hover {
+    color: #409eff;
+  }
 }
 </style>

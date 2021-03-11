@@ -349,7 +349,7 @@
             </div>
           </el-collapse-item>
         </el-collapse>
-        <p>这里收集了一些常用的健康工具API，感谢便民查询网(www.bmcx.com)</p>
+        <p style="color:#666">这里收集了一些常用的健康工具API，感谢便民查询网(www.bmcx.com)</p>
       </div>
     </el-col>
   </div>

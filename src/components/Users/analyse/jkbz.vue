@@ -7,8 +7,110 @@
         <el-breadcrumb-item>数据分析</el-breadcrumb-item>
         <el-breadcrumb-item>健康标准</el-breadcrumb-item>
       </el-breadcrumb>
-
+      <!-- 介绍信息 -->
+      <el-dialog
+        title="肺活量"
+        :visible.sync="Dialogvital"
+        width="500px"
+        center
+      >
+        <h4 style="font-size: 16px">
+          肺活量（vital
+          capacity，VC）是指一次尽力吸气后，再尽力呼出的气体总量。肺活量=潮气量+补吸气量+补呼气量。
+        </h4>
+        <h4>
+          肺活量因性别和年龄而异，男性明显高于女性。在20岁前，肺活量随着年龄增长而逐渐增大，20岁后增加量就不明显了。成年男子的肺活量约3500～4000毫升，成年女子约2500～3000毫升。肺活量主要取决于胸腔壁的扩张与收缩的宽舒程度。肺活量随年龄的增长而下降，每10年下降9%～27%，但长期坚持体育锻炼的人，其肺活量仍能保持正常。
+        </h4>
+        <h4>
+          体育锻炼可以明显提高肺活量，譬如可以经常性的做一些扩胸、振臂等徒手操练习，坚持耐久跑、游泳、踢足球、打篮球、折返跑等，像中长跑运动员和游泳运动员的肺活量可达6000毫升以上。
+        </h4>
+        <span slot="footer" class="dialog-footer">
+          <h6>内容来源：百度百科</h6>
+        </span>
+      </el-dialog>
+      <el-dialog
+        title="视力对比表"
+        :visible.sync="Dialogvision"
+        width="280px"
+        center
+      >
+        <el-table :data="visionTable">
+          <el-table-column
+            width="110"
+            property="china"
+            label="中国视力表 (五分视力表)"
+            align="center"
+          ></el-table-column>
+          <el-table-column
+            width="110"
+            property="world"
+            label="国际视力表 (小数视力表)"
+            align="center"
+          ></el-table-column>
+        </el-table>
+        <span slot="footer" class="dialog-footer">
+          <h6>内容来源：百度百科</h6>
+        </span>
+      </el-dialog>
+      <el-dialog
+        title="体 温"
+        :visible.sync="Dialogtemperature"
+        width="350px"
+        center
+      >
+        <p style="font-size: 16px">1.体温测量</p>
+        <h4>
+          （1）口腔温度<br />
+          将体温计放置在患者舌下，闭嘴约3分钟后取出，正常范围为36.3℃～37.2℃；<br />
+          （2）直肠温度<br />
+          测量方法是将体温计消毒后涂上润滑油，然后插入肛门，三分钟后取出，其正常值比口腔温度约高0.3℃～0.5℃；<br />
+          （3）腋窝温度<br />
+          因测量方便卫生，是目前最常使用的测温方法，其测量方法是将体温计夹于腋窝，五分钟后读取数值，正常范围为36.1℃～37℃，比口腔温度约低0.2℃～0.4℃。
+        </h4>
+        <p style="font-size: 16px">2.发热</p>
+        <h4>
+          低热：37.4℃～38℃；<br />中等度热：38.1℃～39℃；<br />高热：39.1℃～41℃；<br />超高热：41℃以上。
+        </h4>
+        <span slot="footer" class="dialog-footer">
+          <h6>内容来源：百度百科</h6>
+        </span>
+      </el-dialog>
+      <el-dialog title="心 率" :visible.sync="Dialogheart" width="600px" center>
+        <h4>
+          心率是指正常人安静状态下每分钟心跳的次数，也叫安静心率。<br />一般为60～100次/分，可因年龄、性别或其他生理因素产生个体差异。<br />一般来说，年龄越小，心率越快，老年人心跳比年轻人慢，女性的心率比同龄男性快，这些都是正常的生理现象。<br />安静状态下，成人正常心率为60～100次/分钟，理想心率应为55～70次/分钟（运动员的心率较普通成人偏慢，一般为50次/分钟左右）。
+        </h4>
+        <span slot="footer" class="dialog-footer">
+          <h6>内容来源：百度百科</h6>
+        </span>
+      </el-dialog>
+      <el-dialog
+        title="步 速"
+        :visible.sync="Dialoglegspeed"
+        width="500px"
+        center
+      >
+        <p style="font-size: 16px">
+          顾名思义是行步的速度。<br />正常成年人的步速一般的是1.5m/s，即5.4km/h
+        </p>
+        <h3>步速与寿命</h3>
+        <h4>
+          来自美国匹兹堡大学的Stephanie
+          Studenski带领的一个研究小组对1986年到2000年间的34485名65岁或以上老人的数据进行了长时间的调查，并对这些老年人的步速进行长达数年的跟踪记录，旨在揭示老年人步速与寿命之间的关联。所有记录均遵循两个原则：1.研究所测量的是日常步行速度；2.测量从站立状态开始。<br />
+          数据显示，研究对象的平均寿命为73.5岁，平均步速则为0.92米/秒。而在研究进行期间，有17528名老人去世。在75岁-84岁男性组内，那些步速最快的人（超过1.4米/秒）能继续生活10年的概率达到了50%;而那些步速最慢的人,0.4米/秒,只有15%的人还能继续活10年。同年龄组女性也是步速快者更；步速最快的女性能继续生活10年的概率达到了50%，步速最慢的女性35%能继续活上10年。<br />
+          在大多数年龄段中，寿命为预期寿命中值的老年人，其步速约为0.8米/秒。而在性别与年龄一致的前提下，步行速度越快，其预期寿命越长。步速达1米/秒以上的老年人，其预期寿命会比只考虑年龄与性别时的预期要长。在多个年龄组别中，老年人的步速与剩余寿命均成正比关系，而且年龄越小，其预期剩余寿命的绝对值越大。
+        </h4>
+        <h3>为什么步速能预测寿命呢？</h3>
+        <h4>
+          这是由于步行需要消耗大量的身体能量，并对肢体动作进行有效的控制，同时还需要包括心肺系统、循环系统、神经系统以及肌肉骨骼系统在内的多个器官系统的支持与配合。<br />
+          而步行速度慢一方面反映出老人的身体系统已经受损，另一方面也表明他/她步行时需要耗费较多的能量，所以步速能对老人的寿命起到预示的作用。<br />
+          对医生来说，通过步速来评估一个人身体整体状况，是一种方便和花费少的方法，比如可以确定病人采取有利于延年益寿的预防措施后，如节食或锻炼，情况是否有改善。或者，相应的，对于那些接受各种辅助治疗和药物治疗的健康状况较差的病人，这项检测可以确定疗效是否理想。
+        </h4>
+        <span slot="footer" class="dialog-footer">
+          <h6>内容来源：百度百科</h6>
+        </span>
+      </el-dialog>
       <!-- 1层内容开始 -->
+      <!-- 项目介绍 -->
       <el-drawer title="健康记录" :visible.sync="drawer" size="380px">
         <p style="padding: 30px">
           <span style="font-size: 18px">记录您的基本资料：</span>
@@ -194,27 +296,8 @@
                 sortable
               ></el-table-column>
             </el-table>
-            <!-- size-change每页最大变化数 
-                current-change当前变化数 
-                layout功能组件 
-                page-size="queryInfo.number" 当前页码
-                total 获取的总数据  -->
-            <!-- <div>
-              <el-pagination
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-                :current-page="queryInfo.pageNum"
-                :page-size="queryInfo.pageSize"
-                layout="total, sizes, prev, pager, next, jumper"
-                :total="number"
-              >
-              </el-pagination>
-            </div> -->
             <!-- 2层底部按钮 -->
             <el-form label-width="50px" class="demo-ruleForm">
-              <!-- <el-form-item>
-              <el-button @click="cancelForm2">关 闭</el-button>
-              </el-form-item> -->
               <p>只显示最新10条数据</p>
             </el-form>
           </el-drawer>
@@ -310,7 +393,24 @@
               </el-select>
             </el-form-item> -->
             </el-form>
-            <el-button @click="addUserBody()">记录一下</el-button>
+            <el-button @click="Dialogvital = true" style="margin: 10px">
+              肺活量
+            </el-button>
+            <el-button @click="Dialogvision = true" style="margin: 10px">
+              视力值
+            </el-button>
+            <el-button @click="Dialogtemperature = true" style="margin: 10px">
+              体 温
+            </el-button>
+            <el-button @click="Dialogheart = true" style="margin: 10px">
+              心 率
+            </el-button>
+            <el-button @click="Dialoglegspeed = true" style="margin: 10px">
+              步 速
+            </el-button>
+            <el-button style="margin: 10px" @click="addUserBody()"
+              >记录一下</el-button
+            >
           </div>
         </el-tab-pane>
         <el-tab-pane label="三血">
@@ -342,7 +442,37 @@
                 ></el-input>
               </el-form-item>
             </el-form>
-            <el-button @click="addUserBody()">记录一下</el-button>
+            <el-popover placement="right" width="350" trigger="click">
+              <h3>高血压：</h3>
+              <h4>
+                高血压是指循环系统内血压高于正常而言，通常指体循环动脉血压增高，是一种常见的临床综合症。通常是以低于140/90毫米汞柱为正常，而大于等于140/90毫米汞柱为高血压。因它是在不知不觉中发生，故称“悄悄的杀手”。
+              </h4>
+              <h3>高血脂：</h3>
+              <h4>
+                高血脂是指血中胆固醇或甘油三酯过高或高密度脂蛋白胆固醇过低，现代医学称之为血脂异常。它是导致动脉粥样硬化的主要因素，是心脑血管病发生发展的危险因素。它发病隐匿，大多没有临床症状，故称为“隐形杀手”。
+              </h4>
+              <h3>高血糖：</h3>
+              <h4>
+                高血糖是机体血液中葡萄糖含量高于正常值。是机体内一个独立存在的病理改变，病变部位在血液，病变性质是血糖代谢紊乱。高血糖的临床表现，可以有显性的症状，如口干渴、饮水多、尿多、消瘦；可以是隐性的症状，无明显主观不适。
+              </h4>
+              <p>内容来源：百度百科</p>
+              <el-button slot="reference">“三高”是什么</el-button>
+            </el-popover>
+            <el-popover placement="right" width="350" trigger="click">
+              <h4>
+                1.减少食盐多吃健康食品。适当的减少钠盐的摄入可以减少体内的水钠潴留,有助于降低血压。日常中，要注意减少隐性盐的摄入，如腌制食品、腊味、酱油、海产品、火锅蘸料、快餐等都是重盐的食品。多吃芹菜等蔬菜帮助降三高。
+              </h4>
+              <h4>
+                2.营养均衡。过分节制饮食只会导致机体的营养失衡。寒热搭配、荤素搭配、总量控制才是正确的饮食方式。避免肥胖、控制体重是预防高血压的关键。
+              </h4>
+              <h4>
+                3.戒烟限酒。吸烟、喝酒可使降压药的疗效降低,需加大用药剂量。长期吸烟的患者远期预后差。长期过量饮酒是高血压、心血管病发生的危险因素。
+              </h4>
+              <el-button slot="reference">调理方法</el-button>
+            </el-popover>
+            <el-button style="margin: 10px" @click="addUserBody()"
+              >记录一下</el-button
+            >
           </div>
         </el-tab-pane>
         <el-tab-pane label="三围">
@@ -414,6 +544,7 @@
                       ></i>
                     </el-button>
                   </el-tooltip>
+                  <br />
                   <el-tooltip placement="bottom-start">
                     <div slot="content" style="font-size: 16px">
                       胸围与臀围应该三个月测量一次，作为购买内衣裤的标准，毕竟“人是善变的”。<br />
@@ -549,6 +680,39 @@ export default {
   },
   data() {
     return {
+      // 弹框
+      Dialogvital: false,
+      Dialogvision: false,
+      Dialogtemperature: false,
+      Dialogheart: false,
+      Dialoglegspeed: false,
+      // 视力表
+      visionTable: [
+        { china: "3.0", world: "0.01" },
+        { china: "3.1", world: "0.012" },
+        { china: "3.2", world: "0.015" },
+        { china: "3.3", world: "0.02" },
+        { china: "3.4", world: "0.025" },
+        { china: "3.5", world: "0.03" },
+        { china: "3.6", world: "0.04" },
+        { china: "3.7", world: "0.05" },
+        { china: "3.8", world: "0.06" },
+        { china: "3.9", world: "0.08" },
+        { china: "4.0", world: "0.1" },
+        { china: "4.1", world: "0.12" },
+        { china: "4.2", world: "0.15" },
+        { china: "4.3", world: "0.2" },
+        { china: "4.4", world: "0.25" },
+        { china: "4.5", world: "0.3" },
+        { china: "4.6", world: "0.4" },
+        { china: "4.7", world: "0.5" },
+        { china: "4.8", world: "0.6" },
+        { china: "4.9", world: "0.8" },
+        { china: "5.0", world: "1.0" },
+        { china: "5.1", world: "1.2" },
+        { china: "5.2", world: "1.5" },
+        { china: "5.3", world: "2.0" },
+      ],
       // tab步骤条
       tabPosition: "left",
       // 身体表单
@@ -842,11 +1006,11 @@ export default {
   margin: 15px;
   font-size: 18px;
 }
-.box0 {
-  // background-color: #fff;
-}
-.box1 {
-}
+// .box0 {
+//   // background-color: #fff;
+// }
+// .box1 {
+// }
 .box2 {
   margin-bottom: 10px;
   background-color: #fff;

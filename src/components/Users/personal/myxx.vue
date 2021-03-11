@@ -9,9 +9,17 @@
       </el-breadcrumb>
       <h3></h3>
       <!-- 查看我的信息       基本数据 -->
-      <el-button type="primary" @click="dialog = true" size="mini"
-        >单击完善我的基本信息</el-button
-      >
+      <el-button type="primary" @click="dialog = true" size="mini">
+        {{
+          userInfo.username &&
+          userInfo.sex &&
+          userInfo.birthday &&
+          userInfo.height &&
+          userInfo.weight
+            ? "更新基本信息"
+            : "您还有待完善的基本信息！"
+        }}
+      </el-button>
       <!-- 我的信息 -->
       <el-drawer
         :visible.sync="dialog"
@@ -50,8 +58,8 @@
                 v-model="userInfo.sex"
                 placeholder="请选择您的性别"
               >
-                <el-option label="男" value="man"></el-option>
-                <el-option label="女" value="woman"></el-option>
+                <el-option label="男" value="男"></el-option>
+                <el-option label="女" value="女"></el-option>
               </el-select>
             </el-form-item>
             <!-- 生日 -->
@@ -273,7 +281,7 @@
                   <router-link
                     style="text-decoration: none; color: #909399"
                     :router="true"
-                    to="/jktz"
+                    to="/fat_analysis"
                   >
                     <el-button style="margin: 5px; font-size: 18px">
                       去记录我的体脂
@@ -343,7 +351,7 @@
                   <router-link
                     style="text-decoration: none; color: #909399"
                     :router="true"
-                    to="/jkbz"
+                    to="/health_standard"
                   >
                     <el-button type="" style="margin: 5px; font-size: 18px">
                       去记录我的信息

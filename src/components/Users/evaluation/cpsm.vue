@@ -26,9 +26,9 @@
     </el-tooltip>
     <p>[本次测评预计用时：6分钟]</p>
     <el-form class="box1">
-      <div class="card accordion" v-for="item in sleepForm" :key="item.id">
+      <div class="card accordion">
         <!-- bootstrap4.5下拉 -->
-        <div>
+        <div v-for="item in sleepForm" :key="item.id">
           <h2 class="mb-0">
             <el-button
               class="btn btn-block text-left collapsed"
@@ -40,19 +40,18 @@
               {{ item.question }}
             </el-button>
           </h2>
-        </div>
-
-        <div :id="'collapse' + item.id" class="collapse">
-          <div class="card-body">
-            <el-radio-group v-model="item.answer">
-              <el-radio
-                v-for="it in item.resource"
-                :key="it.id"
-                :label="it.value"
-              >
-                {{ it.name }}
-              </el-radio>
-            </el-radio-group>
+          <div :id="'collapse' + item.id" class="collapse">
+            <div class="card-body">
+              <el-radio-group v-model="item.answer">
+                <el-radio
+                  v-for="it in item.resource"
+                  :key="it.id"
+                  :label="it.value"
+                >
+                  {{ it.name }}
+                </el-radio>
+              </el-radio-group>
+            </div>
           </div>
         </div>
       </div>

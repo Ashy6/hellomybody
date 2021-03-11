@@ -33,6 +33,7 @@
           <template #img>
             <!-- 睡眠测试 -->
             <img
+              @click="tosleep"
               class="d-block img-fluid w-100"
               width="100%"
               height="100%"
@@ -77,6 +78,7 @@
         <b-carousel-slide>
           <template #img>
             <img
+              @click="tomyl"
               class="d-block img-fluid w-100"
               width="100%"
               height="100%"
@@ -144,7 +146,7 @@
       <div class="box22"></div>
     </div>
 
-    <div class="box3">搜索</div>
+    <div class="box3"></div>
 
     <div></div>
   </div>
@@ -165,6 +167,13 @@ export default {
     },
     onSlideEnd(slide) {
       this.sliding = false;
+    },
+    // 跳转睡眠测试
+    tosleep() {
+      this.$router.push({ path: "/sleep_test" });
+    },
+    tomyl() {
+      this.$router.push({ path: "/Immunity_test" });
     },
   },
 };
@@ -215,37 +224,39 @@ div {
   // font-weight: 650;
   margin: 10%;
   z-index: 10;
-}
-.box1 .box11 .box111 img {
-  display: block;
-  width: 45%;
-}
-.box1 .box11 .box111 p {
-  font-family: sans-serif;
-  font-size: 15px;
-  display: block;
-  // line-height: 15px;
-  background-color: #fff;
-  border-radius: 30px;
-  padding-bottom: 15px;
-  line-height: 15px;
-  // text-align: center;
-  // float: left;
-}
-.box1 .box11 .box111 span {
-  font-size: 25px;
-  font-weight: 600;
+  p {
+    padding: 20px;
+    font-family: sans-serif;
+    font-size: 15px;
+    display: block;
+    // line-height: 15px;
+    background-color: #fff;
+    border-radius: 30px;
+    padding-bottom: 15px;
+    line-height: 15px;
+  }
+  img {
+    display: block;
+    width: 45%;
+  }
+  span {
+    font-size: 25px;
+    font-weight: 600;
+  }
 }
 .box1 .box11 .box112 {
+  padding-top: 20px;
   display: flex;
   // margin-top: -150px;
   height: 30px;
   // border: 1px solid red;
-}
-.box1 .box11 .box112 p {
-  font-size: 20px;
-  color: #fff;
-  // float: right;
+  p {
+    font-size: 20px;
+    color: #fff;
+  }
+  a {
+    text-decoration-color: springgreen;
+  }
 }
 // 盒子2
 .box2 {
