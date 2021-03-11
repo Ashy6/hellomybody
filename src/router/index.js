@@ -54,6 +54,10 @@ import myjl from '../components/Users/others/myjl.vue'
 // import cp20105 from '../components/Users/util/cp20105.vue';
 // import cp20106 from '../components/Users/util/cp20106.vue';
 
+// 404
+import find404 from '../components/find404.vue'
+
+
 // 配置路由
 Vue.use(VueRouter)
 
@@ -143,52 +147,56 @@ const routes = [
     path: "/register",  //转发
     component: register  //引入系统注册组件
   },
-  // {
-  //   // 404页面导航
-  //   path: '*',
-  //   // component: find404,
-  //   component: () => import('../components/find404.vue')
-  // }
+  {
+    // 404页面导航
+    path: '*',
+    component: find404,
+    // component: () => import('../components/find404.vue')
+  }
 ]
 // 挂载router
 const router = new VueRouter({
   routes
 })
-// 路由导航守卫出现问题的时候使用
-// const originalPush = VueRouter.prototype.push
-// VueRouter.prototype.push = function push(location, onResolve, onReject) {
-//   if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
-//   return originalPush.call(this, location).catch(err => err)
-// }
+// 路由导航守卫出现问题的时候使用 ---baidu.com 提供技术支持
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location, onResolve, onReject) {
+  if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+  return originalPush.call(this, location).catch(err => err)
+}
 
 // //挂载路由导航守卫
-// router.beforeEach((to,form,next) => {     //3个方法  你 要往那里去 从哪里来 要去干什么
-//   //next （url）  重定向到url中， 没有则继续访问 to的路径
-//   if(to.path === '/login') return next();   //只允许访问网站首页 
-//   // 获取user
-//   const userFlag = window.sessionStorage.getItem("user");
-//   //有值，则完成登录，进入首页  无值返回登录页 
-//   if(!userFlag) return next('/login');
-//   next();
-// })
+router.beforeEach((to, form, next) => {     //3个方法  你 要往那里去 从哪里来 要去干什么
+  //next （url）  重定向到url中， 没有则继续访问 to的路径
+  if (to.path === '/login') return next();   //只允许访问网站首页 
+  // 获取user
+  const userFlag = window.sessionStorage.getItem("user");
+  //有值，则完成登录，进入首页  无值返回登录页 
+  if (!userFlag) {
+    // this.$message.success("欢迎你，管理员"); //信息提示
+    // error("用户未登陆！");
+    return next('/login');
+  }
+  next();
+})
 
 // 路由守卫 
-router.beforeEach((to, from, next) => {
+// router.beforeEach((to, from, next) => {
 
-  let flag = sessionStorage.getItem('user')
+//   let flag = window.sessionStorage.getItem('user')
 
-  if (to.meta.requireAuth == true) { // 需要登录权限进入的路由
-    if (!flag) {                   // 获取不到登录信息
-      next({
-        path: '/login'
-      })
-    } else {                       // 获取到登录信息，进行下一步
-      return next();
-    }
-  } else {                           // 不需要登录权限的路由直接进行下一步
-    return next();
-  }
-})
+//   if (to.meta.requireAuth == true) { // 需要登录权限进入的路由
+//     if (!flag) {                   // 获取不到登录信息
+//       next({
+//         path: '/login'
+//       })
+//     } else {                       // 获取到登录信息，进行下一步
+//       return next();
+//     }
+//   } else {                           // 不需要登录权限的路由直接进行下一步
+//     return next();
+//   }
+// })
 
 // // 全局前置守卫
 // router.beforeEach((to, from, next) => {
@@ -211,4 +219,18 @@ router.beforeEach((to, from, next) => {
 //     next();
 //   }
 // });
+// router.beforeEach((to, form, next) => {
+//   var user = window.sessionStorage.getItem("user");
+//   console.log("当前用户" + user);
+//   if (to.meta.Login) {
+//     if (user > 0) {
+//       next()
+//     } else {
+//       this.$message.error("用户未登陆！！！"); //信息提示
+//       this.$router.push({ path: "/login" }); //页面路由跳转
+//     }
+//   } else {
+//     next()
+//   }
+// })
 export default router
