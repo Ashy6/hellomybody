@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="box0">
     <!-- 顶部导航 -->
     <div class="container">
       <el-breadcrumb separator-class="el-icon-arrow-right">
@@ -14,7 +14,7 @@
       <div class="left shadow-lg p-3 mb-5 bg-white rounded">
         <!-- 标题开始 -->
         <el-tooltip placement="bottom-start">
-          <div slot="content" style="font-size: 20px">
+          <div slot="content" style="font-size: 16px">
             世卫计算方法：<br />男性：(身高cm－80)×70﹪=标准体重<br />
             女性：(身高cm－70)×60﹪= 标准体重<br />
             标准体重 正负(10﹪+-) 为正常体重<br />
@@ -31,13 +31,15 @@
         </el-tooltip>
         <h1 style="display: inline-block">与</h1>
         <el-tooltip placement="bottom-start">
-          <div slot="content" style="font-size: 20px">
-            体脂率是指人体内脂肪重量占人体总体重的比例，又称作体脂百分数，<br />它反映了人体内
-            脂肪含量的多少。 <br />正常成年人的体脂率分别是：男15%~18%，女性25%
-            ~28%。<br />
+          <div slot="content" style="font-size: 16px">
+            体脂率是指人体内脂肪重量占人体总体重的比例，<br />
+            又称作体脂百分数，它反映了人体内脂肪含量的多<br />
+            少。 正常成年人的体脂率分别是：男15%~18%，<br />
+            女性25%~28%。<br />
             计算体脂率时，应先计算BMI值<br />
             BMI=体重（千克）÷（身高 × 身高）（米）<br />
-            体脂率的计算公式是：1.2 × BMI+0.23 × 年龄-5.4-10.8 × 性别
+            体脂率的计算公式是：<br />
+            1.2 × BMI+0.23 × 年龄-5.4-10.8 × 性别
           </div>
           <el-button plain style="border: 0px">
             <h1 style="display: inline-block">体脂率</h1>
@@ -271,12 +273,12 @@ export default {
       marks: {
         0: {
           style: {
-            padding: "0px 0px 0px 250px",
+            padding: "0px 0px 0px 150px",
             color: "blue",
           },
           label: this.$createElement(
             "strong",
-            "滑动滑块，根据您自己的体重找到您的位置"
+            "滑动滑块找到您体重的位置"
           ),
         },
         35: {
@@ -597,6 +599,9 @@ export default {
 .el-breadcrumb {
   font-size: 18px;
   margin-bottom: 15px;
+}
+.box0 {
+  min-width: 800px;
 }
 .boxt {
   display: flex;
