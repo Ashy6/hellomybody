@@ -150,8 +150,9 @@
       <el-dialog
         title="修改用户"
         :visible.sync="editDialogVisible"
-        width="50%"
+        width="400px"
         @close="editDialogClosed"
+        center
       >
         <el-form
           :model="editForm"
@@ -173,13 +174,12 @@
           </el-form-item>
         </el-form>
         <span slot="footer" class="dislog-footer">
-          邮箱验证功能未来将会上线，敬请期待
+          <el-button @click="editUserInfo" type="primary">确定</el-button>
           <el-button
             style="margin-left: 30px"
             @click="editDialogVisible = false"
             >取消</el-button
           >
-          <el-button @click="editUserInfo" type="primary">确定</el-button>
         </span>
       </el-dialog>
       <div>
