@@ -276,10 +276,7 @@ export default {
             padding: "0px 0px 0px 150px",
             color: "blue",
           },
-          label: this.$createElement(
-            "strong",
-            "滑动滑块找到您体重的位置"
-          ),
+          label: this.$createElement("strong", "滑动滑块找到您体重的位置"),
         },
         35: {
           style: {
@@ -485,7 +482,6 @@ export default {
               "(kg)之间，" +
               "属于正常体重。请继续保持ヽ( ⌒ω⌒)人(=^‥^= )ﾉ！！！",
             type: "success",
-            duration: 0, // 不会自动消失
           });
         } else if (width <= sum + sum * 0.2 && width >= sum + sum * 0.1) {
           this.$notify({
@@ -500,7 +496,6 @@ export default {
               "(kg)之间，" +
               "属于偏胖(过重)。建议减少脂肪和油脂的摄入，并加强体育锻炼！！",
             type: "warning",
-            duration: 0,
           });
         } else if (width >= sum - sum * 0.2 && width <= sum - sum * 0.1) {
           this.$notify({
@@ -515,7 +510,6 @@ export default {
               "(kg)之间，" +
               "属于偏瘦(过轻)。建议您注重饮食健康，太瘦并不是一种美 (  •̆ ᵕ •̆ )◞♡ ！",
             type: "warning",
-            duration: 0,
           });
         } else if (width > sum + sum * 0.2) {
           this.$notify.error({
@@ -526,7 +520,6 @@ export default {
               "(kg),超过" +
               (sum * 1.2).toFixed(3) +
               "(kg)，属于肥胖(超重)。亲，这边建议您注意减脂 (*≧▽≦)ﾉｼ)) ！",
-            duration: 0,
           });
         } else if (width < sum - sum * 0.2) {
           this.$notify.error({
@@ -538,7 +531,6 @@ export default {
               (sum * 0.8).toFixed(3) +
               "(kg)，体重严重不足，营养不良。" +
               "应当注意加强营养，如有不适，建议尽早就医。",
-            duration: 0,
           });
         } else {
           this.$notify.info({
