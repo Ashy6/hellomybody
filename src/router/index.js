@@ -1,10 +1,12 @@
+// 单独引入element的消息提示
+import { Message } from 'element-ui';
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // 引入组件
-import Login from '../components/Login.vue'
+// import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
 import First from '../components/First.vue'
-import register from '../components/register.vue'
+// import register from '../components/register.vue'
 // import find404 from '../components/find404.vue'
 //后台界面
 import hello from '../components/Home/hello.vue'
@@ -64,12 +66,13 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: "/", //访问路径
-    redirect: "/login"  //重定向
+    redirect: "/first"  //重定向
+    // component: Default
   },
-  {
-    path: "/login",  //转发
-    component: Login  //引入系统登录组件
-  },
+  // {
+  //   path: "/login",  //转发
+  //   component: Login  //引入系统登录组件
+  // },
   // 后台页面
   {
     path: "/home",  //转发
@@ -143,10 +146,10 @@ const routes = [
       { path: "/outline", component: outline, },
     ]
   },
-  {
-    path: "/register",  //转发
-    component: register  //引入系统注册组件
-  },
+  // {
+  //   path: "/register",  //转发
+  //   component: register  //引入系统注册组件
+  // },
   {
     // 404页面导航
     path: '*',
@@ -165,18 +168,27 @@ VueRouter.prototype.push = function push(location, onResolve, onReject) {
   return originalPush.call(this, location).catch(err => err)
 }
 
-// //挂载路由导航守卫
+//挂载路由导航守卫
 router.beforeEach((to, form, next) => {     //3个方法  你 要往那里去 从哪里来 要去干什么
   //next （url）  重定向到url中， 没有则继续访问 to的路径
-  if (to.path === '/login') return next();   //只允许访问网站首页 
-  // 获取user
-  const userFlag = window.sessionStorage.getItem("user");
-  //有值，则完成登录，进入首页  无值返回登录页 
-  if (!userFlag) {
-    window.alert("请先登录");
-    // window.$message.success("用户未登陆！"); //信息提示
-    // error("用户未登陆！");
-    return next('/login');
+  // if (to.path === '/first') return next();   //只允许访问网站首页 
+  if (form.path !== '/first') {
+    if (to.path == '/welcome') return next();   //只允许访问网站首页 
+    // 获取user
+    const userFlag = window.sessionStorage.getItem("user");
+    // return this.$message.success("您不是超级管理员"); //信息提示
+    //有值，则完成登录，进入首页  无值返回登录页 
+    if (!userFlag) {
+      // window.alert("请先登录");
+      // window.$message.success("用户未登陆！"); //信息提示
+      // error("用户未登陆！");
+      return next('/first');
+    }
+    const roleFlag = window.sessionStorage.getItem("role");
+    if (roleFlag !== "超级管理员") {
+      next('/first');
+      // return this.$message.success("您不是超级管理员"); //信息提示
+    }
   }
   next();
 })
@@ -189,7 +201,7 @@ router.beforeEach((to, form, next) => {     //3个方法  你 要往那里去 �
 //   if (to.meta.requireAuth == true) { // 需要登录权限进入的路由
 //     if (!flag) {                   // 获取不到登录信息
 //       next({
-//         path: '/login'
+//         path: '/first'
 //       })
 //     } else {                       // 获取到登录信息，进行下一步
 //       return next();
@@ -224,11 +236,11 @@ router.beforeEach((to, form, next) => {     //3个方法  你 要往那里去 �
 //   var user = window.sessionStorage.getItem("user");
 //   console.log("当前用户" + user);
 //   if (to.meta.Login) {
-//     if (user > 0) {
+//     if (user) {
 //       next()
 //     } else {
 //       this.$message.error("用户未登陆！！！"); //信息提示
-//       this.$router.push({ path: "/login" }); //页面路由跳转
+//       this.$router.push({ path: "/first" }); //页面路由跳转
 //     }
 //   } else {
 //     next()
