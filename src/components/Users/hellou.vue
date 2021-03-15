@@ -129,13 +129,24 @@
         </div>
         <div class="box112">
           <p>
-            <router-link :to="{ path: '/jkgj' }">卡路里消耗计算器</router-link>
+            <router-link :to="{ path: '/calories_dissipation' }"
+              >卡路里消耗计算器</router-link
+            >
           </p>
           <p class="pull-right">
-            <router-link :to="{ path: '/jkgj2' }">食物卡路里计算器</router-link>
+            <router-link :to="{ path: '/calories_food' }"
+              >食物卡路里计算器</router-link
+            >
           </p>
           <p class="pull-right">
-            <router-link :to="{ path: '/g02' }">体脂计算器</router-link>
+            <router-link :to="{ path: '/calories_find' }"
+              >食物卡路里查询</router-link
+            >
+          </p>
+          <p class="pull-right">
+            <router-link :to="{ path: '/fat_analysis' }"
+              >体脂计算器</router-link
+            >
           </p>
         </div>
       </div>
@@ -213,6 +224,7 @@ div {
   height: 0;
   margin: 6%;
   display: inline-block;
+  border-radius: 30px;
 }
 .box1 .box11 .box111 {
   display: inline-block;
@@ -225,15 +237,17 @@ div {
   margin: 10%;
   z-index: 10;
   p {
-    padding: 20px;
+    // padding: 20px;
     font-family: sans-serif;
     font-size: 15px;
     display: block;
+    // margin-bottom: 15px;
     // line-height: 15px;
     background-color: #fff;
-    border-radius: 30px;
+    // border-radius: 30px;
     padding-bottom: 15px;
     line-height: 15px;
+    font-weight: 900;
   }
   img {
     display: block;
@@ -241,7 +255,7 @@ div {
   }
   span {
     font-size: 25px;
-    font-weight: 600;
+    font-weight: 800;
   }
 }
 .box1 .box11 .box112 {
