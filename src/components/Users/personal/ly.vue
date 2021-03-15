@@ -3,10 +3,7 @@
     <div class="container">
       <div class="boxly">
         <!-- 顶部导航 -->
-        <el-breadcrumb
-          separator-class="el-icon-arrow-right"
-          style="padding-top: 30px"
-        >
+        <el-breadcrumb separator-class="el-icon-arrow-right">
           <el-breadcrumb-item :to="{ path: '/welcome' }"
             >首页</el-breadcrumb-item
           >
@@ -17,7 +14,7 @@
         <el-button type="primary" @click="addDialogVisible = true">
           提问/留言
         </el-button>
-        <span align="center" style="font-size: 16px; display:block">
+        <span align="center" style="font-size: 16px; display: block">
           感谢您的使用，如果您有什么问题想法建议或者意见都可以在此处留言
         </span>
 
@@ -113,7 +110,7 @@
       <el-dialog
         title="添加问题"
         :visible.sync="addDialogVisible"
-        width="50%"
+        width="60%"
         @close="addDialogClosed"
       >
         <el-form
@@ -127,7 +124,7 @@
             <el-input
               v-model="addQuestion.name"
               disabled
-              style="width: 300px"
+              style="max-width: 300px"
             ></el-input>
           </el-form-item>
           <!-- 分类 -->
@@ -138,7 +135,7 @@
             ></el-input>
           </el-form-item> -->
           <!-- 下拉选择框 -->
-          <el-form-item prop="title">
+          <el-form-item label="分类：" prop="title">
             <el-select
               label="分类："
               prop="title"
@@ -366,17 +363,9 @@ export default {
 .block,
 .boxly {
   background-color: lemonchiffon;
-  padding: 15px;
+  padding: 15px 0 0 15px;
   opacity: 0.98;
   border-radius: 5px;
-}
-/* 面包屑 */
-.el-breadcrumb {
-  font-size: 18px;
-  margin-bottom: 15px;
-}
-.liuyan {
-  padding-top: 20px;
 }
 .cards {
   h4 {
