@@ -51,33 +51,7 @@
                 <span>{{ it.title }}</span>
               </template>
             </el-menu-item>
-            <!-- [
-           {
-             id: 100,
-             path: "/admin",
-             sList: [
-               { id: 101, path: "/user", title: "用户列表" },
-               { id: 102, path: "/rights", title: "修改权限" },
-             ],
-             title: "用户管理",
-           },
-           {
-           }
-          ] -->
           </el-submenu>
-          <!--                 
-                <el-menu-item index="3">
-                    <i class="el-icon-menu"></i>
-                    <span slot="title">数据分析</span>
-                </el-menu-item>
-                <el-menu-item index="4">
-                    <i class="el-icon-setting"></i>
-                    <span slot="title">人员管理</span>
-                </el-menu-item>
-                <el-menu-item index="5" disabled>
-                    <i class="el-icon-document"></i>
-                    <span slot="title">导航三</span>
-                </el-menu-item> -->
         </el-menu>
       </el-aside>
       <!-- 主体内容 -->
