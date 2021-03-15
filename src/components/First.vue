@@ -3,14 +3,12 @@
     <div class="home-container">
       <!-- 顶部导航栏 -->
       <el-header class="navbar-fixed-top">
-        <!-- <div class="line"></div> -->
         <div>
           <!--小屏幕导航按钮和logo-->
-          <div class="navbar-header">
+          <div class="navbar-header hidden-sm-and-up">
             <button
               class="navbar-toggle"
-              data-toggle="collapse"
-              data-target=".navbar-collapse"
+              @click="isCollapse == true ? open() : close()"
             >
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -23,26 +21,21 @@
               <span>HelloBody</span>
             </p>
           </div>
-          <div class="navbar-collapse collapse">
+          <div class="top-dropdown container">
             <el-menu
               :default-active="activePath"
-              class="el-menu-demo"
+              class="el-menu-demo hidden-sm-and-down"
               mode="horizontal"
-              background-color="Transparent"
+              background-color="#202023"
               text-color="#fff"
               active-text-color="#409EFF"
               :router="true"
               :span="12"
             >
-              <!-- default-active="/hello"   设定打开界面为hello -->
-              <!-- el-menu-vertical-demo控制下拉 -->
-              <!-- :router="true" 设定路由，让其能够根据页面进行跳转 -->
-              <!-- > unique-opened   该属性方法控制侧边栏 展开时不自动关闭-->
-
               <el-menu-item>
-                <!-- <template :to="{ path: '/hellou' }">首页</template> -->
+                <img src="../assets/img/hmb3.png" alt="" style="height: 60px" />
                 <router-link
-                  style="text-decoration: none"
+                  style="text-decoration: none; margin-left: 30px"
                   :to="{ path: '/welcome' }"
                   >首页</router-link
                 >
@@ -53,12 +46,8 @@
                 v-for="item in menuList"
                 :key="item.id"
               >
-                <!--  v-for 编写循环 -->
-                <!-- 从menuList中取出数据放入item中，，绑定唯一标识的key -->
-                <template slot="title">
-                  <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">{{
-                    item.title
-                  }}</el-col>
+                <template slot="title"
+                  ><el-col :span="6">{{ item.title }}</el-col>
                 </template>
                 <!-- 二级菜单 -->
                 <el-menu-item
@@ -66,58 +55,273 @@
                   v-for="it in item.sList"
                   :key="it.id"
                   @click="saveNavState(it.path)"
-                  background-color="yellow"
+                  style="min-width: 200px"
                 >
                   <!-- it.path 即字符串路径，读取数据库路径 -->
                   <template slot="title">
-                    <i class="el-icon-location"></i>
-                    <span style="color: #fff">{{ it.title }}</span>
+                    <!-- <i class="el-icon-location"></i> -->
+                    <span style="color: #fff" center>{{ it.title }}</span>
                   </template>
                 </el-menu-item>
               </el-submenu>
-              <template>
-                {{ currentTime }}
-              </template>
-              <el-menu-item
-                :span="5"
-                class="pull-right"
-                style="margin-right: 60px"
-              >
-                <template slot="title">
-                  <el-col :span="3">
-                    <el-dropdown trigger="click">
-                      <span class="el-dropdown-link">
-                        欢迎您{{ "，" + form.userName }}
-                      </span>
-                      <el-dropdown-menu slot="dropdown" background-color="fff">
-                        <el-dropdown-item icon="el-icon-circle-plus-outline">
-                          <router-link
-                            style="text-decoration: none; color: #67c23a"
-                            :router="true"
-                            to="/personal_center"
-                          >
-                            个人中心
-                          </router-link>
-                        </el-dropdown-item>
-                        <el-dropdown-item icon="el-icon-circle-check"
-                          ><span @click="logout" style="color: #f56c6c">
-                            退出登录</span
-                          ></el-dropdown-item
+              <el-menu-item class="pull-right">
+                <!-- 未登录时显示“登录”“注册” -->
+                <template>
+                  <span
+                    @click="loginDialogFormVisible = true"
+                    v-loading.fullscreen.lock="fullscreenLoading"
+                  >
+                    {{ form.userName ? "" : "登录" }}
+                  </span>
+                </template>
+                <template>
+                  <span @click="registerDialogFormVisible = true">
+                    {{ form.userName ? "" : "注册" }}
+                  </span>
+                </template>
+                <template slot="" class="logAdReg">
+                  <el-dropdown>
+                    <!-- 登录后显示欢迎+下拉 -->
+                    <span class="el-dropdown-link">
+                      {{ form.userName ? "欢迎您，" + form.userName : "" }}
+                      <!-- {{ form.userName ? helloTime + form.userName : "" }} -->
+                    </span>
+                    <el-dropdown-menu slot="dropdown" style="">
+                      <el-dropdown-item icon="el-icon-circle-plus-outline">
+                        <router-link
+                          style="text-decoration: none; color: #67c23a"
+                          :router="true"
+                          to="/personal_center"
                         >
-                      </el-dropdown-menu>
-                    </el-dropdown>
-                  </el-col>
+                          个人中心
+                        </router-link>
+                      </el-dropdown-item>
+                      <el-dropdown-item icon="el-icon-circle-check"
+                        ><span @click="logout" style="color: #f56c6c">
+                          退出登录</span
+                        ></el-dropdown-item
+                      >
+                    </el-dropdown-menu>
+                  </el-dropdown>
                 </template>
               </el-menu-item>
             </el-menu>
           </div>
+          <!-- </div> -->
         </div>
+        <!-- 侧边菜单 -->
+        <el-menu
+          class="left-dropdown el-menu-vertical-demo"
+          :collapse="isCollapse"
+          style="margin-left: -100px"
+          unique-opened
+          background-color="#67C23A"
+          text-color="#fff"
+          active-text-color="#909399"
+        >
+          <el-submenu index="1">
+            <template slot="title">
+              <span slot="title">健康工具</span>
+            </template>
+            <!-- <el-menu-item-group> -->
+            <!-- <span slot="title">健康工具</span> -->
+            <el-menu-item index="1-1" style="width: 100px"
+              ><span>运动卡路里消耗</span></el-menu-item
+            >
+            <el-menu-item index="1-2"><span>食物卡路里计算</span></el-menu-item>
+            <el-menu-item index="1-3"><span>食品卡路里查询</span></el-menu-item>
+            <el-menu-item index="1-4"><span>我的工具</span></el-menu-item>
+          </el-submenu>
+          <el-submenu index="2">
+            <template slot="title">
+              <span slot="title">健康测评</span>
+            </template>
+            <!-- </el-menu-item-group> -->
+            <!-- <el-menu-item-group title="健康测评"> -->
+            <el-menu-item index="2-1"><span>免疫力测试</span></el-menu-item>
+            <el-menu-item index="2-2"><span>睡眠测试</span></el-menu-item>
+            <!-- </el-menu-item-group> -->
+            <!-- <el-menu-item-group title="数据分析"> -->
+            <!-- </el-menu-item-group> -->
+          </el-submenu>
+          <el-submenu index="3">
+            <template slot="title">
+              <span slot="title">数据分析</span>
+            </template>
+            <el-menu-item index="2-1"><span>体重体脂分析</span></el-menu-item>
+            <el-menu-item index="2-2"><span>健康标准</span></el-menu-item>
+          </el-submenu>
+          <!-- 登录注册 -->
+          <el-menu-item index="4" :hidden="form.userName ? true : false">
+            <span
+              style="padding-left: 50px"
+              slot="title"
+              @click="loginDialogFormVisible = true"
+              v-loading.fullscreen.lock="fullscreenLoading"
+            >
+              {{ form.userName ? "" : "登录" }}
+            </span>
+            <span slot="title" @click="registerDialogFormVisible = true">
+              {{ form.userName ? "" : "注册" }}
+            </span>
+          </el-menu-item>
+          <el-submenu index="5" :hidden="form.userName ? false : true">
+            <template slot="title">
+              <span slot="title">
+                <!-- 欢迎您{{ "，" + form.userName }} -->
+                {{ form.userName ? "欢迎" + form.userName : "个人中心" }}
+              </span>
+            </template>
+            <el-menu-item index="5-1">
+              <router-link
+                style="text-decoration: none; color: #fff"
+                :router="form.userName ? true : false"
+                to="/personal_center"
+              >
+                <span>个人中心</span>
+              </router-link>
+            </el-menu-item>
+            <el-menu-item index="5-2">
+              <span @click="logout">退出登录</span>
+            </el-menu-item>
+          </el-submenu>
+        </el-menu>
       </el-header>
+
       <!-- 主体区域 -->
       <el-main class="main">
         <!-- 用路由开始重定向导航栏 -->
         <router-view></router-view>
       </el-main>
+      <!-- 登录表单 -->
+      <el-dialog
+        :fullscreen="true"
+        title="用户登录"
+        center
+        :visible.sync="loginDialogFormVisible"
+      >
+        <!-- 表单区域 -->
+        <el-form
+          ref="loginFormRef"
+          :rules="loginRules"
+          :model="loginForm"
+          class="login_form"
+          label-width="55px"
+          style="max-width: 450px; margin: 0 auto; margin-top: 30px"
+        >
+          <!-- 用户名 -->
+          <el-form-item style="text-align: center" label="账号" prop="username">
+            <el-input
+              v-model="loginForm.username"
+              prefix-icon="iconfont icon-denglu1"
+              clearable
+            ></el-input>
+          </el-form-item>
+          <!-- 密码 -->
+          <el-form-item label="密码" prop="password">
+            <el-input
+              v-model="loginForm.password"
+              prefix-icon="iconfont icon-mima1"
+              type="password"
+              show-password
+              clearable
+            ></el-input>
+          </el-form-item>
+          <!-- 按钮 -->
+          <!-- <el-form-item class="btns">
+          </el-form-item> -->
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button
+            placeholder=""
+            class="restButton"
+            type="primary"
+            plain
+            @click="login()"
+          >
+            登 录
+          </el-button>
+          <el-button
+            class="restButton"
+            type="info"
+            plain
+            @click="resetLoginForm()"
+          >
+            重 置
+          </el-button>
+          <el-button class="restButton" @click="loginDialogFormVisible = false">
+            取 消
+          </el-button>
+        </div>
+      </el-dialog>
+      <!-- 注册表单 -->
+      <el-dialog
+        :fullscreen="true"
+        title="用户注册"
+        :visible.sync="registerDialogFormVisible"
+        width="45%"
+        @close="addDialogClosed"
+        center
+      >
+        <el-form
+          :model="addForm"
+          :rules="addFormRules"
+          ref="addFormRef"
+          label-width="80px"
+        >
+          <!-- 用户名 -->
+          <el-form-item label="用户名" prop="username">
+            <el-input
+              placeholder="可以是汉字/字符/数字"
+              clearable
+              v-model="addForm.username"
+            ></el-input>
+          </el-form-item>
+          <!-- 密码 -->
+          <el-form-item label="密码" prop="password">
+            <el-input
+              clearable
+              type="password"
+              show-password
+              v-model="addForm.password"
+              autocomplete="off"
+              placeholder="密码强度建议不要太弱"
+            >
+            </el-input>
+            <!-- autocomplete="off" off浏览器将不提示记住密码-->
+          </el-form-item>
+          <!-- 确认 密码 -->
+          <el-form-item label="确认密码" prop="checkPass">
+            <el-input
+              type="password"
+              v-model="addForm.checkPass"
+              autocomplete="off"
+              show-password
+              clearable
+              placeholder="请再次输入密码"
+            ></el-input>
+          </el-form-item>
+          <!-- 邮箱 -->
+          <el-form-item label="邮箱" prop="email">
+            <el-input
+              placeholder="请输入邮箱"
+              clearable
+              v-model="addForm.email"
+            ></el-input>
+          </el-form-item>
+        </el-form>
+        <span slot="footer" class="dislog-footer">
+          <el-button class="restButton" @click="addUser" type="primary"
+            >确 定</el-button
+          >
+          <el-button
+            class="restButton"
+            @click="registerDialogFormVisible = false"
+          >
+            取 消
+          </el-button>
+        </span>
+      </el-dialog>
       <!-- 项目介绍 -->
       <el-dialog
         icon="el-icon-document"
@@ -131,8 +335,13 @@
           <i class="el-icon-edit"></i> ..............
         </p>
         <span slot="footer" class="dialog-footer">
-          <el-button @click="centerDialogVisible = false">取 消</el-button>
-          <el-button type="primary" @click="centerDialogVisible = false"
+          <el-button class="restButton" @click="centerDialogVisible = false"
+            >取 消</el-button
+          >
+          <el-button
+            class="restButton"
+            type="primary"
+            @click="centerDialogVisible = false"
             >确 定</el-button
           >
         </span>
@@ -144,7 +353,7 @@
         width="500px"
         center
       >
-        <p style="font-size: 40px">内测版</p>
+        <p style="font-size: 40px; text-align: center">内测版</p>
         <h2 style="text-aline: center; padding: 10px 30px">
           即将上线： 用户信息 <span style="color: #b03a5b">ECharts</span>
           图文分析
@@ -156,8 +365,13 @@
           版本预告：<span> 邮箱 注册、修改密码验证</span>
         </h2>
         <span slot="footer" class="dialog-footer">
-          <el-button @click="centerDialogVisible2 = false">取 消</el-button>
-          <el-button type="primary" @click="centerDialogVisible2 = false"
+          <el-button class="restButton" @click="centerDialogVisible2 = false"
+            >取 消</el-button
+          >
+          <el-button
+            class="restButton"
+            type="primary"
+            @click="centerDialogVisible2 = false"
             >确 定</el-button
           >
         </span>
@@ -179,6 +393,7 @@
                 <el-col :xs="12" :sm="8" :md="6" :lg="4">
                   <div class="as1">
                     <el-button
+                      class="restButton"
                       @click="centerDialogVisible = true"
                       type="text"
                       style="margin: 0px; padding: 0px"
@@ -200,6 +415,7 @@
                 <el-col :xs="12" :sm="8" :md="6" :lg="4">
                   <div class="as1">
                     <el-button
+                      class="restButton"
                       @click="centerDialogVisible2 = true"
                       type="text"
                       style="margin: 0px; padding: 0px"
@@ -271,17 +487,21 @@
               <!-- 左侧链接 -->
               <div class="as">
                 <h6>
-                  <el-button type="text" @click="bohe()">
+                  <el-button class="restButton" type="text" @click="bohe()">
                     健康网站分享--薄荷健康（愿世间的美好与你环环相扣）
                   </el-button>
                 </h6>
                 <h6>
-                  <el-button type="text" @click="hiyundong()">
+                  <el-button
+                    class="restButton"
+                    type="text"
+                    @click="hiyundong()"
+                  >
                     健身视频网站--Hi运动（用简单的方法打造美）
                   </el-button>
                 </h6>
                 <h6>
-                  <el-button type="text" @click="keep()">
+                  <el-button class="restButton" type="text" @click="keep()">
                     健身APP分享--Keep（自律使我自由）
                   </el-button>
                 </h6>
@@ -296,10 +516,10 @@
                   阳光、空气、雨水以及本项目：
                 </p>
                 <div class="git">
-                  <el-button type="text" @click="gitee()">
+                  <el-button class="restButton" type="text" @click="gitee()">
                     <img src="../assets/image/gitee.jpg" alt="" /><br />Gitee
                   </el-button>
-                  <el-button type="text" @click="github()">
+                  <el-button class="restButton" type="text" @click="github()">
                     <img src="../assets/image/github.jpg" alt="" /><br />Github
                   </el-button>
                 </div>
@@ -311,17 +531,27 @@
       <!-- 底部链接 -->
       <div class="web">
         |
-        <el-button type="text" @click="jirou()">肌肉网 </el-button>
+        <el-button class="restButton" type="text" @click="jirou()"
+          >肌肉网
+        </el-button>
         |
-        <el-button type="text" @click="fitnes()">我爱健身网 </el-button>
+        <el-button class="restButton" type="text" @click="fitnes()"
+          >我爱健身网
+        </el-button>
         |
-        <el-button type="text" @click="tiqiu()">全民健身 </el-button>
+        <el-button class="restButton" type="text" @click="tiqiu()"
+          >全民健身
+        </el-button>
         |
-        <el-button type="text" @click="fit()">51健身 </el-button>
+        <el-button class="restButton" type="text" @click="fit()"
+          >51健身
+        </el-button>
         |
-        <el-button type="text" @click="kukefit()">酷客健身 </el-button>
+        <el-button class="restButton" type="text" @click="kukefit()"
+          >酷客健身
+        </el-button>
         ||
-        <el-button type="text" @click="hellobody()">
+        <el-button class="restButton" type="text" @click="hellobody()">
           Copyright @ 2020-2021 Ashy- 个人开发
         </el-button>
         ||
@@ -333,17 +563,98 @@
 <script>
 export default {
   data() {
+    // 注册规则
+    var validatePass = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请再次输入密码"));
+      } else if (value !== this.addForm.password) {
+        callback(new Error("两次输入密码不一致!"));
+      } else {
+        callback();
+      }
+    };
     return {
+      fullscreenLoading: false, // 登录加载过程
+      centerDialogVisible: false, // 项目介绍
+      centerDialogVisible2: false, //版本公告
+      loginDialogFormVisible: false, //登录表单
+      registerDialogFormVisible: false, //  对话框状态
+      isCollapse: true,
+      // 属性 表单数据
+      loginForm: {
+        username: "",
+        password: "",
+      },
+      // userList: [],
+      //注册   属性
+      addForm: {
+        username: "",
+        password: "",
+        checkPass: "",
+        email: "",
+        timesss: "",
+      },
+      // 表单验证 --注册
+      addFormRules: {
+        username: [
+          { required: true, message: "请输入用户名", trigger: "blur" },
+          {
+            min: 2,
+            max: 12,
+            message: "长度在 2 到 12 个字符",
+            trigger: "blur",
+          },
+        ],
+        password: [
+          { required: true, message: "请输入密码", trigger: "blur" },
+          {
+            min: 6,
+            max: 16,
+            message: "长度在 6 到 16 个字符",
+            trigger: "blur",
+          },
+        ],
+        checkPass: [
+          { required: true, message: "不能为空", trigger: "blur" },
+          { validator: validatePass, trigger: "blur" },
+        ],
+        email: [
+          { required: true, message: "请输入邮箱", trigger: "blur" },
+          { min: 4, max: 20, message: "请正确输入邮箱地址", trigger: "blur" },
+        ],
+      },
+      // 校验规则，验证对象 --登录
+      loginRules: {
+        // 校验用户名
+        username: [
+          { required: true, message: "请输入用户名", trigger: "blur" }, //非空字集
+          {
+            min: 2,
+            max: 12,
+            message: "长度在 2 到 12 个字符",
+            trigger: "blur",
+          }, //长度验证
+        ],
+        // 校验密码
+        password: [
+          { required: true, message: "请输入用户密码", trigger: "blur" },
+          {
+            min: 6,
+            max: 16,
+            message: "长度在 6 到 16 个字符",
+            trigger: "blur",
+          },
+        ],
+      },
       timer: Date.parse(new Date()), //定义一个定时器的变量
       currentTime: new Date(), // 获取当前时间
+      helloTime: "",
       // 菜单列表
       menuList: [],
       activePath: "/hellou", //配置默认路径
       form: {
         userName: "",
       },
-      centerDialogVisible: false,
-      centerDialogVisible2: false,
     };
   },
   // 页面加载之后开始查询
@@ -359,26 +670,46 @@ export default {
     // this.form.userName = window.sessionStorage.getItem(JSON.parse("user"));
     // console.log(this.form.userName)
     var _this = this; //声明一个变量指向Vue实例this，保证作用域一致
+    // this.timer = setInterval(function () {
+    //   var y = new Date().getFullYear(),
+    //     m = new Date().getMonth() + 1,
+    //     d = new Date().getDate(),
+    //     h = new Date().getHours(),
+    //     mi = new Date().getMinutes(),
+    //     s = new Date().getSeconds();
+    //   _this.currentTime = //修改数据date
+    //     y +
+    //     "-" +
+    //     (m > 9 ? m : "0" + m) +
+    //     "-" +
+    //     (d > 9 ? d : "0" + d) +
+    //     "  " +
+    //     (h > 9 ? h : "0" + h) +
+    //     " : " +
+    //     (mi > 9 ? mi : "0" + mi) +
+    //     " : " +
+    //     (s > 9 ? s : "0" + s);
+    // }, 1000);
     this.timer = setInterval(function () {
-      var y = new Date().getFullYear(),
-        m = new Date().getMonth() + 1,
-        d = new Date().getDate(),
-        h = new Date().getHours(),
-        mi = new Date().getMinutes(),
-        s = new Date().getSeconds();
-      _this.currentTime = //修改数据date
-        y +
-        "-" +
-        (m > 9 ? m : "0" + m) +
-        "-" +
-        (d > 9 ? d : "0" + d) +
-        "  " +
-        (h > 9 ? h : "0" + h) +
-        " : " +
-        (mi > 9 ? mi : "0" + mi) +
-        " : " +
-        (s > 9 ? s : "0" + s);
-    }, 1000);
+      var mi = new Date().getMinutes(),
+        h = new Date().getHours();
+      // 1、早上：6：30---8：00
+      if (6 <= h < 8 && 30 <= mi < 60) {
+        this.helloTime = "早上好，";
+      } else if (8 <= h < 11 && 0 <= mi < 30) {
+        this.helloTime = "上午好，";
+      } else if (11 <= h < 14 && 30 <= mi < 60) {
+        this.helloTime = "中午好，";
+      } else if (14 <= h < 17 && 0 <= mi < 30) {
+        this.helloTime = "下午好，";
+      } else if (17 <= h < 24 && 30 <= mi < 60) {
+        this.helloTime = "晚上好，";
+      } else if (0 <= h < 6 && 0 <= mi < 30) {
+        this.helloTime = "晚上好，";
+      } else {
+        this.helloTime = "你好，";
+      }
+    }, 3000);
     // this.form.time = _this.currentTime;
     // console.log(_this.currentTime);
     //页面加载调用
@@ -386,14 +717,6 @@ export default {
     //   //每1秒刷新时间
     //   setInterval("NowTime()", 1000);
     // };
-    //过滤加0
-    // appendZero(obj) {
-    // if (obj < 10) {
-    // return "0" + obj;
-    // } else {
-    // return obj;
-    // }
-    // },
   },
   beforeDestroy() {
     if (this.timer) {
@@ -401,13 +724,103 @@ export default {
     }
   },
   methods: {
+    // 登录
+    login() {
+      this.$refs.loginFormRef.validate(async (valid) => {
+        // 登录成功则跳转
+        if (!valid) return;
+        const { data: res } = await this.$http.post("login", this.loginForm); //await 解析信息
+        // console.log(res.user);
+        if (res.flag == "ok") {
+          if (res.user.role == "管理员") {
+            this.$message.success("欢迎你，管理员"); //信息提示
+            this.$router.push({ path: "/home" }); //页面路由跳转后台
+            window.sessionStorage.setItem("user", res.user.username);
+          } else if (res.user.role == "超级管理员") {
+            this.$message.success("欢迎你，超级管理员"); //信息提示
+            this.$router.push({ path: "/home" }); //页面路由跳转
+            window.sessionStorage.setItem("user", res.user.username);
+          } else {
+            this.fullscreenLoading = true;
+            setTimeout(() => {
+              this.fullscreenLoading = false;
+            }, 2000);
+            // const loading = this.$loading({
+            //   lock: true,
+            //   text: "正在登录中 ... .. .",
+            //   spinner: "el-icon-loading",
+            //   background: "rgba(0, 0, 0, 0.7)",
+            // });
+            // setTimeout(() => {
+            //   loading.close();
+            // }, 2000);
+            this.$router.push({ path: "/first" }); //页面路由跳转
+            window.sessionStorage.setItem("user", res.user.username);
+            this.saveNavState();
+            setTimeout(() => {
+              location.reload(); // 刷新界面
+            }, 1000);
+            this.$message.success("登录成功！");
+          }
+        } else {
+          this.$message.error("手机号（用户名）或者密码错误，请重新输入！");
+        }
+      });
+      this.form.userName = window.sessionStorage.getItem("user");
+      this.loginDialogFormVisible = false;
+    },
     // 安全退出
     logout() {
       // 清除session,回到首页   清除token
       window.sessionStorage.clear();
       window.localStorage.clear();
+      this.$message.error("已退出！"); //信息提示
       // 导航到首页
-      this.$router.push("/login");
+      this.$router.push("/first");
+      setTimeout(() => {
+        location.reload(); // 刷新界面
+      }, 1000);
+    },
+    // 用户注册
+    addUser() {
+      //获取当前时间
+      const nowDate = new Date();
+      const date = {
+        year: nowDate.getFullYear(),
+        month: nowDate.getMonth() + 1,
+        date: nowDate.getDate(),
+        hour: nowDate.getHours(),
+        minute: nowDate.getMinutes(),
+        second: nowDate.getSeconds(),
+      };
+      const newmonth = date.month > 9 ? date.month : "0" + date.month;
+      const day = date.date > 9 ? date.date : "0" + date.date;
+      const h = date.hour > 9 ? date.hour : "0" + date.hour;
+      const m = date.minute > 9 ? date.minute : "0" + date.minute;
+      const s = date.second > 9 ? date.second : "0" + date.second;
+      // 在表单添加时间
+      this.addForm.timesss =
+        date.year + "-" + newmonth + "-" + day + " " + h + ":" + m + ":" + s;
+      this.$refs.addFormRef.validate(async (valid) => {
+        // console.log(valid);
+        // 验证
+        if (!valid) return;
+        // 提交结果
+        const { data: res } = await this.$http.post("addUser", this.addForm);
+        const { data: ss } = await this.$http.post(
+          "addUserInfoName",
+          this.addForm
+        );
+        if (res.flag == "no") {
+          this.$message.error("该用户名已经被注册！");
+        } else {
+          if (res != "success") {
+            return this.$message.error("注册失败！！");
+          }
+          this.$message.success("注册成功！！");
+          this.registerDialogFormVisible = false;
+        }
+      });
     },
     // 获取导航菜单方法
     async getMenuList() {
@@ -419,11 +832,38 @@ export default {
       } // 访问成功后的数据信息
       this.menuList = res.usermenus;
     },
+    // 导航菜单开关
+    open() {
+      this.isCollapse = false;
+    },
+    close() {
+      this.isCollapse = true;
+    },
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
+    },
     // 保存路径
     saveNavState(activePath) {
       // 将当前路径activePath传到saveNavState中，保存路径存放到session中
       window.sessionStorage.setItem("activePath", activePath);
       this.activePath = activePath;
+    },
+    //将表单中的内容重置
+    resetLoginForm() {
+      this.$refs.loginFormRef.resetFields();
+    },
+    // 清空表单，关闭窗口
+    addDialogClosed() {
+      this.$refs.addFormRef.resetFields();
+    },
+    // 取消所有按钮选中后对焦的状态
+    resetForm() {
+      this.$refs.customerQueryForm.resetFields();
+      // 移除鼠标button不失焦处理
+      document.getElementById("resetButton").blur();
     },
     async bohe() {
       const confirmResult = await this.$confirm(
@@ -655,38 +1095,20 @@ export default {
   text-decoration: none;
 }
 /*导航栏开始*/
-.navigation {
-  background-color: #202023;
-  margin: 0 -20px;
-  line-height: 60px;
-  // 小的
-  .packet {
-    border: 1px solid green;
-    // width: 100%;
-    // position: absolute;
-    // top: 0px;
-    // left: 0px;
-    // z-index: 1;
-  }
+.navbar-default .navbar-brand > img {
+  height: 60px;
+  margin-top: -10px;
 }
-// hellobody文字
-.navbar-header .hello {
-  font-size: 23px;
-  font-weight: bold;
-  color: #409eff;
+.top-dropdown {
+  width: 120%;
 }
+// 导航菜单
 .el-menu-demo {
-  // 时间
   font-family: "Microsoft YaHei", sans-serif;
   color: aliceblue;
   text-align: right;
   font-size: 16px;
 }
-.navbar-default .navbar-brand > img {
-  height: 60px;
-  margin-top: -10px;
-}
-
 .navbar-toggle {
   // 导航按钮
   margin-top: 17px;
@@ -696,12 +1118,14 @@ export default {
 .navbar-toggle .icon-bar {
   background-color: #00b3ff;
 }
-
-// .navbar-toggle .icon-bar {
-//   background-color: #409eff;
-// }
 /*导航栏结束*/
 /* 下拉菜单 -- 用户功能 -- 用户栏 */
+// hellobody文字
+.navbar-header .hello {
+  font-size: 23px;
+  font-weight: bold;
+  color: #409eff;
+}
 .el-dropdown-link {
   // 欢迎
   cursor: pointer;
@@ -718,7 +1142,35 @@ export default {
   font-size: 14px;
   margin-bottom: 20px;
 }
+// 侧边导航
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 200px;
+}
+.left-dropdown {
+  // z-index: 20;
+  // float: left;
+  .el-submenu {
+    span {
+      padding-left: 50px;
+      line-height: 20px;
+    }
+    // margin-left: 50px;
+    // margin-right: -50px;
+    .el-menu-item {
+      span {
+        font-size: 10px;
+      }
+      width: 100px;
+      margin-right: 50px;
+    }
+    .el-menu-item:hover {
+      background-color: springgreen;
+    }
+  }
+}
 /* 下拉结束 */
+
 /*---------------------分割线------------------------*/
 /* .el-main 正文*/
 .main {
