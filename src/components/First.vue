@@ -125,12 +125,42 @@
             </template>
             <!-- <el-menu-item-group> -->
             <!-- <span slot="title">健康工具</span> -->
-            <el-menu-item index="1-1" style="width: 100px"
-              ><span>运动卡路里消耗</span></el-menu-item
-            >
-            <el-menu-item index="1-2"><span>食物卡路里计算</span></el-menu-item>
-            <el-menu-item index="1-3"><span>食品卡路里查询</span></el-menu-item>
-            <el-menu-item index="1-4"><span>我的工具</span></el-menu-item>
+            <el-menu-item index="1-1" style="width: 100px">
+              <router-link
+                style="text-decoration: none; color: #fff"
+                :router="form.userName ? true : false"
+                to="/calories_dissipation"
+              >
+                <span>运动卡路里消耗</span>
+              </router-link>
+            </el-menu-item>
+            <el-menu-item index="1-2">
+              <router-link
+                style="text-decoration: none; color: #fff"
+                :router="form.userName ? true : false"
+                to="/calories_food"
+              >
+                <span>食物卡路里计算</span>
+              </router-link>
+            </el-menu-item>
+            <el-menu-item index="1-3">
+              <router-link
+                style="text-decoration: none; color: #fff"
+                :router="form.userName ? true : false"
+                to="/calories_find"
+              >
+                <span>食品卡路里查询</span>
+              </router-link>
+            </el-menu-item>
+            <el-menu-item index="1-4">
+              <router-link
+                style="text-decoration: none; color: #fff"
+                :router="form.userName ? true : false"
+                to="/my_tool"
+              >
+                <span>我的工具</span>
+              </router-link>
+            </el-menu-item>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">
@@ -138,8 +168,24 @@
             </template>
             <!-- </el-menu-item-group> -->
             <!-- <el-menu-item-group title="健康测评"> -->
-            <el-menu-item index="2-1"><span>免疫力测试</span></el-menu-item>
-            <el-menu-item index="2-2"><span>睡眠测试</span></el-menu-item>
+            <el-menu-item index="2-1">
+              <router-link
+                style="text-decoration: none; color: #fff"
+                :router="form.userName ? true : false"
+                to="/Immunity_test"
+              >
+                <span>免疫力测试</span>
+              </router-link>
+            </el-menu-item>
+            <el-menu-item index="2-2">
+              <router-link
+                style="text-decoration: none; color: #fff"
+                :router="form.userName ? true : false"
+                to="/sleep_test"
+              >
+                <span>睡眠测试</span>
+              </router-link>
+            </el-menu-item>
             <!-- </el-menu-item-group> -->
             <!-- <el-menu-item-group title="数据分析"> -->
             <!-- </el-menu-item-group> -->
@@ -148,8 +194,24 @@
             <template slot="title">
               <span slot="title">数据分析</span>
             </template>
-            <el-menu-item index="2-1"><span>体重体脂分析</span></el-menu-item>
-            <el-menu-item index="2-2"><span>健康标准</span></el-menu-item>
+            <el-menu-item index="2-1">
+              <router-link
+                style="text-decoration: none; color: #fff"
+                :router="form.userName ? true : false"
+                to="/fat_analysis"
+              >
+                <span>体重体脂分析</span>
+              </router-link>
+            </el-menu-item>
+            <el-menu-item index="2-2">
+              <router-link
+                style="text-decoration: none; color: #fff"
+                :router="form.userName ? true : false"
+                to="/health_standard"
+              >
+                <span>健康标准</span>
+              </router-link>
+            </el-menu-item>
           </el-submenu>
           <!-- 登录注册 -->
           <el-menu-item index="4" :hidden="form.userName ? true : false">
@@ -651,7 +713,7 @@ export default {
       helloTime: "",
       // 菜单列表
       menuList: [],
-      activePath: "/hellou", //配置默认路径
+      activePath: "/welcome", //配置默认路径
       form: {
         userName: "",
       },
@@ -661,6 +723,8 @@ export default {
   created() {
     // console.log(window);
     // 查询 MenuList
+    // this.activePath = window.sessionStorage.setItem("/first", activePath);
+    this.saveNavState();
     this.getMenuList();
     // 存放到session中的当前路径，再从session中取出来path，然后动态修改activePath
     this.activePath = window.sessionStorage.getItem("activePath");
@@ -736,31 +800,34 @@ export default {
             this.$message.success("欢迎你，管理员"); //信息提示
             this.$router.push({ path: "/home" }); //页面路由跳转后台
             window.sessionStorage.setItem("user", res.user.username);
+            window.sessionStorage.setItem("role", res.user.role);
           } else if (res.user.role == "超级管理员") {
             this.$message.success("欢迎你，超级管理员"); //信息提示
             this.$router.push({ path: "/home" }); //页面路由跳转
             window.sessionStorage.setItem("user", res.user.username);
+            window.sessionStorage.setItem("role", res.user.role);
           } else {
-            this.fullscreenLoading = true;
-            setTimeout(() => {
-              this.fullscreenLoading = false;
-            }, 2000);
-            // const loading = this.$loading({
-            //   lock: true,
-            //   text: "正在登录中 ... .. .",
-            //   spinner: "el-icon-loading",
-            //   background: "rgba(0, 0, 0, 0.7)",
-            // });
+            // this.fullscreenLoading = true;
             // setTimeout(() => {
-            //   loading.close();
+            //   this.fullscreenLoading = false;
             // }, 2000);
+            const loading = this.$loading({
+              lock: true,
+              text: "正在登录中 ... .. .",
+              spinner: "el-icon-loading",
+              background: "rgba(0, 0, 0, 0.7)",
+            });
+            setTimeout(() => {
+              loading.close();
+            }, 1500);
             this.$router.push({ path: "/first" }); //页面路由跳转
             window.sessionStorage.setItem("user", res.user.username);
+            window.sessionStorage.setItem("role", res.user.role);
             this.saveNavState();
             setTimeout(() => {
               location.reload(); // 刷新界面
+              this.$message.success("登录成功！");
             }, 1000);
-            this.$message.success("登录成功！");
           }
         } else {
           this.$message.error("手机号（用户名）或者密码错误，请重新输入！");
@@ -779,7 +846,7 @@ export default {
       this.$router.push("/first");
       setTimeout(() => {
         location.reload(); // 刷新界面
-      }, 1000);
+      }, 800);
     },
     // 用户注册
     addUser() {
