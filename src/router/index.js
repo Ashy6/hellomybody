@@ -1,5 +1,8 @@
 // 单独引入element的消息提示
 import { Message } from 'element-ui';
+// import Element from 'element-ui'
+
+// Vue.use(Element)
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // 引入组件
@@ -172,23 +175,27 @@ VueRouter.prototype.push = function push(location, onResolve, onReject) {
 router.beforeEach((to, form, next) => {     //3个方法  你 要往那里去 从哪里来 要去干什么
   //next （url）  重定向到url中， 没有则继续访问 to的路径
   // if (to.path === '/first') return next();   //只允许访问网站首页 
-  if (form.path !== '/first') {
-    if (to.path == '/welcome') return next();   //只允许访问网站首页 
-    // 获取user
-    const userFlag = window.sessionStorage.getItem("user");
-    // return this.$message.success("您不是超级管理员"); //信息提示
-    //有值，则完成登录，进入首页  无值返回登录页 
-    if (!userFlag) {
-      // window.alert("请先登录");
-      // window.$message.success("用户未登陆！"); //信息提示
-      // error("用户未登陆！");
+  if (to.path == '/welcome') return next();   //只允许访问网站首页 
+  // 获取user
+  const userFlag = window.sessionStorage.getItem("user");
+  // return this.$message.success("您不是超级管理员"); //信息提示
+  //有值，则完成登录，进入首页  无值返回登录页 
+  if (!userFlag) {
+    // window.alert("请先登录");
+    // window.$message.success("用户未登陆！"); //信息提示
+    // error("用户未登陆！");
+    return next('/first');
+  }
+  const roleFlag = window.sessionStorage.getItem("role");
+  // 不允许访问后台
+  if (to.path == '/home' || to.path == '/hello' || to.path == '/user' || to.path == '/rights' ||
+    to.path == '/userinfo' || to.path == '/gjgl' || to.path == '/calories' ||
+    to.path == '/sjck' || to.path == '/sjgl' || to.path == '/kfz' || to.path == '/bbgx') {
+    if (roleFlag !== "超级管理员") {
       return next('/first');
     }
-    const roleFlag = window.sessionStorage.getItem("role");
-    if (roleFlag !== "超级管理员") {
-      next('/first');
-      // return this.$message.success("您不是超级管理员"); //信息提示
-    }
+    return next();
+    // return this.$message.error("您不是超级管理员"); //信息提示
   }
   next();
 })
